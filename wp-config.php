@@ -13,6 +13,9 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define( 'DB_HOST', '%%DB_HOST%%' ); // Probably 'localhost'
 }
 
+define('WP_HOME','http://thomasbrodin:8888');
+define('WP_SITEURL','http://thomasbrodin:8888/wp');
+
 // ========================
 // Custom Content Directory
 // ========================
