@@ -1,0 +1,28 @@
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+    <body class="{{body_class}}" data-source="home.twig">
+    	<div class="site-wrapper">
+
+	      <div class="site-wrapper-inner">
+
+	        <div class="cover-container">
+			  
+			  <div id="teaser" class="col-md-6"></div>
+	          <div class="inner cover">
+	            <p class="lead">
+	              <a href="#" class="btn btn-lg btn-default">PHOTOGRAPHY</a><br>
+	              <a href="#" class="btn btn-lg btn-default">CREATIVE DIRECTION</a><br>
+				   <a href="#" class="btn btn-lg btn-default">CONTACT</a><br>
+	            </p>
+	          </div>
+
+	        </div>
+
+	      </div>
+
+	  </div>
+	   {{ function('wp_footer') }}
+ </body>
+</html>

@@ -1,0 +1,10 @@
+/*  Theme Name: TB Theme
+	Description: Custom Theme for Thomas Brodin
+	Author: HEX creative
+*/
+
+@import url("css/bootstrap.min.css");
+
+body {
+	font-family: "brandon-grotesque",sans-serif;
+}

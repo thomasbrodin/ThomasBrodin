@@ -1,0 +1,146 @@
+/* mobile styles */
+	
+	body{font-family: 'futura_ts_medmedium';margin:0;}
+	
+	#header{
+		margin-top: 0;
+		width:270px;
+		padding:0;
+		height:85px;
+		position:relative
+	}
+	
+	#logo a {
+		font-size:1.35em;
+		letter-spacing: 0.5pt
+	}
+	#logo a:hover{
+		color:#000
+	}
+
+	#nav { 
+		min-width:300px;
+		width: 300px;
+		position: relative;
+	}
+	#nav ul {	
+ 		list-style: none;  
+ 		margin:0px;  
+ 	}
+	#nav ul li {   
+ 		display: inline-block;  
+ 		font-size:1.35em; 
+ 		margin:0px; 
+ 		padding:0 8px 3px 0;  
+ 	}
+	#nav ul li a { 
+		margin:0px;
+		letter-spacing: 0.5pt
+	}
+ 	#nav ul li a:hover{
+ 		color:#000
+ 	}
+
+	#wrapper{
+		position: relative;
+		margin: 25px 0 0 25px
+	}
+	
+	#wrapper .inner {
+		padding: 0px 0px 0px 0px} 
+	
+	#masonry {
+		margin: 0 0 20px 0px;
+		width:100%;
+	}
+	#masonry .m_item .m_item_inner {
+		margin: 0 0 7px 0;
+	}
+	
+	.container {
+		position:relative;
+		padding-bottom:60px;
+	}
+
+	#SliderContainer {
+		opacity: 1;
+		overflow-y:auto;
+		overflow-x:hidden;
+		position:relative;
+	}
+	
+	.slider {
+		position:relative;
+		padding:0;
+		margin:0;
+	}
+
+	.slide:first-child {
+		margin-left: 0;
+	}	
+	.slide {
+		margin:0 0 30px 0}
+	.slide img	{
+		width: 100%;
+		height:auto
+	}
+
+	.post-nav   {
+		position: absolute;
+		padding:0;
+		bottom:10px;
+	}
+	
+	.post-next a {
+		line-height:16px;
+		font-size:12px;
+		padding-top: 0;
+	}
+	.post-prev a {
+		line-height:16px;
+		font-size:12px;
+		padding-top: 0;
+	}
+	
+	.hex-page	{ 
+		width:280px;
+		position:relative;
+		margin:0;
+		color:#fff
+	}
+	.hex-page-inner	{ 
+		position: relative;
+		padding:40px 0 40px 0px;
+	}
+	
+	.caption {
+	position: relative;
+	background:#fff;
+	}
+ 
+	.caption h2{
+		color:#000;
+		font-size: 12px;
+		padding:4px 0 0 0;
+	}
+		
+	::-webkit-scrollbar {
+		width: 7px;
+		}
+
+
+@media only screen and (min-width : 321px) {
+	.post-nav  {margin-right:0px;}	
+	#wrapper {width: 420px}
+	.slider {width:100%;}
+}
+   
+
+@media only screen and (max-width : 320px) {
+	.post-nav  {margin-right:0px;}
+	#wrapper {width: 270px}
+	.slider {width:100%}
+}
+
+  
+  
