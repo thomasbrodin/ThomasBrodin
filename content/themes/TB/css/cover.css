@@ -44,6 +44,7 @@ body {
   display: table-cell;
   vertical-align: top;
 }
+
 .cover-container {
   margin-left: auto;
   margin-right: auto;
@@ -67,14 +68,17 @@ body {
 }
 
 #teaser {
-  max-height: 320px;
-  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 #teaser img {
-  width:100%;
-  height:auto;
-  max-width: 320px
+  max-width: 500px;
+  padding: 1em;
 }
 .lead {
 text-align: left;
