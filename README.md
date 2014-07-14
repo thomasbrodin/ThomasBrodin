@@ -1,5 +1,7 @@
-Thomas Brodin's Site Skeleton
+Thomas Brodin's Site
+--------------------
 
+Wordpress / Bootstrap
 
 
 
