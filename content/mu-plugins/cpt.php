@@ -9,6 +9,7 @@ Author URI: http://www.hexcreativenetwork.com
 
 add_action( 'init', 'hex_cpt' );
 add_action( 'init', 'portfolio_taxonomies' );  
+add_action( 'init','maybe_rewrite_rules' );
 
 function hex_cpt() {
   $labels  = array(
@@ -26,7 +27,7 @@ function hex_cpt() {
         'show_in_menu' => true,
         'menu_position' => 5,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'portfolio', 'with_front' => false ),
+        'rewrite' => array( 'slug' => 'portfolio' ),
       );
   register_post_type( 'portfolio', $args);
 }
@@ -54,4 +55,19 @@ function portfolio_taxonomies() {
           'rewrite' => array('slug' => 'portfolio-tags')  
       )  
     );  
+  function maybe_rewrite_rules() {
+   
+    $ver = filemtime( __FILE__ ); // Get the file time for this file as the version number
+    $defaults = array( 'version' => 0, 'time' => time() );
+    $r = wp_parse_args( get_option( __CLASS__ . '_flush', array() ), $defaults );
+   
+    if ( $r['version'] != $ver || $r['time'] + 172800 < time() ) { // Flush if ver changes or if 48hrs has passed.
+      flush_rewrite_rules();
+      // trace( 'flushed' );
+      $args = array( 'version' => $ver, 'time' => time() );
+      if ( ! update_option( __CLASS__ . '_flush', $args ) )
+        add_option( __CLASS__ . '_flush', $args );
+    }
+   
+  }
 }  
