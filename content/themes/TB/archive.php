@@ -31,7 +31,7 @@
 			$data['title'] = single_cat_title('', false);
 			array_unshift($templates, 'archive-'.get_query_var('cat').'.twig');
 		} else if (is_post_type_archive()){
-			$data['title'] = post_type_archive_title('', false);
+			$data['wp_title'] = 'Thomas Brodin - ' .post_type_archive_title('', false);
 			array_unshift($templates, 'archive-'.get_post_type().'.twig');
 		}
 

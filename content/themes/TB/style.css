@@ -38,7 +38,7 @@ a:focus {
 }
 
 #wrap {
-	padding:55px 60px;
+	padding:55px 0px;
 }
 #content {
 	position: relative
@@ -92,9 +92,8 @@ body.admin-bar #main-nav {
 }
 
 .navbar-brand {
-	padding-left: 90px;
 	font-weight:600;
-
+	padding-left: 32px
 }
 .nav>li>a {
 	position: relative;
@@ -119,8 +118,8 @@ body.admin-bar #main-nav {
 /* HOME
 -------------------------------------------------- */
 article#teaser figure {
-	width:400px;
-	height:400px;
+	width:260px;
+	height:260px;
 }
 
 article#teaser figure img {

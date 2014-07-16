@@ -7,10 +7,10 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
-	define( 'DB_NAME', '%%DB_NAME%%' );
-	define( 'DB_USER', '%%DB_USER%%' );
-	define( 'DB_PASSWORD', '%%DB_PASSWORD%%' );
-	define( 'DB_HOST', '%%DB_HOST%%' ); // Probably 'localhost'
+	define('DB_NAME', 'thomasbrodin_com_1');
+	define('DB_USER', 'thomasbrodincom1');
+	define('DB_PASSWORD', 'XM8ds^G2');
+	define('DB_HOST', 'mysql.thomasbrodin.com');
 }
 // ========================
 // Custom Content Directory
@@ -44,7 +44,7 @@ define('NONCE_SALT',       'zD,$ WDKkI32kjE?sBn:~X%%3+VVmY|-A)]%=:?8uw50s|.p<mqL
 // Table prefix
 // Change this if you have multiple installs in the same database
 // ==============================================================
-$table_prefix  = 'wp_';
+$table_prefix  = 'wp_gtkcr3_';
 
 // ================================
 // Language
