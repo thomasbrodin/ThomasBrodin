@@ -2,15 +2,36 @@
 -------------------------------------------------- */
 
 @media (min-width: 768px) {
+  #wrap {
+    padding:55px 60px;
+  }
+  .navbar-brand {
+    padding-left: 90px;
+  }
   body.admin-bar #main-nav {
     margin-top:32px;
   }
+  .nav>li>a {
+  padding: 2px 0;
+  margin: 13px 15px;
+  }
+  article#teaser figure {
+    width: 600px;
+    height: 600px;
+  }
+  #content article figure {
+    max-width:600px;
+  }
 }
 @media (min-width: 992px) {
-  
+  #content article figure {
+    max-width:800px;
+  }
 }
 @media (min-width: 1200px) {
-  
+  #content article figure {
+    max-width:1000px;
+  }
 }
 
 @media screen and (max-width: 320px) {

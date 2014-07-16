@@ -99,7 +99,7 @@ body.admin-bar #main-nav {
 	position: relative;
 	display: block;
 	padding: 2px 0;
-	margin:13px 15px;
+	margin: 5px 30px;
 	-webkit-transition: border .5s ease-out;
 	-moz-transition: border .5s ease-out;
 	-o-transition: border .5s ease-out;
@@ -114,6 +114,17 @@ body.admin-bar #main-nav {
 	-o-transition: border .2s ease-out;
 	transition: border .2s ease-out;
 }
+.navbar-collapse.in,
+.navbar-collapse.collapsing {
+	background: #fff
+}
+
+.navbar-toggle .icon-bar {
+	width: 24px;
+	height: 3px;
+	border-radius: 0;
+	background-color: #000;
+}
 
 /* HOME
 -------------------------------------------------- */
@@ -127,6 +138,11 @@ article#teaser figure img {
 	display: block
 }
 
+/* PAGE
+-------------------------------------------------- */
+section.article-content {
+	margin: 30px;
+}
 /* MASONRY
 -------------------------------------------------- */
 #content article figure {
@@ -134,6 +150,11 @@ article#teaser figure img {
 	overflow: hidden;
 	position: relative;
 	margin:30px;
+	max-width: 260px;
+}
+#content article figure img{
+	max-width: 100%;
+	display: block
 }
 .js #content article.placed {
 	-webkit-transition: opacity .5s linear;
