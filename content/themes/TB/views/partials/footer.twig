@@ -1,0 +1,16 @@
+
+{{ function('wp_footer') }}
+    
+<script type="text/javascript">
+window.addEvent('load', function () { 
+    site.masonry = new masonry({ 
+        container: 'content', 
+        gutterWidth: 20, 
+        columnWidth: 70, 
+        brickPath: 'article' 
+    }); 
+    site.addEvent('resize', function() {
+        site.masonry.resize();
+    });  
+});
+</script>

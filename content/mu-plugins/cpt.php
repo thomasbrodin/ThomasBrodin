@@ -25,9 +25,12 @@ function hex_cpt() {
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 5,
+        'show_in_nav_menus' => true,
+        'show_in_admin_bar' => true,
+        'menu_position' => 0,
+        'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'portfolio' ),
+        'rewrite' => array( 'slug' => 'portfolio', 'with_front' => false),
       );
   register_post_type( 'portfolio', $args);
 }
@@ -38,10 +41,10 @@ function portfolio_taxonomies() {
     'portfolio',
       array( 
           'hierarchical' => true,  
-          'label' => 'Portfolio Categories', 
+          'label' => 'Project Categories', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'portfolio-categories')  
+          'rewrite' => array('slug' => 'work','with_front' => false)  
       )  
     ); 
   register_taxonomy(  
@@ -49,25 +52,25 @@ function portfolio_taxonomies() {
     'portfolio',
       array( 
           'hierarchical' => false,  
-          'label' => 'Portfolio Tags', 
+          'label' => 'Project Tags', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'portfolio-tags')  
+          'rewrite' => array('slug' => 'type','with_front' => false)  
       )  
     );  
-  function maybe_rewrite_rules() {
-   
-    $ver = filemtime( __FILE__ ); // Get the file time for this file as the version number
-    $defaults = array( 'version' => 0, 'time' => time() );
-    $r = wp_parse_args( get_option( __CLASS__ . '_flush', array() ), $defaults );
-   
-    if ( $r['version'] != $ver || $r['time'] + 172800 < time() ) { // Flush if ver changes or if 48hrs has passed.
-      flush_rewrite_rules();
-      // trace( 'flushed' );
-      $args = array( 'version' => $ver, 'time' => time() );
-      if ( ! update_option( __CLASS__ . '_flush', $args ) )
-        add_option( __CLASS__ . '_flush', $args );
+   function maybe_rewrite_rules() {
+     
+      $ver = filemtime( __FILE__ ); // Get the file time for this file as the version number
+      $defaults = array( 'version' => 0, 'time' => time() );
+      $r = wp_parse_args( get_option( __CLASS__ . '_flush', array() ), $defaults );
+     
+      if ( $r['version'] != $ver || $r['time'] + 172800 < time() ) { // Flush if ver changes or if 48hrs has passed.
+        flush_rewrite_rules();
+        // trace( 'flushed' );
+        $args = array( 'version' => $ver, 'time' => time() );
+        if ( ! update_option( __CLASS__ . '_flush', $args ) )
+          add_option( __CLASS__ . '_flush', $args );
+      }
+     
     }
-   
-  }
 }  

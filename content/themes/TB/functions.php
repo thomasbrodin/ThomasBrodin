@@ -9,17 +9,16 @@
 	add_action('wp_enqueue_scripts', 'load_scripts');
 	add_action('wp_enqueue_scripts', 'load_styles');
 
+	add_action('init', 'removeHeadLinks');
+	remove_action('wp_head', 'wp_generator');
 
 	define('THEME_URL', get_template_directory_uri());
 	function add_to_context($data){
-		/* this is where you can add your own data to Timber's context object */
-		$data['qux'] = 'I am a value set in your functions.php file';
 		$data['menu'] = new TimberMenu();
 		return $data;
 	}
 
 	function add_to_twig($twig){
-		/* this is where you can add your own functions to twig */
 		$twig->addExtension(new Twig_Extension_StringLoader());
 		$twig->addFilter('myfoo', new Twig_Filter_Function('myfoo'));
 		return $twig;
@@ -32,13 +31,22 @@
 
 	function load_scripts(){
 		wp_enqueue_script('jquery');
-		wp_enqueue_script( 'bootstrap-js', THEME_URL . '/js/bootstrap.min.js', array('jquery'), '3.1.0',true);
-		wp_enqueue_script( 'site', THEME_URL . '/js/site.js', array('jquery'), '', true);
+		wp_enqueue_script( 'modernizr', THEME_URL . '/js/modernizr-2.5.3.min.js', '', '');
+		wp_enqueue_script( 'mootools', '//ajax.googleapis.com/ajax/libs/mootools/1.4/mootools-yui-compressed.js', '', '', true);
+		wp_enqueue_script( 'wall', THEME_URL . '/js/masonry.js','', '',true);	
+		wp_enqueue_script( 'bootstrap-js', THEME_URL . '/js/bootstrap.min.js', array('jquery'), '',true);
+		wp_enqueue_script( 'flexslider', THEME_URL . '/js/jquery.flexslider-min.js', array('jquery'), '',true);
+		wp_enqueue_script( 'init', THEME_URL . '/js/init.js', array('jquery'), '', true);
 	}
 
 	function load_styles() {
 		wp_enqueue_style( 'bootstrap-style', THEME_URL . '/css/bootstrap.min.css');
-		wp_enqueue_style( 'cover', THEME_URL . '/css/cover.css'); 
+		wp_enqueue_style( 'slider', THEME_URL . '/css/slider.css'); 
 		wp_enqueue_style( 'custom', THEME_URL . '/style.css'); 
+		wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 
 	}
+	function removeHeadLinks() {
+    	remove_action('wp_head', 'rsd_link');
+    	remove_action('wp_head', 'wlwmanifest_link');
+    }
 

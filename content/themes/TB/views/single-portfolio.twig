@@ -2,21 +2,28 @@
 
 {% block content %}
 
-	<div class="content-wrapper">
-		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-			<section class="article-content">
-				<h1 class="article-h1">{{post.title}}</h1>
+    <div class="row">
+	  		 	
+        <div id="SliderContainer" class="col-md-9">
+	        <div class="slider">
+	            <ul class="slides">                                    
+	                {% for image in images %}
+						<li>
+			          		<img src="{{TimberImage(image.url).src}}">
+	  	    			</li>
+					{% endfor %}
+	        
+				</ul>
+			</div>
+		</div>
+		 <!-- Slider-->
+		<div id="controlswrap" class="col-md-3">
+  			<div class="captionwrap">
+					<h1 class="article">{{post.title}}</h1>
+					<p class="caption">{{caption}}</p>
+        	</div>
+  		</div> 
 
-				
-				<div class="article-body">
-					<img src="{{TimberImage(post.get_field('project_img')).src|resize(500, 500)}}" />
-					<p>{{post.project_desc}}</p>
-
-				</div>
-			</section>
-
-
-		</article>
-	</div> <!-- /content-wrapper -->
+	</div>
 
 {% endblock %}

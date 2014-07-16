@@ -1,0 +1,37 @@
+<article class="project" id="project-{{post.ID}}">
+	{% block content %}
+
+		{% if post.get_thumbnail %}
+			
+			<figure>
+				<a href="{{post.link}}">
+				
+				{% if post.thumbnail_size == 'XThWidth' %}
+					<img src="{{post.thumbnail.src|resize(70)}}" />
+				{% elseif post.thumbnail_size == 'ThWidth' %}
+					<img src="{{post.thumbnail.src|resize(100)}}" />
+				{% elseif post.thumbnail_size == 'XSWidth' %}
+					<img src="{{post.thumbnail.src|resize(150)}}" />
+				{% elseif post.thumbnail_size == 'SWidth' %}
+					<img src="{{post.thumbnail.src|resize(200)}}" />
+				{% elseif post.thumbnail_size == 'MWidth' %}
+					<img src="{{post.thumbnail.src|resize(250)}}" />
+				{% elseif post.thumbnail_size == 'XMWidth' %}			
+					<img src="{{post.thumbnail.src|resize(350)}}" />			
+				{% elseif post.thumbnail_size == 'LgWidth' %}			
+					<img src="{{post.thumbnail.src|resize(450)}}" />			
+				{% elseif post.thumbnail_size == 'XlgWidth' %}				
+					<img src="{{post.thumbnail.src|resize(600)}}" />		
+				{% elseif post.thumbnail_size == 'XLgWidth' %}
+					<img src="{{post.thumbnail.src|resize(900)}}" />
+				{% else %}
+					<img src="{{post.thumbnail.src}}" />
+				{% endif %}
+
+				</a>
+			</figure>
+
+		{% endif %}
+		
+	{% endblock %}
+</article>

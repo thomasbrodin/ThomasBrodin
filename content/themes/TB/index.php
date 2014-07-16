@@ -17,7 +17,7 @@
 		echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
 	}
 	$context = Timber::get_context();
-	$args = array('post_type' => array('portfolio' , 'post'), 'numberposts' => 30);
+	$args = array('post_type' => array('post'), 'numberposts' => -1);
 	$context['posts'] = Timber::get_posts($args);
 	$templates = array('index.twig');
 	if (is_home()){
