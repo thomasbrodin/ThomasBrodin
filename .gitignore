@@ -5,11 +5,8 @@
 /content/upgrade/
 .DS_Store
 /content/uploads
-
 /wp
-
 /content/plugins
-
-/content/upgrade
-
 /content/languages
+/WP-API
+/portfolio-beta

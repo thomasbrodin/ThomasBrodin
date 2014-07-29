@@ -11,6 +11,7 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define('DB_USER', 'thomasbrodincom1');
 	define('DB_PASSWORD', 'XM8ds^G2');
 	define('DB_HOST', 'mysql.thomasbrodin.com');
+	$table_prefix  = 'wp_gtkcr3_';
 }
 // ========================
 // Custom Content Directory
@@ -39,12 +40,6 @@ define('AUTH_SALT',        '9yuJh+|401S-yh@Ht4S$f1LgmtbwX*=tAZmx_y[5E_ud]M}UKP;#
 define('SECURE_AUTH_SALT', 'b)l(,oY|RXag%gAB}TOt/Q5`q)+8t3c;E_My;$9bW31KU>|ApU7GN6l-YzGtG#}V');
 define('LOGGED_IN_SALT',   '=Nb}hwW4Z76593)6eUw$I}=`0t v4m29Hs8Pe^=L2[+LzXrw@H]e#-e@f:N/4yaF');
 define('NONCE_SALT',       'zD,$ WDKkI32kjE?sBn:~X%%3+VVmY|-A)]%=:?8uw50s|.p<mqL_qFjobQ}|].B');
-
-// ==============================================================
-// Table prefix
-// Change this if you have multiple installs in the same database
-// ==============================================================
-$table_prefix  = 'wp_gtkcr3_';
 
 // ================================
 // Language
