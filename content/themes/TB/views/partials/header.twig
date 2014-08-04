@@ -14,15 +14,8 @@
                 <div id="main-nav-content" class="navbar-collapse collapse" role="navigation">
                     <ul id="menu-main-nav" class="nav navbar-nav">
                     {% for item in menu.get_items %}
-                        <li class="nav-main-item {{item.class}} {{item.current ? 'custom-current-item-class'}}">
-                            <a {% if item.get_children %}class="dropdown-toggle" data-toggle="dropdown"{% endif %} href="{{item.get_path}}">{{item.title}}</a>
-                            {% if item.get_children %}
-                                <ul class="dropdown-menu">
-                                  {% for child in item.get_children %}
-                                    <li class="dropdown-item"><a href="{{child.get_path}}">{{child.title}}</a></li>
-                                  {% endfor %}
-                                </ul>
-                             {% endif %}
+                        <li class="nav-main-item{{item.current ? ' active'}}">
+                            <a href="{{item.get_path}}">{{item.title}}</a>
                         </li>
                     {% endfor %}
                     </ul>

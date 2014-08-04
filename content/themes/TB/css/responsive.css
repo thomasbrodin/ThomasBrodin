@@ -3,17 +3,23 @@
 
 @media (min-width: 768px) {
   #wrap {
-    padding:55px 60px;
+    padding:114px 60px;
   }
   .navbar-brand {
-    padding-left: 90px;
+    padding:44px 0 0 90px;
+    font-size: 32px;
+    height: 32px;
+    line-height: 32px;
   }
   body.admin-bar #main-nav {
     margin-top:32px;
   }
+  #main-nav-content {
+    padding:77px 0 0 83px;
+  }
   .nav>li>a {
   padding: 2px 0;
-  margin: 13px 15px;
+  margin: 13px 7px;
   }
   article#teaser figure {
     width: 600px;
