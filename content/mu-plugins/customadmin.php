@@ -7,7 +7,8 @@ Author URI: http://www.hexcreativenetwork.com
 */
 
 add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
-add_action( 'wp_before_admin_bar_render', 'child_theme_creator_admin_bar_render', 100);
+add_action( 'wp_before_admin_bar_render', 'photo_admin_bar_render', 100);
+add_action( 'wp_before_admin_bar_render', 'project_admin_bar_render', 100);
 add_action( 'admin_menu', 'remove_menus', 999 );
 add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets');
 
@@ -47,13 +48,18 @@ function remove_dashboard_widgets()
 /**
  * Adds admin bar items for easy access to the theme creator and editor
  */
-function child_theme_creator_admin_bar_render() {
-    child_theme_creator_add_admin_bar('Portfolio'); // Parent item
-    child_theme_creator_add_admin_bar('All Projects', '/wp/wp-admin/edit.php?post_type=portfolio', 'Portfolio');
-    child_theme_creator_add_admin_bar('Add a new project', '/wp/wp-admin/post-new.php?post_type=portfolio', 'Portfolio');
+function photo_admin_bar_render() {
+    hex_add_admin_bar('Photography'); // Parent item
+    hex_add_admin_bar('All Photography', '/wp/wp-admin/edit.php?post_type=photography', 'Photography');
+    hex_add_admin_bar('Add new', '/wp/wp-admin/post-new.php?post_type=photography', 'Photography');
+}
+function project_admin_bar_render() {
+    hex_add_admin_bar('Creative Direction'); // Parent item
+    hex_add_admin_bar('All Projects', '/wp/wp-admin/edit.php?post_type=creative-direction', 'Creative Direction');
+    hex_add_admin_bar('Add new project', '/wp/wp-admin/post-new.php?post_type=creative-direction', 'Creative Direction');
 }
 
-function child_theme_creator_add_admin_bar($name, $href = '', $parent = '', $custom_meta = array()) {
+function hex_add_admin_bar($name, $href = '', $parent = '', $custom_meta = array()) {
     global $wp_admin_bar;
 
     if (!is_super_admin()

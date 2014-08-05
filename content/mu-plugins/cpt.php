@@ -12,17 +12,21 @@ add_action( 'init', 'portfolio_taxonomies' );
 add_action( 'init','maybe_rewrite_rules' );
 
 function hex_cpt() {
+  /**
+  * Photography post type
+  */
   $labels  = array(
-            'name' => 'Portfolio',
-            'singular_name' => 'Project',
-            'add_new' => __( 'Add New Project' ),
-            'add_new_item' => __( 'Add New Project' ),
+            'name' => 'Photography',
+            'singular_name' => 'Photography',
+            'add_new' => __( 'Add New' ),
+            'add_new_item' => __( 'Add New' ),
             );
   $args = array(
         'labels' => $labels,
         'description' => 'Thomas Brodin Photography Portfolio',
         'menu_icon'=> 'dashicons-portfolio',
         'public' => true,
+        'publicly_queryable' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'show_in_nav_menus' => true,
@@ -30,32 +34,88 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'portfolio', 'with_front' => false),
+        'rewrite' => array( 'slug' => 'photography', 'with_front' => false),
       );
-  register_post_type( 'portfolio', $args);
+  register_post_type( 'photography', $args);
+  /**
+  * Projects post type
+  */
+  $labels  = array(
+            'name' => 'Creative Direction',
+            'singular_name' => 'Project',
+            'add_new' => 'Add New Project',
+            'add_new_item' => 'Add New Project',
+            'edit_item' => 'Edit Project',
+            'new_item' => 'New Project',
+            'all_items' => 'All Projects',
+            'view_item' => 'View Project',
+            'search_items' => 'Search Projects',
+            'not_found' =>  'No projects found',
+            'not_found_in_trash' => 'No projects found in Trash',
+            'parent_item_colon' => '',
+            'menu_name' => 'Creative Direction'
+            );
+  $args = array(
+        'labels' => $labels,
+        'description' => 'Thomas Brodin Creative Direction Portfolio',
+        'menu_icon'=> 'dashicons-portfolio',
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => true,
+        'show_in_admin_bar' => true,
+        'menu_position' => 0,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
+        'rewrite' => array( 'slug' => 'creative-direction', 'with_front' => false),
+      );
+  register_post_type( 'creative-direction', $args);
 }
 
 function portfolio_taxonomies() {  
   register_taxonomy(  
-    'portfolio-category',  
-    'portfolio',
+    'photo-category',  
+    'photography',
+      array( 
+          'hierarchical' => true,  
+          'label' => 'Photo Categories', 
+          'show_admin_column' => true, 
+          'query_var' => true,  
+          'rewrite' => array('slug' => 'photo-cat')  
+      )  
+    ); 
+  register_taxonomy(  
+    'photo-tag',  
+    'photography',
+      array( 
+          'hierarchical' => false,  
+          'label' => 'Photo Tags', 
+          'show_admin_column' => true, 
+          'query_var' => true,  
+          'rewrite' => array('slug' => 'photo-tag')  
+      )  
+    ); 
+    register_taxonomy(  
+    'project-category',  
+    'creative-direction',
       array( 
           'hierarchical' => true,  
           'label' => 'Project Categories', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'work','with_front' => false)  
+          'rewrite' => array('slug' => 'project-cat')  
       )  
     ); 
-  register_taxonomy(  
-    'portfolio-tag',  
-    'portfolio',
+    register_taxonomy(  
+    'project-tag',  
+    'creative-direction',
       array( 
           'hierarchical' => false,  
           'label' => 'Project Tags', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'type','with_front' => false)  
+          'rewrite' => array('slug' => 'project-tag')  
       )  
     );  
    function maybe_rewrite_rules() {
