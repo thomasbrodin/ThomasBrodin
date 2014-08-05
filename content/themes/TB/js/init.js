@@ -6,6 +6,14 @@ jQuery(document).ready(function($) {
 			$(div_data).appendTo("#teaser figure");
 		});
 	});
+	$('.article_inner').bind('mouseenter',function() {
+		var height = $(this).children('img').height();
+		var width = $(this).children('img').width();
+		$(this).children('.article_overlay').css({'height':height, 'width':width});
+		$(this).children('.article_overlay').animate({'opacity':'1'},'fast');
+	}).bind('mouseleave',function() {
+		$(this).children('.article_overlay').animate({'opacity':'0'},'slow');
+	});
 	$(window).load(function() {
 		$('.slider').flexslider({
 			slideshow: false,
@@ -13,7 +21,7 @@ jQuery(document).ready(function($) {
 			animationLoop: false,
 			controlsContainer: "#controlswrap",
 			directionNav: true,
-			animationSpeed: 500, 
+			animationSpeed: 500,
 			controlNav: false,
 			keyboard: true,
 		});
