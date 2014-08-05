@@ -28,7 +28,7 @@
     	$text .= ' bar!';
     	return $text;
 	}
-
+	
 	function load_scripts(){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script( 'modernizr', THEME_URL . '/js/modernizr-2.5.3.min.js', '', '');
@@ -38,13 +38,13 @@
 		wp_enqueue_script( 'flexslider', THEME_URL . '/js/jquery.flexslider-min.js', array('jquery'), '',true);
 		wp_enqueue_script( 'init', THEME_URL . '/js/init.js', array('jquery'), '', true);
 	}
-
 	function load_styles() {
 		wp_enqueue_style( 'bootstrap-style', THEME_URL . '/css/bootstrap.min.css');
 		wp_enqueue_style( 'slider', THEME_URL . '/css/slider.css'); 
 		wp_enqueue_style( 'custom', THEME_URL . '/style.css'); 
 		wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 
 	}
+
 	function removeHeadLinks() {
     	remove_action('wp_head', 'rsd_link');
     	remove_action('wp_head', 'wlwmanifest_link');

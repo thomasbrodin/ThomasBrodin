@@ -12,6 +12,7 @@
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
+$context['title'] = $post->title();
 $context['images'] = get_field('proj_img');
 $context['caption'] = get_field('proj_caption');
 $context['comment_form'] = TimberHelper::get_comment_form();

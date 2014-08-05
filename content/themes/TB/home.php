@@ -14,18 +14,22 @@
 	}
 	$context = Timber::get_context();
 	$args = array(
-		'post_type' => 'portfolio', 
+		'post_type' => array('photography', 'creative-direction'),
 		'tax_query' => array(
+						'relation' => 'OR',
 							array(
-							'taxonomy' => 'portfolio-category',
-							'field' => 'slug',
-							'terms' => 'feature'
-							)
+								'taxonomy' => 'photo-category',
+								'field' => 'slug',
+								'terms' => 'featured-2'
+							),
+							array(
+								'taxonomy' => 'project-category',
+								'field' => 'slug',
+								'terms' => 'featured-1'
+							),
 						),
 		'numberposts' => -1
 	);
 	$context['posts'] = Timber::get_posts($args);
 
 	Timber::render('home.twig', $context);
-
-
