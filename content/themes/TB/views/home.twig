@@ -1,11 +1,9 @@
 {% extends "base.twig" %}
 
 {% block content %}
-				<article id="teaser">
-					<figure></figure>
-				</article>
-               {% for post in posts %}
-					{% include ['partials/article-portfolio.twig'] %}
-				{% endfor %}
+	
+	{% for post in posts %}
+		{% include ['partials/article-portfolio.twig'] %}
+	{% endfor %}
 
 {% endblock %}
