@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6{
 
 p {
 	font-family: 'FreightText Book','georgia', serif;
-	font-size: 1.75em;
+	font-size: 1.5em;
 	letter-spacing: 0.025em;
 	line-height: 1.25;
 }
@@ -573,7 +573,7 @@ footer {
 	display: block;
 	position: relative;
 	text-align: right;
-	width: 48%;
+	width: 55%;
 	margin-left: 2%;
 }
 .tb-words span{

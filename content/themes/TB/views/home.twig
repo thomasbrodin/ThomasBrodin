@@ -5,5 +5,21 @@
 	{% for post in posts %}
 		{% include ['partials/article-portfolio.twig'] %}
 	{% endfor %}
-
+	
+	<article id="teaser" class="photography">
+		<figure class="article_inner">
+			<div class="article_overlay">
+				<div class="overlay-inner">
+					<div class="top">
+						<h2 class="article_client">
+							<a href="http://diary.thomasbrodin.com/" target="_blank">Tumblr</a>
+						</h2>
+						<p class="article_title">Photo Journal</p>
+						<p class="caption">Iphone Photography</p>
+					</div>
+				</div>
+			</div><!-- .article_overlay -->
+		</figure><!-- figure -->
+	</article><!-- article#teaser-->
+	
 {% endblock %}
