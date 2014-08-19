@@ -2,21 +2,29 @@
 -------------------------------------------------- */
 
 @media (min-width: 768px) {
-  #wrap {
-    padding:134px 60px;
-  }
-  .navbar-brand {
-    padding:44px 0 0 88px;
-  }
   body.admin-bar #main-nav {
     margin-top:32px;
   }
-  #main-nav-content {
-    padding:77px 0 0 83px;
+  #wrap {
+    padding:250px 60px 0;
   }
-  .nav>li>a {
-    padding: 2px 0;
-    margin: 13px 7px;
+  .on-top, .on-bottom{
+    height: 16px;
+  }
+  .on-left, .on-right {
+    width: 16px;
+  }
+  #logo.minified {
+    padding:12px 0 0 41px
+  }
+  #nav-icons {
+    padding:26px 41px 0;
+  }
+  .overlay nav {
+    font-size: 36px
+  }
+  #content {
+    margin: -1.5em -30px -2em
   }
   article#teaser figure {
     width: 300px;
@@ -24,6 +32,18 @@
   }
   #content article figure {
     max-width:600px;
+  }
+  #bottom-titles {
+    padding:0 43px;
+    margin-top: 0
+  }
+  #cat_title h1,
+  #name h1 {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  .hide-mobile {
+    display: block!important
   }
 }
 @media (min-width: 992px) {
