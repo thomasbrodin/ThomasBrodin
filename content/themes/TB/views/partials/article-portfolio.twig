@@ -1,4 +1,4 @@
-<article class="project" id="project-{{post.ID}}">
+<article class="project {{ post.post_type }}" id="project-{{post.ID}}">
 	{% block content %}
 
 		{% if post.get_thumbnail %}
@@ -7,11 +7,20 @@
 
 				<div class="article_overlay">
 					<div class="overlay-inner">
-						<h2 class="article_title">{{post.title}}</h2>
-						<p class="client">{{post.client}}</p>
-						<p class="caption">{{post.proj_caption}}</p>
+						<div class="top">
+							<h2 class="article_client">{{post.client}}</h2>
+							<p class="article_title">{{post.title}}</p>
+							<p class="caption">{{post.proj_caption}}</p>
+						</div>
+						<!-- <div class="bottom">
+							<ul>
+								{% for term in post.terms %}
+									<li><a href="{{term.link}}">{{term.name}}</a></li>
+   								{% endfor %}
+							</ul>
+						</div> -->
 					</div>
-				</div>
+				</div><!-- .article_overlay -->
 
 				{% if post.thumbnail_size == 'XThWidth' %}
 					<img src="{{post.thumbnail.src|resize(70)}}" />
@@ -35,9 +44,9 @@
 					<img src="{{post.thumbnail.src}}" />
 				{% endif %}
 
-			</figure>
+			</figure><!-- figure -->
 
 		{% endif %}
 		
 	{% endblock %}
-</article>
+</article><!-- article -->

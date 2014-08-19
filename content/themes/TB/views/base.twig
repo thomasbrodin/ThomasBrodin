@@ -4,17 +4,23 @@
 </head>
     <body class="{{body_class}}" data-source="base.twig">
         
+        <div class="site-bd on-top"></div>
+        <div class="site-bd on-right"></div>
+        <div class="site-bd on-bottom"></div>
+        <div class="site-bd on-left"></div>
+        <!-- borders-->
+        
         {% include 'partials/header.twig' %}
-
+        
         <div id="wrap">
 
             <section id="content" role="main" class="clearfix">
                 {% block content %}
                     Sorry, no content
                 {% endblock %}
-            </section>
+            </section><!-- #content -->
 
-        </div>
+        </div><!-- #wrap -->
 
 
         {% include 'partials/footer.twig' %}

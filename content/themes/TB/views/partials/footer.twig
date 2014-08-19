@@ -1,16 +1,27 @@
 
+<footer>
+    <div id="bottom-titles">
+         <div id="name">
+            <a href="/" rel="home">
+                <h1>{{bloginfo('name')}}</h1>
+            </a>
+        </div>
+        {% if title is defined %}
+            <div id="cat_title">
+                <h1 class="{% if cpt %}{{cpt}}{% else %}grey{% endif %}">{{title}}</h1>
+            </div>
+        {% else %}
+            <div class="tb-words hide-mobile">
+                <span>Photographer</span>
+                <span>Creative Director</span>
+                <span>Art conspirator</span>
+                <span>Front End Developer</span>
+                <span>Creative Problem Solver</span>
+            </div>
+        {% endif %}
+
+    </div>
+
+</footer>
+
 {{ function('wp_footer') }}
-    
-<script type="text/javascript">
-window.addEvent('load', function () { 
-    site.masonry = new masonry({ 
-        container: 'content', 
-        gutterWidth: 20, 
-        columnWidth: 70, 
-        brickPath: 'article' 
-    }); 
-    site.addEvent('resize', function() {
-        site.masonry.resize();
-    });  
-});
-</script>

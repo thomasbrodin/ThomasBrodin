@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	
+	{% if posts %}
+		{% for post in posts %}
+			{% include ['partials/article-portfolio.twig'] %}
+		{% endfor %}
+	{% else %}
+		<h1 class="oops">Nope, <a href="/" rel="home">try again...</a></h1>
+	{% endif %}
+
+{% endblock %}
+
