@@ -13,6 +13,7 @@
 	remove_action('wp_head', 'wp_generator');
 
 	define('THEME_URL', get_template_directory_uri());
+
 	function add_to_context($data){
 		$data['menu'] = new TimberMenu();
 		return $data;
@@ -28,18 +29,29 @@
     	$text .= ' bar!';
     	return $text;
 	}
-	
+
 	function load_scripts(){
 		wp_enqueue_script('jquery');
 		wp_enqueue_script( 'modernizr', THEME_URL . '/js/modernizr-2.5.3.min.js', '', '');
 		wp_enqueue_script( 'mootools', '//ajax.googleapis.com/ajax/libs/mootools/1.4/mootools-yui-compressed.js', '', '', true);
 		wp_enqueue_script( 'wall', THEME_URL . '/js/masonry.js','', '',true);	
-		wp_enqueue_script( 'bootstrap-js', THEME_URL . '/js/bootstrap.min.js', array('jquery'), '',true);
+		wp_enqueue_script( 'snap', THEME_URL . '/js/snap.svg-min.js', '', '', true);
+		wp_enqueue_script( 'svg-config', THEME_URL . '/js/svgicons-config.js', '', '', true);
+		//templateUrl var
+		$translation_array = array( 'templateUrl' => get_template_directory_uri() );
+		wp_localize_script( 'svg-config', 'object_name', $translation_array );
+
+		wp_enqueue_script( 'svg-icons', THEME_URL . '/js/svgicons.js', '', '', true);
+		wp_enqueue_script( 'classie', THEME_URL . '/js/classie.js', '', '', true);
+		wp_enqueue_script( 'overlay-menu', THEME_URL . '/js/overlay.js', '', '', true);
+		wp_enqueue_script( 'search-expand', THEME_URL . '/js/uisearch.js', '', '', true);
+		// wp_enqueue_script( 'bootstrap-js', THEME_URL . '/js/bootstrap.min.js', array('jquery'), '',true);
 		wp_enqueue_script( 'flexslider', THEME_URL . '/js/jquery.flexslider-min.js', array('jquery'), '',true);
-		wp_enqueue_script( 'init', THEME_URL . '/js/init.js', array('jquery'), '', true);
+		// wp_enqueue_script( 'init', THEME_URL . '/js/jquery.init.js', array('jquery'), '', true);
+		wp_enqueue_script( 'init', THEME_URL . '/js/index-script.js', array('jquery'), '', true);
 	}
 	function load_styles() {
-		wp_enqueue_style( 'bootstrap-style', THEME_URL . '/css/bootstrap.min.css');
+		// wp_enqueue_style( 'base', THEME_URL . '/css/base.css');
 		wp_enqueue_style( 'slider', THEME_URL . '/css/slider.css'); 
 		wp_enqueue_style( 'custom', THEME_URL . '/style.css'); 
 		wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 

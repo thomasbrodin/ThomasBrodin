@@ -18,14 +18,14 @@
 		'tax_query' => array(
 						'relation' => 'OR',
 							array(
-								'taxonomy' => 'photo-category',
+								'taxonomy' => 'photo_category',
 								'field' => 'slug',
-								'terms' => 'featured-2'
+								'terms' => 'home'
 							),
 							array(
-								'taxonomy' => 'project-category',
+								'taxonomy' => 'project_category',
 								'field' => 'slug',
-								'terms' => 'featured-1'
+								'terms' => 'home'
 							),
 						),
 		'numberposts' => -1
