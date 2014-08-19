@@ -34,7 +34,7 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'photography', 'with_front' => false),
+        'rewrite' => array( 'slug' => 'photography'),
       );
   register_post_type( 'photography', $args);
   /**
@@ -53,7 +53,7 @@ function hex_cpt() {
             'not_found' =>  'No projects found',
             'not_found_in_trash' => 'No projects found in Trash',
             'parent_item_colon' => '',
-            'menu_name' => 'Creative Direction'
+            'menu_name' => 'Art Direction'
             );
   $args = array(
         'labels' => $labels,
@@ -68,25 +68,25 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'creative-direction', 'with_front' => false),
+        'rewrite' => array( 'slug' => 'creative-direction'),
       );
   register_post_type( 'creative-direction', $args);
 }
 
 function portfolio_taxonomies() {  
   register_taxonomy(  
-    'photo-category',  
+    'photo_category',  
     'photography',
       array( 
           'hierarchical' => true,  
           'label' => 'Photo Categories', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'photo-cat')  
+          'rewrite' => array('slug' => 'photo')  
       )  
     ); 
   register_taxonomy(  
-    'photo-tag',  
+    'photo_tag',  
     'photography',
       array( 
           'hierarchical' => false,  
@@ -97,18 +97,18 @@ function portfolio_taxonomies() {
       )  
     ); 
     register_taxonomy(  
-    'project-category',  
+    'project_category',  
     'creative-direction',
       array( 
           'hierarchical' => true,  
           'label' => 'Project Categories', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'project-cat')  
+          'rewrite' => array('slug' => 'projects')  
       )  
     ); 
     register_taxonomy(  
-    'project-tag',  
+    'project_tag',  
     'creative-direction',
       array( 
           'hierarchical' => false,  
