@@ -9,10 +9,10 @@
     padding:250px 60px 0;
   }
   .on-top, .on-bottom{
-    height: 16px;
+    height: 5px;
   }
   .on-left, .on-right {
-    width: 16px;
+    width: 8px;
   }
   #logo.minified {
     padding:12px 0 0 41px
