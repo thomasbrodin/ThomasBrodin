@@ -116,6 +116,10 @@ body.admin-bar #main-nav {
 #logo.minified {
 	padding:12px 12px 0
 }
+#logo.minified svg {
+	display: none!important;
+}
+
 #logo a {
     height:140px;
     width:100px;
@@ -125,7 +129,7 @@ body.admin-bar #main-nav {
 	height:70px;
 	width:50px;
 	display: block;
-	/*background: url('img/T-sm.png') no-repeat center left;*/
+	background: url('img/T-sm.png') no-repeat center left;
 }
 #logo a h1 {
 	display: none;

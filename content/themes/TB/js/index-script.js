@@ -20,32 +20,25 @@ jQuery(document).ready(function($) {
 			$(div_data).appendTo("#teaser figure");
 		});
 	});
-	/* ============================================================= Scroll change */
+	/* ============================================================= CheckWidth */
 	var $window = $(window);
 	var $Logo = $("#logo");
-	var scrolled;
 	function checkWidth() {
         var windowsize = $window.width();
         if (windowsize <= 767) {
            $Logo.addClass("minified");
-        }
+        } else {
+			$Logo.removeClass("minified");
+		}
     }
 	checkWidth();
     $(window).resize(checkWidth);
-	$(window).scroll(function() {
-		scrolled = Math.max(0, $(window).scrollTop());
-		if ( ($(window).width() <= 767) || (scrolled > 20) ){
-			$Logo.addClass("minified");
-		} else {
-			$Logo.removeClass("minified");
-		}
-	});
 	/* ============================================================= SVG Icons */
 	new svgIcon(document.querySelector(".icons-default .icon-hamburger-cross"), svgIconConfig, {
 		easing: mina.easeinout,
 		speed: 200
 	});
-	new svgIcon(document.querySelector(".icons-default .icon-loading-T"), svgIconConfig, {
+	new svgIcon(document.querySelector(".icons-default.logo-svg .icon-T"), svgIconConfig, {
 		size: {
 			w: 100,
 			h: 140
