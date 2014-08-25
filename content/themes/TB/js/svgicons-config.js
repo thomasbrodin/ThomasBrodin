@@ -7,8 +7,8 @@ var svgIconConfig = {
 			{
 				el : 'path:nth-child(1)',
 				animProperties : {
-					from : { val : '{"path" : "m 5.0916789,20.818994 53.8166421,0"}' },
-					to : { val : '{"path" : "M 12.972944,50.936147 51.027056,12.882035"}' }
+					from : { val : '{"path" : "M3.2,12.9h33.6"}' },
+					to : { val : '{"path" : "M10.6,10.5l19,19"}' }
 				}
 			},
 			{
@@ -21,8 +21,34 @@ var svgIconConfig = {
 			{
 				el : 'path:nth-child(3)',
 				animProperties : {
-					from : { val : '{"path" : "m 5.0916788,42.95698 53.8166422,0"}' },
-					to : { val : '{"path" : "M 12.972944,12.882035 51.027056,50.936147"}' }
+					from : { val : '{"path" : "M3.2,27.2h33.6"}' },
+					to : { val : '{"path" : "M10.6,29.5l19-19"}' }
+				}
+			}
+		]
+	},
+	TLogo : {
+		url : ""+templateUrl+"/img/T.svg",
+		animation : [
+			{
+				el : 'polygon:nth-child(1)',
+				animProperties : {
+					from : { val : '{"fill" : "#333333"}' },
+					to : { val : '{"fill" : "#FF0000"}' }
+				}
+			},
+			{
+				el : 'polygon:nth-child(2)',
+				animProperties : {
+					from : { val : '{"fill" : "#6B6B6B"}' },
+					to : { val : '{"fill" : "#FF0000"}' }
+				}
+			},
+			{
+				el : 'polygon:nth-child(3)',
+				animProperties : {
+					from : { val : '{"fill" : "#545454"}' },
+					to : { val : '{"fill" : "#FF0000"}' }
 				}
 			}
 		]

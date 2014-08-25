@@ -41,13 +41,16 @@ jQuery(document).ready(function($) {
 		}
 	});
 	/* ============================================================= SVG Icons */
-	new svgIcon(document.querySelector(".si-icons-default .si-icon-hamburger-cross"), svgIconConfig, {
+	new svgIcon(document.querySelector(".icons-default .icon-hamburger-cross"), svgIconConfig, {
 		easing: mina.easeinout,
-		speed: 200,
+		speed: 200
+	});
+	new svgIcon(document.querySelector(".icons-default .icon-loading-T"), svgIconConfig, {
 		size: {
-			w: 40,
-			h: 40
-		}
+			w: 100,
+			h: 140
+		},
+		evtoggle : 'mouseover'
 	});
 	/* ============================================================= Search Expand */
 	new UISearch( document.getElementById( 'sb-search' ) );

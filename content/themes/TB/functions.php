@@ -45,13 +45,10 @@
 		wp_enqueue_script( 'classie', THEME_URL . '/js/classie.js', '', '', true);
 		wp_enqueue_script( 'overlay-menu', THEME_URL . '/js/overlay.js', '', '', true);
 		wp_enqueue_script( 'search-expand', THEME_URL . '/js/uisearch.js', '', '', true);
-		// wp_enqueue_script( 'bootstrap-js', THEME_URL . '/js/bootstrap.min.js', array('jquery'), '',true);
 		wp_enqueue_script( 'flexslider', THEME_URL . '/js/jquery.flexslider-min.js', array('jquery'), '',true);
-		// wp_enqueue_script( 'init', THEME_URL . '/js/jquery.init.js', array('jquery'), '', true);
 		wp_enqueue_script( 'init', THEME_URL . '/js/index-script.js', array('jquery'), '', true);
 	}
 	function load_styles() {
-		// wp_enqueue_style( 'base', THEME_URL . '/css/base.css');
 		wp_enqueue_style( 'slider', THEME_URL . '/css/slider.css'); 
 		wp_enqueue_style( 'custom', THEME_URL . '/style.css'); 
 		wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 
