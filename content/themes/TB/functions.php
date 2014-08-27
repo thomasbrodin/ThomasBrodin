@@ -49,8 +49,8 @@
 		wp_enqueue_script( 'init', THEME_URL . '/js/index-script.js', array('jquery'), '', true);
 	}
 	function load_styles() {
-		wp_enqueue_style( 'slider', THEME_URL . '/css/slider.css'); 
 		wp_enqueue_style( 'custom', THEME_URL . '/style.css'); 
+		wp_enqueue_style( 'single', THEME_URL . '/css/single.css'); 
 		wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 
 	}
 
