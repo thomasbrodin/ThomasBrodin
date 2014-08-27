@@ -1,7 +1,7 @@
 /* ============================================================= Masonry init */
 window.addEvent('load', function () {
 	site.masonry = new masonry({
-		container: 'content',
+		container: 'wall',
 		gutterWidth: 20,
 		columnWidth: 70,
 		brickPath: 'article'
