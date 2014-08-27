@@ -6,13 +6,27 @@
     margin-top:32px;
   }
   #wrap {
-    padding:250px 60px 0;
+    padding:216px 60px 0;
   }
+  #single{
+   padding: 216px 60px 85px 60px;
+  }
+  /* SITE BORDER */
   .on-top, .on-bottom{
-    height: 5px;
+    left: 0;
+    right: 0;
+    height: 10px;
   }
   .on-left, .on-right {
-    width: 8px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+  }
+  .on-bottom {
+    bottom: 0
+  }
+  .on-right {
+    right: 0
   }
   #logo.minified {
     padding:12px 0 0 41px
@@ -23,7 +37,7 @@
   .overlay nav {
     font-size: 36px
   }
-  #content {
+  #wall {
     margin: -1.5em -30px -2em
   }
   article#teaser figure {

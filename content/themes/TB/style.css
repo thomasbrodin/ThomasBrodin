@@ -28,9 +28,6 @@ body, html {
 	background-color:#fff;
 	color:#111;
 }
-body {
-	margin-bottom: 84px
-}
 a {
 	color: #000;
 	text-decoration: none;
@@ -59,9 +56,9 @@ a:focus {
 }
 
 #wrap {
-	padding:113px 0;
+	padding:106px 0;
 }
-#content {
+#wall {
 	position: relative;
 	z-index: 0
 }
@@ -96,12 +93,9 @@ p {
 	right: 0;
 	left: 0;
 	top: 0;
-	z-index: 2;
+	z-index: 3;
 	margin: 0;
 	padding: 17px 17px 0;
-}
-body.admin-bar #main-nav {
-	margin-top:44px;
 }
 
 /* logo */
@@ -270,7 +264,7 @@ input[type="text"].sb-search-input:focus {
 	top: 0;
 	left: 0;
 	background: rgba(255,255,255,0.9);
-	z-index: 1;
+	z-index: 2;
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
@@ -400,7 +394,6 @@ section.article-content {
 	margin: 30px;
 }
 
-
 /* 404
 -------------------------------------------------- */
 h1.oops{
@@ -422,15 +415,17 @@ h1.oops a:hover {
 
 /* ARTICLE
 -------------------------------------------------- */
-#content article figure {
+#wall article figure {
 	text-align: left;
 	overflow: hidden;
 	position: relative;
 	margin:1.5em 30px 2em;
-	max-width: 260px;
 	cursor: pointer
 }
-.js #content article.placed {
+#wall article.single figure {
+	max-width: 260px
+}
+.js #wall article.placed {
 	-webkit-transition: opacity .5s linear;
 	-moz-transition: opacity .5s linear;
 	-ms-transition: opacity .5s linear;
@@ -438,16 +433,16 @@ h1.oops a:hover {
 	transition: opacity .5s linear;
 	opacity: 1;
 }
-.js #content article {
+.js #wall article {
 	position: absolute;
 	float: none;
 	opacity: 0;
 }
-#content article {
+#wall article {
 	position: relative;
 	float: left;
 }
-#content article figure img{
+#wall article figure img{
 	max-width: 100%;
 	display: block;
 }
@@ -502,6 +497,7 @@ footer {
 	width: 100%;
 	height: 84px;
 	padding: 17px;
+	z-index: 3
 }
 #bottom-titles {
 	display: block;
