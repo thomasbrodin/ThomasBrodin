@@ -40,29 +40,29 @@ var svgIconConfig = {
 			{
 				el : 'path#T_black',
 				animProperties : {
-					from : { val : '{"transform" : "s1 1", "opacity" : 1}', before : '{"transform" : "s0 0"}' },
-					to : { val : '{"opacity" : 0}' }
+					from : { val : '{"path" : "M13.4,19.9v-8H48v8H35v38.7h-8.7V19.9H13.4z"}' },
+					to : { val : '{"path" : "M12.2,15.1V4.8h44.3v10.3H39.9V65H28.8V15.1H12.2z"}' }
 				}
 			},
 			{
-				el : 'polygon#T_blue',
+				el : 'path#T_blue',
 				animProperties : {
 					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
-					to : { val : '{"transform" : "t-4 -4"}', before : '{ "opacity" : 1 }' }
+					to : { val : '{"transform" : "t-2 2"}', before : '{ "opacity" : 1 }' }
 				}
 			},
 			{
-				el : 'polygon#T_red',
+				el : 'path#T_red',
 				animProperties : {
 					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
-					to : { val : '{"transform" : "t1 1"}', before : '{ "opacity" : 1 }' }
+					to : { val : '{"transform" : "t-4 3"}', before : '{ "opacity" : 1 }' }
 				}
 			},
 			{
-				el : 'polygon#T_green',
+				el : 'path#T_green',
 				animProperties : {
 					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
-					to : { val : '{"transform" : "t7 7"}', before : '{ "opacity" : 1 }' }
+					to : { val : '{"transform" : "t9 0"}', before : '{ "opacity" : 1 }' }
 				}
 			}
 		]
