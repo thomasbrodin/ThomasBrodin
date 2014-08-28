@@ -4,7 +4,7 @@
                 
                 <div id="logo" class="icons-default logo-svg">
                     <a href="/" rel="home">
-                        <span class="icon-T" data-icon-name="TLogo">
+                        <span class="icon-T{% if cpt %} {{cpt}}{% endif %}" data-icon-name="TLogo">
                             <h1>{{bloginfo('name')}}</h1>
                         </span>
                     </a>
