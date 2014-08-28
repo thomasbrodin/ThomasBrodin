@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 		speed : 200,
 		size: {
 			w: 70,
-			h: 100
+			h: 70
 		},
 	});
 
