@@ -31,27 +31,40 @@ var svgIconConfig = {
 		url : ""+templateUrl+"/img/T.svg",
 		animation : [
 			{
-				el : 'polygon:nth-child(1)',
+				el : 'path#dot',
 				animProperties : {
-					from : { val : '{"fill" : "#333333"}' },
-					to : { val : '{"fill" : "#FF0000"}' }
+					from : { val : '{"transform" : "s1 1", "opacity" : 1}', before : '{"transform" : "s0 0"}' },
+					to : { val : '{"opacity" : 0}' }
 				}
 			},
 			{
-				el : 'polygon:nth-child(2)',
+				el : 'path#T_black',
 				animProperties : {
-					from : { val : '{"fill" : "#6B6B6B"}' },
-					to : { val : '{"fill" : "#FF0000"}' }
+					from : { val : '{"transform" : "s1 1", "opacity" : 1}', before : '{"transform" : "s0 0"}' },
+					to : { val : '{"opacity" : 0}' }
 				}
 			},
 			{
-				el : 'polygon:nth-child(3)',
+				el : 'polygon#T_blue',
 				animProperties : {
-					from : { val : '{"fill" : "#545454"}' },
-					to : { val : '{"fill" : "#FF0000"}' }
+					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
+					to : { val : '{"transform" : "t-4 -4"}', before : '{ "opacity" : 1 }' }
+				}
+			},
+			{
+				el : 'polygon#T_red',
+				animProperties : {
+					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
+					to : { val : '{"transform" : "t1 1"}', before : '{ "opacity" : 1 }' }
+				}
+			},
+			{
+				el : 'polygon#T_green',
+				animProperties : {
+					from : { val : '{"transform" : "t0 0"}', after : '{ "opacity" : 0 }' },
+					to : { val : '{"transform" : "t7 7"}', before : '{ "opacity" : 1 }' }
 				}
 			}
 		]
 	},
-
 };

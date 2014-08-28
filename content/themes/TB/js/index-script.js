@@ -14,37 +14,22 @@ window.addEvent('load', function () {
 jQuery(document).ready(function($) {
 	/* ============================================================= Tumblr */
 	$.getJSON("http://diary.thomasbrodin.com/api/read/json?callback=?", function(data) {
-		$.each(data.posts, function(i,posts){
-			var photo = this["photo-url-500"];
-			var div_data =  "<img src='"+photo+"'>";
-			$(div_data).appendTo("#teaser figure");
-		});
+		$('#ipics').attr('src', data.posts[0]['photo-url-500']);
 	});
-	/* ============================================================= CheckWidth */
-	var $window = $(window);
-	var $Logo = $("#logo");
-	function checkWidth() {
-        var windowsize = $window.width();
-        if (windowsize <= 767) {
-           $Logo.addClass("minified");
-        } else {
-			$Logo.removeClass("minified");
-		}
-    }
-	checkWidth();
-    $(window).resize(checkWidth);
 	/* ============================================================= SVG Icons */
 	new svgIcon(document.querySelector(".icons-default .icon-hamburger-cross"), svgIconConfig, {
 		easing: mina.easeinout,
 		speed: 200
 	});
 	new svgIcon(document.querySelector(".icons-default.logo-svg .icon-T"), svgIconConfig, {
+		easing : mina.linear,
+		speed : 200,
 		size: {
-			w: 100,
-			h: 140
+			w: 70,
+			h: 100
 		},
-		evtoggle : 'mouseover'
 	});
+
 	/* ============================================================= Search Expand */
 	new UISearch( document.getElementById( 'sb-search' ) );
 	/* ============================================================= Overlay thumbnails */
