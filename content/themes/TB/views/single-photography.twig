@@ -11,12 +11,10 @@
         <div class="site-bd on-bottom"></div>
         <div class="site-bd on-left"></div>
         <!-- borders-->
-        
-        <div id="wrap">
             
             <div id="single">
 
-			        <div class="slider">
+			        <div class="slider clearfix">
 			            <ul class="slides">                                    
 			                {% for image in images %}
 								<li>
@@ -30,14 +28,21 @@
 					<div id="controlswrap">
 			  		</div><!-- #controlswrap -->
 
-			  		<div class="captionwrap">
-						<p class="caption">{{caption}}</p>
-					</div><!-- .captionwrap -->
+					<div class="post_info clearfix">
+				  		{% if post.client %}
+		                    <div id="client">
+		                        <h2 class"client">{{post.client}}</h1>
+		                    </div>
+		                {% endif %}
+
+		                {% if caption %}
+		                    <div class="captionwrap">
+		                        <p class="caption">{{caption}}</p>
+		                    </div><!-- .captionwrap -->
+		                {% endif %}
+		            </div>
 
 			</div><!-- #single -->
-
-        </div><!-- #wrap -->
-
 
         {% include 'partials/footer.twig' %}
           
