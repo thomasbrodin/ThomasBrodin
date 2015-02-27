@@ -5,28 +5,11 @@
             <a href="/" rel="home">
                 <h1>{{bloginfo('name')}}</h1>
             </a>
-        </div>
+        </div>       
+        {% if cpt %}        
 
-        {% if cpt_title %}
-            
             <div id="cat_title">
-                <h1 class="{% if cpt %}{{cpt}}{% else %}grey{% endif %}">{{cpt_title}}</h1>
-            </div>
-
-        {% elseif title %}            
-            
-            <div id="title">
-                <h1 class="post_title">{{title}}</h1>
-            </div>
-
-        {% else %}
-            
-            <div class="tb-words hide-mobile">
-                <span>Photographer</span>
-                <span>Creative Director</span>
-                <span>Art conspirator</span>
-                <span>Front End Developer</span>
-                <span>Creative Problem Solver</span>
+                <h1 class="{{cpt}}">{{cpt_title}}</h1>
             </div>
 
         {% endif %}

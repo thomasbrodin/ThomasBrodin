@@ -20,7 +20,7 @@ $cpt_obj = get_post_type_object($post_type);
 $cpt = $cpt_obj->labels->name;
 
 $context['title'] = $term_name;
-$context['cpt_current'] = $cpt;
+$context['cpt_title'] = $cpt.' : '.$term_name;
 $context['cpt'] = $post_type;
 
 Timber::render($templates, $context);

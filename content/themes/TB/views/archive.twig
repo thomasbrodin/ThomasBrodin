@@ -1,8 +1,9 @@
 {% extends "base.twig" %}
 
 {% block content %}
+	
 	{% for post in posts %}
-		{% include ['tease.twig'] %}
+		{% include 'partials/tease.twig' %}
 	{% endfor %}
 
 {% endblock %}

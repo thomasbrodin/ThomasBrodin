@@ -8,37 +8,29 @@
 				<div class="article_overlay">
 					<div class="overlay-inner">
 						<div class="top">
-							<h2 class="article_client">{{post.client}}</h2>
-							<p class="article_title">{{post.title}}</p>
-							<p class="caption">{{post.proj_caption}}</p>
+							<h2>{{ post.client }}</h2>
+							<p class="title">{{post.title}}</p>
 						</div>
-						<!-- <div class="bottom">
-							<ul>
-								{% for term in post.terms %}
-									<li><a href="{{term.link}}">{{term.name}}</a></li>
-   								{% endfor %}
-							</ul>
-						</div> -->
 					</div>
 				</div><!-- .article_overlay -->
 
-				{% if post.thumbnail_size == 'XThWidth' %}
-					<img src="{{post.thumbnail.src|resize(70)}}" />
-				{% elseif post.thumbnail_size == 'ThWidth' %}
+				{% if post.thumbnail_size == 'ThWidth' %}
 					<img src="{{post.thumbnail.src|resize(100)}}" />
 				{% elseif post.thumbnail_size == 'XSWidth' %}
 					<img src="{{post.thumbnail.src|resize(150)}}" />
 				{% elseif post.thumbnail_size == 'SWidth' %}
 					<img src="{{post.thumbnail.src|resize(200)}}" />
-				{% elseif post.thumbnail_size == 'MWidth' %}
+				{% elseif post.thumbnail_size == 'SMWidth' %}
 					<img src="{{post.thumbnail.src|resize(250)}}" />
-				{% elseif post.thumbnail_size == 'XMWidth' %}
+				{% elseif post.thumbnail_size == 'MWidth' %}
 					<img src="{{post.thumbnail.src|resize(350)}}" />	
-				{% elseif post.thumbnail_size == 'LgWidth' %}
+				{% elseif post.thumbnail_size == 'LWidth' %}
 					<img src="{{post.thumbnail.src|resize(450)}}" />
-				{% elseif post.thumbnail_size == 'XlgWidth' %}
+				{% elseif post.thumbnail_size == 'XLWidth' %}
+					<img src="{{post.thumbnail.src|resize(520)}}" />
+				{% elseif post.thumbnail_size == 'XXLWidth' %}
 					<img src="{{post.thumbnail.src|resize(600)}}" />
-				{% elseif post.thumbnail_size == 'XLgWidth' %}
+				{% elseif post.thumbnail_size == 'XXXLWidth' %}
 					<img src="{{post.thumbnail.src|resize(900)}}" />
 				{% else %}
 					<img src="{{post.thumbnail.src}}" />

@@ -3,9 +3,11 @@
 {% block content %}
 	
 	{% if posts %}
-		{% for post in posts %}
-			{% include ['partials/article-portfolio.twig'] %}
-		{% endfor %}
+		<section id="wall" role="main" class="clearfix">
+			{% for post in posts %}
+				{% include 'partials/article-portfolio.twig' %}
+			{% endfor %}
+		</section><!-- #wall -->
 	{% else %}
 		<h1 class="oops">Nothing here, <a href="/" rel="home">try again...</a></h1>
 	{% endif %}

@@ -17,7 +17,5 @@ if (post_password_required($post->ID)){
 	Timber::render('single-password.twig', $context);
 } else {
 	$context['title'] = $post->title();
-	$context['images'] = get_field('proj_img');
-	$context['caption'] = get_field('proj_caption');
 	Timber::render(array('single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig'), $context);
 }

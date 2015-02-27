@@ -1,0 +1,63 @@
+/* browser prefix */
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+   -khtml-#{$property}: #{$value};
+     -moz-#{$property}: #{$value};
+      -ms-#{$property}: #{$value};
+       -o-#{$property}: #{$value};
+          #{$property}: #{$value};
+}
+
+/* opacity */
+@mixin opacity($opacity: 0.5) {
+    $opacityMultiplied: ($opacity * 100);  
+    filter:         alpha(opacity=$opacityMultiplied);
+    -ms-filter:     "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacityMultiplied + ")";
+    @include css3-prefix('opacity', $opacity);
+}
+
+/* transition */
+ @mixin transition($properties...) {
+  
+  @if length($properties) >= 1 {
+    @include css3-prefix('transition', $properties);
+  }
+
+  @else {
+    @include css3-prefix('transition', $what: all, $length: 1s, $easing: ease-in-out);
+  }
+}
+
+/* border radius */
+@mixin border-radius($radius: 5px) {
+    @include css3-prefix('border-radius', $radius);
+}
+
+/* transform */
+@mixin transform($params) {
+  @include css3-prefix('transform', $params);
+}
+
+/* animation */
+@mixin animation($str) {
+  @include css3-prefix('animation', $str);
+}
+
+/* keyframes */
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }  
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
