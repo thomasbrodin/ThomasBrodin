@@ -24,7 +24,7 @@
             array(
                 'taxonomy' => 'tb_tag',
                 'field' => 'slug',
-                'terms' => 'home',
+                'terms' => 'featured',
                 'operator' => 'IN'
             )
         )
