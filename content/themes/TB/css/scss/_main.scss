@@ -80,7 +80,6 @@ p {
 	letter-spacing: 0.025em;
 	line-height: 1.2;
 }
-
 /* HEADER
 -------------------------------------------------- */
 #main-nav {
@@ -169,6 +168,9 @@ p {
 			}
 			a:hover {
 				color:white
+			}
+			small {
+				font-size:65%
 			}
 		}
 	}
