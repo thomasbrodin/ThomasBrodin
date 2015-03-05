@@ -2,20 +2,34 @@
 <footer>
     <div id="bottom-titles">
          <div id="name">
-            <a href="/" rel="home">
-                <h1>{{bloginfo('name')}}</h1>
-            </a>
+         
+            <h1>{{bloginfo('name')}}
+                <div class="tb-words letters type">
+                    <span class="words-wrapper waiting">
+                        <b class="is-visible">Photographer</b>
+                        <b>Designer</b>
+                        <b>Developer</b>
+                    </span>
+                </div>
+            </h1>
+            
         </div>       
         {% if cpt %}        
-
             <div id="cat_title">
                 <h1 class="{{cpt}}">{{cpt_title}}</h1>
             </div>
-
+        {% elseif search_title %}
+            <div id="search-title">
+                <h1>{{search_title}}</h1>
+            </div>
+        {% elseif journal %}
+            <div class='follow'>
+                <h1><a href="http://diary.thomasbrodin.com" target="_blank">Tumblr feed</a</h1>
+        {% else %}
         {% endif %}
-
     </div>
 
 </footer>
 
 {{ function('wp_footer') }}
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54f4b0761b69c728" async="async"></script>

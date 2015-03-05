@@ -3,8 +3,8 @@
         <header id="main-nav" class="navbar" role="navigation">
                 
                 <div id="logo" class="icons-default logo-svg">
-                    <a href="/" rel="home">
-                        <span class="icon-T{% if cpt %} {{cpt}}{% endif %}" data-icon-name="TLogo">
+                    <a class="btn-link" href="/" rel="home">
+                        <span class="icon-T" data-icon-name="TLogo">
                             <h1>{{bloginfo('name')}}</h1>
                         </span>
                     </a>
@@ -16,7 +16,7 @@
                        <span id="trigger-overlay" class="icon-hamburger-cross" data-icon-name="hamburgerCross"></span>
                     </div><!-- menu-button-->
 
-                    <div id="sb-search" class="sb-search hide-mobile">
+                    <div id="sb-search" class="sb-search">
                         <form class="search" action="{{site.url}}" method="get" role="search">
                             <input type="text" name="s" class="sb-search-input" type="text" value="" id="search">
                             <input class="sb-search-submit" type="submit" value="">

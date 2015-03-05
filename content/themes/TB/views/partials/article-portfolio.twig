@@ -7,31 +7,31 @@
 
 				<div class="article_overlay">
 					<div class="overlay-inner">
-						<div class="top">
-							<h2>{{ post.client }}</h2>
-							<p class="title">{{post.title}}</p>
+						<div>
+							<h2>{{ post.title }}</h2>
+							<p>{{post.client}}</p>
 						</div>
 					</div>
 				</div><!-- .article_overlay -->
 
 				{% if post.thumbnail_size == 'ThWidth' %}
-					<img src="{{post.thumbnail.src|resize(100)}}" />
+					<img src="{{post.thumbnail.src|resize(100)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'XSWidth' %}
-					<img src="{{post.thumbnail.src|resize(150)}}" />
+					<img src="{{post.thumbnail.src|resize(150)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'SWidth' %}
-					<img src="{{post.thumbnail.src|resize(200)}}" />
+					<img src="{{post.thumbnail.src|resize(200)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'SMWidth' %}
-					<img src="{{post.thumbnail.src|resize(250)}}" />
+					<img src="{{post.thumbnail.src|resize(250)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'MWidth' %}
-					<img src="{{post.thumbnail.src|resize(350)}}" />	
+					<img src="{{post.thumbnail.src|resize(350)}}" alt="{{site.name}} - {{post.title}}"/>	
 				{% elseif post.thumbnail_size == 'LWidth' %}
-					<img src="{{post.thumbnail.src|resize(450)}}" />
+					<img src="{{post.thumbnail.src|resize(450)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'XLWidth' %}
-					<img src="{{post.thumbnail.src|resize(520)}}" />
+					<img src="{{post.thumbnail.src|resize(520)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'XXLWidth' %}
-					<img src="{{post.thumbnail.src|resize(600)}}" />
+					<img src="{{post.thumbnail.src|resize(600)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% elseif post.thumbnail_size == 'XXXLWidth' %}
-					<img src="{{post.thumbnail.src|resize(900)}}" />
+					<img src="{{post.thumbnail.src|resize(900)}}" alt="{{site.name}} - {{post.title}}"/>
 				{% else %}
 					<img src="{{post.thumbnail.src}}" />
 				{% endif %}

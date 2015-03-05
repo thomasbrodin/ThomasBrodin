@@ -4,25 +4,32 @@
 </head>
     <body class="{{body_class}}" data-source="base.twig">
         
-        {% include 'partials/header.twig' %}
-		
-            <div id="wrap" class="T-landing">
+        <div class="site-bd on-top"></div>
+        <div class="site-bd on-right"></div>
+        <div class="site-bd on-bottom"></div>
+        <div class="site-bd on-left"></div>
+        <!-- borders-->
+        
+        <div class="loading">  
+	        {% include 'partials/header.twig' %}
+			
+	            <div id="wrap" class="T-landing">
 
-				<div class="tb-words hide-mobile">
-                <span>Photographer</span>
-                <span>Creative Director</span>
-                <span>Art conspirator</span>
-                <span>Front End Developer</span>
-                <span>Creative Problem Solver</span>
+				    <section id="wall" role="main" class="clearfix">
+						{% for post in posts %}
+							{% include 'partials/article-portfolio.twig' %}
+						{% endfor %}
+					</section><!-- #wall -->
+				</div><!-- #wrap -->
 
-            </div>
+	        {% include 'partials/footer.twig' %}
+    	</div>
 
-            <svg id="T-home"></svg>
+        <div class="loader">
+           	<svg id="loading-T"></svg>
+        </div>
 
-			</div><!-- #wrap -->
-
-        {% include 'partials/footer.twig' %}
-       	
+        <div class="subliminal"></div>
 
     </body>
 </html>

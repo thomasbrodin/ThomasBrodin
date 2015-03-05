@@ -6,96 +6,24 @@
         	<div class="post_info clearfix">
 
                 <h2>{{post.title}}</h2>
-           		<ul>
-					{% for term in post.terms('project_category') %}
-						<li><a href="{{term.link}}">{{term.name}}</a></li>
-						{% endfor %}
-				</ul>
-   
+                
             	{% if post.proj_caption %}
             		<p class="caption">{{post.proj_caption}}</p>
                 {% endif %}
-            
+            	
+
 	        </div><!-- .post_info -->
 	    </div>
-    
-	    {% if post.tb_single %}
-		    <div class="col-md-9">
-		    	{% for tb in post.get_field('tb_single') %}
+		    
+	    <div id="single-content" class="col-md-9">
+		    {% if post.tb_single %}
+	    
+		    	{% include 'partials/single-content.twig' %}
 
-		    		{% if tb.acf_fc_layout == 'full_width_center_image' %}
-			    		
-			    		<section id="large-image" class="section-height">
-			    			<div class="row row-height">
-			    				<div class="col-md-12 {{tb.format}}">							    			
-					    			 <img class="img-responsive" src="{{TimberImage(tb.large_image).src}}" />	
-					    		</div>
-					    	</div>
-			    		</section>	<!-- large image -->
-
-		    		{% elseif tb.acf_fc_layout == 'highlights' %}
-
-			    		<section id="quote" class="section-height">
-			    			<div class="row">
-			    				<div class="col-md-12">
-			    					{{ tb.quote }}
-			    				</div>
-			    			</div>
-			    		</section>	<!-- highlight -->
-
-		    		{% elseif tb.acf_fc_layout == 'gallery' %}
-
-		    			<section id="gallery" class="section-height">
-
-		    				{% for tb_rep in tb.row_images %}
-			    				{% set columns_img = tb_rep.columns_img %}
-				    			<div class="row row-height">
-				    				{% if columns_img == '2' %}
-					    				<div class="col-md-6">
-					    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" />
-					    				</div>
-					    				<div class="col-md-6">
-					    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" />
-					    				</div>	
-				    				{% elseif columns_img == '3' %}	    
-					    				<div class="col-md-4">
-					    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" />
-					    				</div>
-					    				<div class="col-md-4">
-					    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" />
-					    				</div>
-					    				<div class="col-md-4">
-					    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_3).src}}" />
-					    				</div>	
-					    			{% endif %}	
-				    			</div>
-				    		{% endfor %}
-		    			</section><!-- gallery -->
-
-		    		{% elseif tb.acf_fc_layout == 'description' %}
-
-		    			{% set columns_text = tb.columns_text %}
-		    			<section id="description" class="section-height">
-			    			<div class="row row-height">
-			    				{% if columns_text == '1' %}
-				    				<div class="col-md-12">
-				    					<p class="tb-description">{{tb.text}}</p>
-				    				</div>
-			    				{% elseif columns_text == '2' %}	    
-				    				<div class="col-md-6">
-				    					<p class="tb-description">{{tb.text}}</p>
-				    				</div>
-				    				<div class="col-md-6">
-				    					<p class="tb-description">{{tb.text_2}}</p>
-				    				</div>	
-				    			{% endif %}	
-				    		</div>
-		    			</section><!-- description -->
-
-		    		{% endif %}
-
-		    	{% endfor %}
-		    </div>
-	    {% endif %}
+		    {% endif %}
+	    </div><!-- row main -->
 	</div>
+
+	{% include 'partials/social-related.twig' %}
+
 {% endblock %}	

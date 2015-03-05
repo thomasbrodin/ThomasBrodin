@@ -67,7 +67,7 @@
 	}
     new StarterSite();
 
-	function myfoo($text){
+	function foo($text){
     	$text .= ' bar!';
     	return $text;
 	}

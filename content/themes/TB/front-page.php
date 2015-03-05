@@ -15,20 +15,19 @@
 	$context = Timber::get_context();
 	$args = array(
 		'post_type' => array('photography', 'creative-direction'),
+		'numberposts' => -1,
+		'post_status' => 'publish',
+        'orderby' => 'menu_order',
+		'order'         => 'ASC',
+		'suppress_filters' => false,
 		'tax_query' => array(
-						'relation' => 'OR',
-							array(
-								'taxonomy' => 'photo_category',
-								'field' => 'slug',
-								'terms' => 'featured'
-							),
-							array(
-								'taxonomy' => 'project_category',
-								'field' => 'slug',
-								'terms' => 'featured'
-							),
-						),
-		'numberposts' => -1
+            array(
+                'taxonomy' => 'tb_tag',
+                'field' => 'slug',
+                'terms' => 'home',
+                'operator' => 'IN'
+            )
+        )
 	);
 	$context['posts'] = Timber::get_posts($args);
 

@@ -1,0 +1,23 @@
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+    
+    <body class="{{body_class}}" data-source="base.twig">
+    
+    {% include 'partials/header.twig' %}
+
+	<div class="about" style="background-image: url('{{TimberImage(post.get_field('portrait')).src}}')"></div>
+
+	<section class="page-content">	
+		<div class="article-body">
+			{{post.content}}
+
+		</div>
+		
+	</section>
+	
+	 {% include 'partials/footer.twig' %}
+
+	</body>
+</html>

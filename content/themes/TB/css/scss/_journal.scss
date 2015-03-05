@@ -1,0 +1,133 @@
+/* ARCHIVE
+-------------------------------------------------- */
+#arrow-right{
+	background:yellow;
+    width:20px;
+    height:50px;
+    float:right;
+    cursor:pointer;
+    position: absolute;
+    right:0;
+    top:50%;
+    margin-top:-30px
+}
+
+#arrow-left{
+	background:yellow;
+    width:20px;
+    height:50px;
+    float:left;
+    cursor:pointer;
+    position: absolute;
+    left:0;
+    top:50%;
+    margin-top:-30px
+}
+#journal {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	background: #fff;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	figure {
+		position: relative;
+		display: inline-block;
+		zoom: 1;
+		white-space: normal;
+		margin-right: 58px;
+		opacity: 0;
+		background:transparent;
+		height: auto;
+		@include transition(background 0.35s);
+		img {
+			max-width: 100%;
+			display: block;
+			position: relative;
+			display: block;
+			width:auto;
+			@include transition(opacity 0.35s);
+		}
+		.post-wrap{
+			height: 100%;
+			position: absolute;
+			text-align: left;
+			top: 0;
+			width: 100%;
+			figcaption {
+				font-size: 21px;
+				font-size: 2.1rem;
+				padding: 1.2em 1.5em;
+				max-width: 90%;
+				display: inline-block;
+				vertical-align: middle;
+				@include css3-prefix(backface-visibility, hidden);
+				p {
+					opacity: 0;
+					color:#fff;
+					font-family: "Apercu","Helvetica Neue",helvetica,sans-serif;
+					font-style: normal;
+					text-transform: uppercase;
+					font-size:0.8em
+				}
+			}
+		}
+	}
+}
+#journal figure:hover {
+	background:#111
+}
+#journal figure:hover p{
+	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionUp);
+	@include css3-prefix(animation-delay, 0.2s);
+}
+#journal figure:hover img {
+    opacity: 0.2
+}
+
+.js #journal figure{
+	@include animation(1s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.3s normal forwards 1 figureShow);
+}
+
+@for $i from 1 through 20 {
+  .js #journal figure:nth-of-type(#{$i}) { @include css3-prefix(animation-delay, 0.3s*$i); }
+}
+
+@include keyframes (figureShow) {
+    0% {
+        @include opacity(0);
+    }
+
+    100% {
+       @include opacity(1);
+    }
+}
+/* title cat and Search */
+.follow {
+	float: left;
+	position: relative;
+	width: 55%;
+	min-height: 1px;
+	margin-left: 2%;
+	h1 {
+		font-family: $font-stack;
+		text-align: right;
+		margin: 0;
+		padding:0;
+		font-size: 14px;
+		line-height: 14px;
+		color:#999;
+		letter-spacing: -0.01em;
+		ul {
+			display: inline-block;
+			padding:0;
+			li{
+				display: inline-block
+			}
+		}
+	}
+}

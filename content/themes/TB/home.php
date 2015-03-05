@@ -18,6 +18,7 @@
 	$args = array('post_type' => array('post'), 'numberposts' => -1);
 
 	$context['posts'] = Timber::get_posts($args);
+	$context['journal'] = 'follow';
 
 	Timber::render('home.twig', $context);
 

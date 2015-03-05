@@ -1,9 +1,10 @@
 {% extends "base.twig" %}
 
 {% block content %}
-
-	{% for post in posts %}
-		{% include ['partials/article-portfolio.twig'] %}
-	{% endfor %}
+	<section id="wall" role="main" class="clearfix">
+		{% for post in posts %}
+			{% include ['partials/article-portfolio.twig'] %}
+		{% endfor %}
+	</section><!-- #wall -->
 
 {% endblock %}
