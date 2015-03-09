@@ -14,3 +14,7 @@
 /content/themes/TB/bower_components
 
 /content/themes/TB/config.codekit
+
+/content/themes/TB/css/.sass-cache
+
+/content/themes/TB/css/scss/.sass-cache

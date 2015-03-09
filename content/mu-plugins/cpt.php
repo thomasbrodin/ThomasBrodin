@@ -86,17 +86,6 @@ function portfolio_taxonomies() {
       )  
     ); 
   register_taxonomy(  
-    'photo_tag',  
-    'photography',
-      array( 
-          'hierarchical' => false,  
-          'label' => 'Photo Tags', 
-          'show_admin_column' => true, 
-          'query_var' => true,  
-          'rewrite' => array('slug' => 'photo-tag')  
-      )  
-    ); 
-    register_taxonomy(  
     'project_category',  
     'creative-direction',
       array( 
@@ -107,17 +96,17 @@ function portfolio_taxonomies() {
           'rewrite' => array('slug' => 'projects')  
       )  
     ); 
-    register_taxonomy(  
-    'project_tag',  
-    'creative-direction',
+  register_taxonomy(  
+    'tb_tag',  
+    array('photography','creative-direction'),
       array( 
           'hierarchical' => false,  
-          'label' => 'Project Tags', 
+          'label' => 'Tags', 
           'show_admin_column' => true, 
           'query_var' => true,  
-          'rewrite' => array('slug' => 'project-tag')  
+          'rewrite' => array('slug' => 'tb-tag')  
       )  
-    );  
+    ); 
    function maybe_rewrite_rules() {
      
       $ver = filemtime( __FILE__ ); // Get the file time for this file as the version number
