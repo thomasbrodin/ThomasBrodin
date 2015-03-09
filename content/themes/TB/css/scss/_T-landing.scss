@@ -8,7 +8,7 @@
 	position: fixed;
 	z-index: 9999;
 	background-color: #f9f9f9;
-	border:12px solid #fff
+	border:12px solid #fff;
 }
 
 .subliminal {
@@ -22,9 +22,11 @@
     position: fixed;
     z-index:999;
     top:0;
-    left:0 
+    left:0;
 }
-
+.loading{
+	display:none;
+}
 #loading-T {
 	display: block;
 	position: absolute;
@@ -104,15 +106,15 @@
 
 @include keyframes(pulse) {
 	0% {
-		@include opacity(0);
+		opacity:0;
    		@include transform(translateY(-50%) scale(1));
 	} 
 	40% {
-		@include opacity(0.9);
+		opacity:0.9;
    		@include transform(translateY(-50%) scale(0.9));
 	}
 	100% {
-		@include opacity(0);
+		opacity:0;
    		@include transform(translateY(-50%) scale(0));
 	}
 }

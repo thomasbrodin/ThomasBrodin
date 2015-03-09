@@ -24,18 +24,6 @@ jQuery(document).ready(function($) {
 	}
 	/* ============================================================= Home */
 	if ( $(".home").length ) {
-		/* Load */
-		$(window).load(function() {
-			$('.loading').hide();
-			$(".loader").delay(800).fadeOut();
-			$('.loading').delay(2500).show();
-			$('.T-landing').hide();
-			$('.subliminal').delay(2500).fadeOut();
-			$('.T-landing').delay(3000).fadeIn();
-		});
-		/* BGs */
-		var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg'];
-		$('.subliminal').css({'background-image': 'url('+templateUrl+'/img/'+images[Math.floor(Math.random() * images.length)] + ')'});
 		/* Snap */
 		var s = Snap("#loading-T");
 			t_width = 80;
@@ -55,6 +43,16 @@ jQuery(document).ready(function($) {
 		T.animate({transform: 's2,2' }, 1000, mina.backin, function () {
 			T.animate({fillOpacity:'0.2'}, 100);
 		});
+		/* Load */
+		$(window).load(function() {
+			$(".loader").delay(800).fadeOut();
+			$('.loading').hide().delay(2400).show();
+			$('.T-landing').hide().delay(2450).fadeIn();
+			$('.subliminal').delay(2600).fadeOut();
+		});
+		/* BGs */
+		var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg'];
+		$('.subliminal').css({'background-image': 'url('+templateUrl+'/img/'+images[Math.floor(Math.random() * images.length)] + ')'});
 		
 		/* words typing */
 		var animationDelay = 2500,

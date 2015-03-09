@@ -19,7 +19,7 @@
 	left: 0;
 	background: rgba(255,255,255,0.9);
 	z-index: 2;
-	@include opacity(0);
+	opacity:0;
 	visibility: hidden;
 	@include transition(opacity 0.5s,  visibility 0s 0.5s);
 }
@@ -69,7 +69,7 @@
 }
 /* Effects */
 .overlay.open {
-	@include opacity(1);
+	opacity:1;
 	visibility: visible;
 	@include transition(opacity 0.5s)
 }
@@ -80,14 +80,13 @@
 }
 
 .overlay nav ul {
-	@include opacity(0.4);
+	opacity:0.4;
 	@include transform(translateY(-25%) rotateX(35deg));
-	-webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-	transition: transform 0.5s, opacity 0.5s;
+	@include transition(transform 0.5s, opacity 0.5s);
 }
 
 .overlay.open nav ul {
-	@include opacity(1);
+	opacity:1;
 	@include transform(rotateX(0deg));
 }
 

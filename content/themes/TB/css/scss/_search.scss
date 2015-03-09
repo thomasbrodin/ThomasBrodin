@@ -9,8 +9,7 @@
 	overflow: hidden;
 	float: right;
 	@include transition(all 0.3s linear);
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
+	@include backface-visibility(hidden);
 }
 
 .sb-search-input {

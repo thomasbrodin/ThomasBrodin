@@ -65,7 +65,7 @@
 				max-width: 90%;
 				display: inline-block;
 				vertical-align: middle;
-				@include css3-prefix(backface-visibility, hidden);
+				@include backface-visibility(hidden);
 				p {
 					opacity: 0;
 					color:#fff;
@@ -83,7 +83,7 @@
 }
 #journal figure:hover p{
 	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionUp);
-	@include css3-prefix(animation-delay, 0.2s);
+	@include animation-delay(0.2s);
 }
 #journal figure:hover img {
     opacity: 0.2
@@ -94,16 +94,16 @@
 }
 
 @for $i from 1 through 20 {
-  .js #journal figure:nth-of-type(#{$i}) { @include css3-prefix(animation-delay, 0.3s*$i); }
+  .js #journal figure:nth-of-type(#{$i}) { @include animation-delay(0.3s*$i); }
 }
 
 @include keyframes (figureShow) {
     0% {
-        @include opacity(0);
+        opacity:0;
     }
 
     100% {
-       @include opacity(1);
+       opacity:1;
     }
 }
 /* title cat and Search */

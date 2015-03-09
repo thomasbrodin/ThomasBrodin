@@ -47,7 +47,7 @@
     border: 12px solid white;
   }
   .page-content{ 
-    padding:140px 60.5px;
+    padding:140px 60.5px 100px;
     .article-body p {
       padding-right: 3.5em;
       font-size:4em
@@ -143,5 +143,13 @@
  }
   .page-content .article-body p {
       font-size:2em
+  }
+}
+@media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 736px) 
+  and (orientation : landscape) {
+    .page-content .article-body p {
+      padding-right:3.5em
   }
 }
