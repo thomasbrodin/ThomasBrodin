@@ -18,8 +18,7 @@
 @import "T-Landing";
 @import "search";
 @import "social_buttons";
-@import "journal";
-@import "video_skin";
+
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
@@ -112,9 +111,6 @@ p {
 #logo a:hover {
 	border:none;
 }
-.no-svg .icon-T { 
-	background: url('img/T.jpg') no-repeat center left;
-}
 
 #nav-icons {
 	float: left;
@@ -124,18 +120,64 @@ p {
 	padding:19px 17px 0
 }
 
-/* close button */
-#menu-button {
+/* overlay button */
+#trigger-overlay {
 	position:relative;
 	float:right;
 	z-index: 1000;
+	width: 24px;
+	height: 40px;
+	z-index: 1000;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	@include transition(all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1));
 }
 
-#trigger-overlay svg {
-	width:40px;
-	height:40px
+#trigger-overlay i{
+	display:block;
+	width: 24px;
+	height: 2px;
+	margin: 18px 0;
+	background: #232323;
+	@include transition(all 0.3s ease-out);
 }
 
+#trigger-overlay i:before,
+#trigger-overlay i:after {
+	content: '';
+	display: block;
+	width: 24px;
+	height: 2px;
+	background: #232323;
+	position: absolute;
+	z-index: -1;
+	@include transition(all 0.3s ease-out);
+}
+
+#trigger-overlay i:before{
+  top: 11px;
+}
+
+#trigger-overlay i:after{
+  top: 25px;
+}
+#trigger-overlay.clicked i {
+	background: none !important;
+}
+#trigger-overlay.clicked i:before{
+	top: 18px!important;
+	@include transform(rotate(-45deg));
+}
+#trigger-overlay.clicked i:after{
+	top: 18px !important;
+	@include transform(rotate(45deg));
+}
+header.white #trigger-overlay i,
+header.white #trigger-overlay i:before,
+header.white #trigger-overlay i:after {
+	background:#fff
+}
 /* PAGE
 -------------------------------------------------- */
 .about{
@@ -173,21 +215,6 @@ p {
 			}
 		}
 	}
-	i {
-		font: normal normal normal 14px/1 FontAwesome;
-	  	font-size: inherit;
-	  	text-rendering: auto;
-	  	-webkit-font-smoothing: antialiased;
-	  	-moz-osx-font-smoothing: grayscale;
-	  	transform: translate(0, 0);
-	  	text-indent: 0!important;
-		background:transparent!important;
-		font-size: 1.15em;
-		text-align: center;
-	}
-}
-i.linkedin:before {
-	content: "\f0e1";
 }
 
 header.white polygon#black{
@@ -206,14 +233,14 @@ header.white input[type="text"].sb-search-input:focus {
 /* 404
 -------------------------------------------------- */
 h1.oops{
-	font-family: $font-secondary;
-	font-size: 8em;
+	font-family: $font-stack;
+	font-size: 7em;
 	margin:0;
-	color:$primary-green;
-	text-transform: lowercase;
+	color:$primary-blue;
+	text-transform: none;
 }
 h1.oops a {
-	color:$primary-green;
+	color:$primary-blue;
 }
 h1.oops a:hover {
 	text-decoration: none;
@@ -231,6 +258,7 @@ h1.oops a:hover {
 
     100% {
        opacity:1;
+       @include transform(translateY(0px) rotate(0deg));
     }
 }
 
@@ -242,6 +270,7 @@ h1.oops a:hover {
 
     100% {
        opacity:1;
+        @include transform(translateY(0px) rotate(0deg));
     }
 }
 
@@ -253,6 +282,7 @@ h1.oops a:hover {
 
     100% {
        opacity:1;
+       @include transform(translateY(0px) rotate(0deg));
     }
 }
 
@@ -264,7 +294,8 @@ h1.oops a:hover {
 	article {
 		position: relative;
 		float: left;
-		padding-bottom:50px;
+		padding:0 2em 2em 0;
+		opacity: 0;
 		figure {
 			text-align: left;
 			overflow: hidden;
@@ -282,10 +313,6 @@ h1.oops a:hover {
 	@include animation(1s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 articleShow);
 }
 
-.js #wall article {
-	position: absolute;
-	float: none;
-}
 
 @for $i from 1 through 24 {
   .js #wall article:nth-of-type(#{$i}) { @include animation-delay(0.2s*$i); }
@@ -306,12 +333,13 @@ h1.oops a:hover {
 			display: table-cell;
 			vertical-align: top;
 			height: 100%;
-			p {
+			h2 {
 				padding:0;
 				margin: 0;
 				opacity:0;
+				text-transform: none
 			}
-			h2 {
+			h6 {
 				font-size: 1.1em;
 				margin:.3em 0 2em;
 				opacity:0;
@@ -321,11 +349,11 @@ h1.oops a:hover {
 	}
 }
 
-.article_overlay div:hover h2{
+.article_overlay div:hover h6{
 	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionUp);
 	@include animation-delay(0.2s);
 }
-.article_overlay div:hover p{
+.article_overlay div:hover h2{
 	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionDown);
 	@include animation-delay(0.2s);
 }
@@ -334,7 +362,7 @@ h1.oops a:hover {
 	background-color:$primary-blue;
 }
 .creative-direction .article_overlay {
-	color: #232323;
+	color: #000;
 	background-color:$primary-green;
 }
 /* single

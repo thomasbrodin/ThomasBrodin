@@ -1,20 +1,15 @@
-/* ============================================================= Masonry init */
-var grid =  document.getElementById('wall');
-if (typeof(grid) !== 'undefined' && grid !== null) {
-	window.addEvent('load', function () {
-		site.masonry = new masonry({
-			container: 'wall',
-			gutterWidth: 30,
-			columnWidth: 70,
-			brickPath: 'article'
-		});
-		site.addEvent('resize', function() {
-			site.masonry.resize();
-		});
-	});
-}
 jQuery(document).ready(function($) {
-
+	$( "#T_shaped" ).bind('mouseenter',function() {
+		TweenMax.to($("polygon#red"), 1, { x:-4, y:-4, scale:1.1, opacity:0.8, ease: Power4.easeOut });
+		TweenMax.to($("polygon#green"), 1, {x:-6, scale:1.1, opacity:1, ease: Power4.easeOut });
+		TweenMax.to($("polygon#blue"), 1, {x:-2, y:-2, scale:1.1, opacity:1, ease: Power4.easeOut });
+		TweenMax.to($("polygon#black"), 1, {x:3, opacity:0.8, ease: Power4.easeOut});
+	}).bind('mouseleave',function() {
+		TweenMax.to($("polygon#red"), 0.3, { opacity:0, ease: Power0.easeOut });
+		TweenMax.to($("polygon#green"), 0.3, {opacity:0, ease: Power0.easeOut});
+		TweenMax.to($("polygon#blue"), 0.3, {opacity:0, ease: Power0.easeOut });
+		TweenMax.to($("polygon#black"), 0.7, {x:0, y:0, opacity:1, ease: Power4.easeOut});
+	});
 	/* ============================================================= sharethis button */
 	if ( $("#share-this").length ) {
 		$.material.ripples("#share-this");
@@ -48,10 +43,15 @@ jQuery(document).ready(function($) {
 			$(".loader").delay(800).fadeOut();
 			$('.loading').hide().delay(2400).show();
 			$('.T-landing').hide().delay(2450).fadeIn();
-			$('.subliminal').delay(2600).fadeOut();
+			$('#wall article').addClass('placed');
+			$('.subliminal').delay(2500).fadeOut();
+		});
+		$(window).on('resize', function() {
+			$('#wall article').hide().fadeIn(50);
 		});
 		/* BGs */
 		var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg'];
+		var templateUrl = script_vars.themeUrl;
 		$('.subliminal').css({'background-image': 'url('+templateUrl+'/img/'+images[Math.floor(Math.random() * images.length)] + ')'});
 		
 		/* words typing */
@@ -70,6 +70,13 @@ jQuery(document).ready(function($) {
 			revealAnimationDelay = 1500;
 		
 		initHeadline();
+	} else {
+		$(window).load(function() {
+			$('#wall article').addClass('placed');
+		});
+		$(window).on('resize', function() {
+			$('#wall article').hide().fadeIn(50);
+		});
 	}
 
 	function initHeadline() {
@@ -221,82 +228,8 @@ jQuery(document).ready(function($) {
 			}
 		}
 	});
-	/* ============================================================= Journal */
-	if ( $('#journal').length ) {
-		$.getJSON("http://diary.thomasbrodin.com/api/read/json?callback=?", tumblrImages);
-		/* slider */
-		$(window).load(function() {
-			videojs(document.getElementsByClassName('video-js')[0], { "controls": true, "autoplay": false, "preload": "auto"});
-			
-			var pageWrap = $('#journal'),
-				posts = $('#journal figure'),
-				currentPost = $('figure:first'),
-				slide = posts.outerHeight(true);
-				
-			$(window).on('resize',resize);
-			resize();
-
-			function resize(){
-				windowHeight = $(window).height();
-				windowWidth = $(window).width();
-				marginPosts = (windowHeight - slide)/2;
-				pageWrap.css({ height:windowHeight});
-				posts.css({ marginTop:marginTopPosts });
-			}
-			// $('#arrow-right').click(function(){
-			// 	pageWrap.animate({scrollLeft: '+=558' }, 500);
-			// });
-			// $('#arrow-left').click(function(){
-			// 	pageWrap.animate({scrollLeft: '-=558' }, 500);
-			// });
-		});
-	}
-	function tumblrImages(data) {
-		var tumblrArticle ='<div class="page-wrap">';
-		$.each(data.posts, function(i,post){
-			if ( (post.type) == 'video'){
-				var video_500 = (post['video-player-500']);
-				var video_caption = (post['video-caption']);
-				tumblrArticle += '<figure class="video">'+video_500;
-				// tumblrArticle += '<div class="post-wrap"><figcaption><h4>'+ video_caption +'</h4></figcaption></div>';
-				tumblrArticle += '</figure>';
-			} else if ( (post.type) == 'photo'){
-				var source_500 = (post['photo-url-500']);
-				var caption = (post['photo-caption']);
-				var url = (post.url);
-				tumblrArticle += '<figure>';
-				tumblrArticle += '<img src="'+ source_500 +'" alt="Thomas Brodin, iPics on Tumblr"/>';
-				tumblrArticle += '<div class="post-wrap"><figcaption>'+ caption +'</figcaption></div>';
-				tumblrArticle += '</figure>';
-			} else {
-				// Do nothing
-			}
-		});
-		$('#journal').html(tumblrArticle +'</div>');
-		$("figure.video video").addClass('video-js vjs-sublime-skin');
-	}
-	/* ============================================================= SVG Icons */
-	new svgIcon(document.querySelector(".icons-default .icon-hamburger-cross"), svgIconConfig, {
-		easing: mina.easeinout,
-		speed: 200
-	});
-	new svgIcon(document.querySelector(".icons-default.logo-svg .icon-T"), svgIconConfig, {
-		easing : mina.linear,
-		speed : 200,
-		size: {
-			w: 70,
-			h: 70
-		},
-	});
+	/* ============================================================= single */
 	if ( $('#arrow-up').length ) {
-		new svgIcon(document.querySelector(".icons-default .icon-arrow"), svgIconConfig, {
-			easing : mina.easeinout,
-			speed : 200,
-			size: {
-				w: 40,
-				h: 40
-			},
-		});
 		$('#smooth-scroll').click(function () {
 			$("html, body").animate({
 					scrollTop: 0
