@@ -79,7 +79,7 @@ function portfolio_taxonomies() {
     'photography',
       array( 
           'hierarchical' => true,  
-          'label' => 'Photo Categories', 
+          'label' => 'Photo Category', 
           'show_admin_column' => true, 
           'query_var' => true,  
           'rewrite' => array('slug' => 'photo')  
@@ -90,7 +90,7 @@ function portfolio_taxonomies() {
     'creative-direction',
       array( 
           'hierarchical' => true,  
-          'label' => 'Project Categories', 
+          'label' => 'Project Category', 
           'show_admin_column' => true, 
           'query_var' => true,  
           'rewrite' => array('slug' => 'projects')  
