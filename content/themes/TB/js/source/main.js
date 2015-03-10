@@ -216,6 +216,9 @@ jQuery(document).ready(function($) {
 	if ($('body').hasClass('page-template-page-about')) {
 		$("header").addClass('white');
 		$('footer').addClass('off');
+		$(window).load(function() {
+			$('.loading').fadeIn(150);
+		});
 	}
 	$( "#trigger-overlay" ).click(function() {
 		if ($('body').hasClass('page-template-page-about')) {
