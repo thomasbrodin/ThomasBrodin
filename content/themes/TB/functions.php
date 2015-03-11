@@ -47,6 +47,7 @@
 
 		function load_scripts(){
 			wp_enqueue_script('jquery');
+			wp_enqueue_script( 'modernizr', THEME_URL . '/js/modernizr-2.8.3.min.js', array('jquery'), false, false);
 			wp_enqueue_script( 'main-compressed', THEME_URL . '/js/main-min.js', array('jquery'), '', true);
 			//script var
 			wp_localize_script( 'main-compressed', 'script_vars', array(

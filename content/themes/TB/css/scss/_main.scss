@@ -117,6 +117,9 @@ p {
 	border:none;
 }
 
+.no-svg #logo a{
+	background: url("img/T.png");
+}
 #nav-icons {
 	float: left;
 	display: block;
@@ -300,7 +303,6 @@ h1.oops a:hover {
 		position: relative;
 		float: left;
 		padding:0 2em 2em 0;
-		opacity: 0;
 		figure {
 			text-align: left;
 			overflow: hidden;
@@ -313,9 +315,18 @@ h1.oops a:hover {
 		}
 	}
 }
-
+.cssanimations #wall article {
+	opacity:0
+}
 .js #wall article.placed {
-	@include animation(1s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 articleShow);
+	@include animation-name(articleShow);
+	@include animation-duration(1s);
+	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+	@include animation-delay(1.2s);
+	@include animation-iteration-count(1);
+	@include animation-direction(normal);
+	@include animation-fill-mode(forwards);
+	@include animation-delay(1.2s);
 }
 
 
@@ -341,25 +352,38 @@ h1.oops a:hover {
 			h2 {
 				padding:0;
 				margin: 0;
-				opacity:0;
 				text-transform: none
 			}
 			h6 {
 				font-size: 1.1em;
 				margin:.3em 0 2em;
-				opacity:0;
 			}
 
 		}
 	}
 }
-
+.cssanimations .article_overlay h2,
+.cssanimations .article_overlay h6 {
+	opacity:0
+}
 .article_overlay div:hover h6{
-	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionUp);
+	@include animation-name(captionUp);
+	@include animation-duration(0.35s);
+	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+	@include animation-delay(1.2s);
+	@include animation-iteration-count(1);
+	@include animation-direction(normal);
+	@include animation-fill-mode(forwards);
 	@include animation-delay(0.2s);
 }
 .article_overlay div:hover h2{
-	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionDown);
+	@include animation-name(captionDown);
+	@include animation-duration(0.35s);
+	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+	@include animation-delay(1.2s);
+	@include animation-iteration-count(1);
+	@include animation-direction(normal);
+	@include animation-fill-mode(forwards);
 	@include animation-delay(0.2s);
 }
 .photography .article_overlay {
@@ -478,18 +502,25 @@ p.caption {
 				vertical-align: middle;
 				@include backface-visibility(hidden);
 				h5 {
-					opacity: 0;
 					color:#fff
 				}
 			}
 		}
 	}
 }
+.cssanimations .related-thumb figure h5 {
+	opacity:0
+}
 .related-thumb figure:hover {
 	background:#111
 }
 .related-thumb figure:hover h5{
-	@include animation(0.35s cubic-bezier(0.2, 0.3, 0.25, 0.9) 1.2s normal forwards 1 captionUp);
+	@include animation-name(captionU);
+	@include animation-duration(0.35s);
+	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+	@include animation-iteration-count(1);
+	@include animation-direction(normal);
+	@include animation-fill-mode(forwards);
 	@include animation-delay(0.2s);
 }
 .related-thumb figure:hover img {
