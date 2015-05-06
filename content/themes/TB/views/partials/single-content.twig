@@ -1,74 +1,84 @@
-{% for tb in post.get_field('tb_single') %}
 
+
+{% for tb in post.get_field('tb_single') %}
+	
+	<section class="section">
+				 
 	{% if tb.acf_fc_layout == 'full_width_center_image' %}
 		
-		<section id="large-image" class="section-height">
-			<div class="row row-height">
-				<div class="col-md-12 {{tb.format}}">							    			
-	    			 <img class="img-responsive" src="{{TimberImage(tb.large_image).src}}" alt="{{site.name}} - {{post.title}}" />	
-	    		</div>
-	    	</div>
-		</section>	<!-- large image -->
+		<div class="inner">
+			<div class="middle {{tb.format}}">							    			
+    			 <img class="img-responsive" src="{{TimberImage(tb.large_image).src}}" alt="{{site.name}} - {{post.title}}" />	
+    		</div>
+    	</div>
 
 	{% elseif tb.acf_fc_layout == 'highlights' %}
 
-		<section id="quote" class="section-height">
-			<div class="row">
-				<div class="col-md-12">
-					{{ tb.quote }}
-				</div>
+		<div class="inner">
+			<div class="middle">
+				<h1 class="quote">{{ tb.quote }}</h1>
 			</div>
-		</section>	<!-- highlight -->
+		</div>
+
 
 	{% elseif tb.acf_fc_layout == 'gallery' %}
 
-		<section id="gallery" class="section-height">
-
-			{% for tb_rep in tb.row_images %}
+		{% for tb_rep in tb.row_images %}
 				{% set columns_img = tb_rep.columns_img %}
-    			<div class="row">
-    				{% if columns_img == '2' %}
-	    				<div class="col-md-6 row-height">
-	    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
-	    				</div>
-	    				<div class="col-md-6 row-height">
-	    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
-	    				</div>	
-    				{% elseif columns_img == '3' %}	    
-	    				<div class="col-md-4 row-height">
-	    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
-	    				</div>
-	    				<div class="col-md-4 row-height">
-	    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
-	    				</div>
-	    				<div class="col-md-4 row-height">
-	    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
-	    				</div>	
-	    			{% endif %}	
+    			<div class="inner">
+    				<div class="middle">
+	    				<div class="row">
+		    				{% if columns_img == '2' %}
+			    				<div class="half">
+			    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				</div>
+			    				<div class="half ">
+			    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				</div>	
+		    				{% elseif columns_img == '3' %}	    
+			    				<div class="third">
+			    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				</div>
+			    				<div class="third">
+			    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				</div>
+			    				<div class="third">
+			    					<img class="img-responsive" src="{{TimberImage(tb_rep.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				</div>	
+			    			{% endif %}	
+			    		</div>
+			    	</div>
     			</div>
     		{% endfor %}
-		</section><!-- gallery -->
 
 	{% elseif tb.acf_fc_layout == 'description' %}
 
 		{% set columns_text = tb.columns_text %}
-		<section id="description" class="section-height">
-			<div class="row row-height">
-				{% if columns_text == '1' %}
-    				<div class="col-md-12">
-    					<p class="tb-description">{{tb.text}}</p>
-    				</div>
-				{% elseif columns_text == '2' %}	    
-    				<div class="col-md-6">
-    					<p class="tb-description">{{tb.text}}</p>
-    				</div>
-    				<div class="col-md-6">
-    					<p class="tb-description">{{tb.text_2}}</p>
-    				</div>	
-    			{% endif %}	
-    		</div>
-		</section><!-- description -->
+		
+		<div class="inner">
+			<div class="middle">
+				<div class="row">
+					{% if columns_text == '1' %}
+						<p class="tb-description">{{tb.text}}</p>
+					{% elseif columns_text == '2' %}	    
+						<div class="half">
+							<p class="tb-description">{{tb.text}}</p>
+						</div>
+						<div class="half">
+							<p class="tb-description">{{tb.text_2}}</p>
+						</div>	
+					{% endif %}	
+				</div>
+			</div>
+		</div>
 
+	{% endif %}
+	
+	</section><!-- section -->
+
+	{% if loop.last %}
+		<section class="section spacer">
+		</section>
 	{% endif %}
 
 {% endfor %}

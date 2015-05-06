@@ -1,6 +1,10 @@
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-
+@media screen and (max-width: 768px) {
+  .spacer {
+    display: none
+  }
+}
 @media screen and (min-width: 768px) {
   body.admin-bar #main-nav {
     margin-top:32px;
@@ -9,18 +13,18 @@
   body.admin-bar .on-right {
     top:40px
   }
-  #wrap {
-    padding:140px 58px 0;
+  .wrap {
+    padding:135px 58px 68px;
   }
   #logo {
-    padding:22px 0 0 26px;
+    padding:22px 0 0 28px;
   }
   #main-nav {
-    padding: 13px 13px 0;
+    padding: 12px 12px 0;
     border-bottom:none
   }
   #nav-icons {
-    padding:36px 44px 0;
+    padding:32px 47px 0;
   }
   .sb-search {
     display:block;
@@ -30,16 +34,16 @@
   }
   .overlay nav h6 {
     font-size:16px;
-    letter-spacing: -0.01em
+    letter-spacing: -0.01em;
+    margin: 0 0 0.2em 0;
   }
-  .single #wrap{
-   padding: 115px 58px 0;
-  }
-  .section-height:not(:first-child) {
-    padding:70px 0 50px;
+  h1.quote {
+    font-size: 3em;
   }
   .single-footer {
+    padding: 0 59px;
     padding-bottom: 45px;
+    position: fixed;
   }
   #arrow-up {
     display: block;
@@ -152,10 +156,6 @@ and (orientation : portrait) {
 }
 
 @media screen and (max-width: 400px) {
- .video-js {
-  max-width: 300px;
-  max-height: 300px
- }
   .page-content .article-body p {
       font-size:2em
   }

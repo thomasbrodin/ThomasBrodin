@@ -1,31 +1,30 @@
-{% extends "base.twig" %}
-{% block content %}
-            	
-	<div class="row">
-		<div class="col-md-3">
-        	<div class="post_info clearfix">		                   
-            	
-                <h2>{{post.title}}</h2>
-                
-            	{% if post.proj_caption %}
-            		<p class="caption">{{post.proj_caption}}</p>
-                {% endif %}
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
 
+    <body class="{{body_class}}" data-source="base.twig">
+    	
+    	{% include 'partials/header.twig' %}
 
-	        </div><!-- .post_info -->
-	    </div>
+    	 <div id="single" class="photography">
+
+	    	 <div id="single-content">
+					               	  
+			    {% if post.tb_single %}
 		    
-	    <div id="single-content" class="col-md-9">
-		    {% if post.tb_single %}
-	    
-		    	{% include 'partials/single-content.twig' %}
+			    	{% include 'partials/single-content.twig' %}
 
-		    {% endif %}
-	    </div><!-- row main -->
-	</div>
-	
-	    
-	{% include 'partials/social-related.twig' %}
+			    {% endif %}
+			  
 
+			</div>
+		</div><!-- #single -->
 
-{% endblock %}	
+		{% include 'partials/single-footer.twig' %}
+
+    	{% include 'partials/footer.twig' %}
+          
+    </body>
+</html>
+

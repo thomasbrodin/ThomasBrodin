@@ -25,7 +25,7 @@ if (post_password_required($post->ID)){
 			            }, $terms);
 		$related_posts = new WP_Query(array(
 	        'post_type' => array('photography', 'creative-direction'),
-	        'posts_per_page' => 4,
+	        'posts_per_page' => 3,
 	        'post_status' => 'publish',
 	        'orderby' => 'menu_order',
 			'order'         => 'ASC',

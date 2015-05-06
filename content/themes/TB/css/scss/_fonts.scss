@@ -6,6 +6,32 @@ $primary-green:#20A668;
 $grey:grey;
 $onblack:#AA9483;
 
+$mobile: new-breakpoint(max-width 768px 1);
+
+
+/* TYPOS
+-------------------------------------------------- */
+body, html {
+  font: 400 14px/1.5em $font-stack;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6{
+  font-family: $font-stack;
+  font-style:normal;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+p {
+   font-family: $font-stack;
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+
 /* FONT-FACES 
 -------------------------------------------------- */
 @font-face {

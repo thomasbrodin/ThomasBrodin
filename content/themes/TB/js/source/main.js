@@ -36,14 +36,14 @@ jQuery(document).ready(function($) {
 
 		T = s.group(rect_top, rect_bottom);
 		T.animate({transform: 's2,2' }, 1000, mina.backin, function () {
-			T.animate({fillOpacity:'0.2'}, 100);
+			T.animate({fillOpacity:'0.2'}, 500);
 		});
 		/* Load */
 		$(window).load(function() {
-			$(".loader").delay(800).fadeOut();
 			$('.loading').hide().delay(2400).show();
 			$('.T-landing').hide().delay(2450).fadeIn();
 			$('#wall article').addClass('placed');
+			$(".loader").delay(800).fadeOut(500);
 			$('.subliminal').delay(2500).fadeOut();
 		});
 		$(window).on('resize', function() {
@@ -232,25 +232,36 @@ jQuery(document).ready(function($) {
 		}
 	});
 	/* ============================================================= single */
-	if ( $('#arrow-up').length ) {
-		$('#smooth-scroll').click(function () {
-			$("html, body").animate({
-					scrollTop: 0
-			}, 1000);
-			return false;
-		});
-		$(window).scroll(function() {
-			scrolled = Math.max(0, $(window).scrollTop());
-			windowHeight = $(window).height();
-			contentHeight = $('#wrap')[0].scrollHeight;
-			if ( (scrolled + windowHeight) >= contentHeight ){
-				$('#arrow-up').addClass('up');
-			} else {
-				$('#arrow-up').removeClass('up');
+	if ($("#single").length){
+		$('#single-content').fullpage({
+			verticalCentered: false,
+			scrollingSpeed: 800,
+			keyboardScrolling : true,
+			touchSensitivity: 15,
+			loopBottom: false,
+			responsive: 768,
+			onLeave: function (index, nextIndex, direction){
+				var numSec = $( ".section" ).length;
+				if (index == (numSec-1) && direction == 'down') {
+					$(".spacer").fadeOut();
+					$('#arrow-up').addClass('up');
+				}
+				if (index == numSec && direction == 'up') {
+					$(".spacer").fadeIn();
+					$('#arrow-up').removeClass('up');
+				}
 			}
 		});
-	}
-
+		if ($('#arrow-up').length ) {
+			$('#smooth-scroll').click(function () {
+				if ($('#arrow-up').hasClass('up')) {
+					$.fn.fullpage.moveTo(1);
+				} else {
+					$.fn.fullpage.moveSectionDown();
+				}
+			});
+		}
+}
 	/* ============================================================= Search Expand */
 	new UISearch( document.getElementById( 'sb-search' ) );
 
