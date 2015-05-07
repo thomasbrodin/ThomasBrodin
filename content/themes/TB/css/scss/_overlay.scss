@@ -58,7 +58,15 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 }
 .overlay nav h1 {
 	text-transform:none;
-	margin-top:0
+	margin-top:0;
+	@include media(min-width 768px) {
+       font-size:em(76);
+  	}
+}
+.overlay nav h6 {
+	font-size:em(16);
+	letter-spacing: -0.01em;
+	margin: 0 0 0.2em 0;
 }
 
 .overlay ul li a:hover,

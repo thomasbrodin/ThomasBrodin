@@ -6,17 +6,17 @@ $primary-green:#20A668;
 $grey:grey;
 $onblack:#AA9483;
 
-$mobile: new-breakpoint(max-width 768px 1);
+$mobile: new-breakpoint(max-width 768px 3);
 
 
 /* TYPOS
 -------------------------------------------------- */
 body, html {
-  font: 400 14px/1.5em $font-stack;
+  font: 400 16px/1.5em $font-stack;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6{
+h1, h2, h3, h4, h5, h6 {
   font-family: $font-stack;
   font-style:normal;
   text-transform: uppercase;
@@ -31,6 +31,24 @@ p {
   line-height: 1.2;
 }
 
+h1 {
+  font-size: em(36);
+}
+h2 {
+  font-size: em(30);
+}
+h3 {
+  font-size: em(24);
+}
+h4 {
+  font-size: em(18);
+}
+h5 {
+  font-size: em(14);
+}
+h6 {
+  font-size: em(12);
+}
 
 /* FONT-FACES 
 -------------------------------------------------- */

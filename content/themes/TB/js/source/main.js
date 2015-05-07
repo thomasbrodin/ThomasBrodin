@@ -214,10 +214,10 @@ jQuery(document).ready(function($) {
 	}
 	/* ============================================================= About */
 	if ($('body').hasClass('page-template-page-about')) {
-		$("header").addClass('white');
-		$('footer').addClass('off');
 		$(window).load(function() {
-			$('.loading').fadeIn(150);
+			$("header").addClass('white');
+			$('footer').addClass('off');
+			$('.loading').fadeIn(500);
 		});
 	}
 	$( "#trigger-overlay" ).click(function() {

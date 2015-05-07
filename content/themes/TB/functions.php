@@ -57,13 +57,14 @@
 		}
 		function load_styles() {
 			wp_enqueue_style( 'custom', THEME_URL . '/css/main.css'); 
-			wp_enqueue_style( 'mobile', THEME_URL . '/css/responsive.css'); 
 		}
 
 		function removeHeadLinks() {
 	    	remove_action('wp_head', 'rsd_link');
 	    	remove_action('wp_head', 'wlwmanifest_link');
 	    	remove_action('wp_head', 'wp_generator');
+	    	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
 	    }
 	}
     new StarterSite();

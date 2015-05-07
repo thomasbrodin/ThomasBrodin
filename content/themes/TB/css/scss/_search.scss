@@ -1,6 +1,5 @@
 /* SEARCH */
 .sb-search {
-	display:none;
 	position: relative;
 	width: 0%;
 	min-width: 40px;
@@ -10,6 +9,10 @@
 	float: right;
 	@include transition(all 0.3s linear);
 	@include backface-visibility(hidden);
+	display:none;
+	@include media(min-width 768px) {
+       display: block
+    }
 }
 
 .sb-search-input {
