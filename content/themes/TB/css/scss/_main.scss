@@ -595,7 +595,7 @@ h1.oops a:hover {
 #arrow-up {
 	cursor:pointer;
 	right: 55px;
-  	bottom: 20px;
+  	bottom: 26px;
 	position:absolute;
 	z-index:999;
 	font-family: $font-stack;
@@ -617,7 +617,7 @@ h1.oops a:hover {
 
 /* SINGLE FOOTER */
 .single-footer {
-	padding: 0 21px 45px;
+	padding: 0 21px 41px;
   	bottom: 0;
   	left: 0;
   	right: 0;
@@ -625,7 +625,7 @@ h1.oops a:hover {
   	background-color: #f6f6f6;
   	@include outer-container(81rem);
   	@include media(min-width 768px) {
-       	padding: 0 59px 45px;
+       	padding: 0 59px 41px;
     	position: fixed;
   	}
 	.row {
@@ -768,7 +768,7 @@ footer {
 #bottom-titles {
 	display: block;
 	position: relative;
-	padding-bottom:67px;
+	padding-bottom:70px;
 }
 #name {
 	float: left;
