@@ -475,9 +475,9 @@ h1.oops a:hover {
 }
 #single-content {
 	z-index:1;
-	border-bottom: 2px solid #232323;
 	@include media(min-width 768px) {
-       padding:0 58px;
+		border-bottom: 2px solid #232323;
+		padding:0 58px;
     }
     &.fp-responsive {
     	.section {
@@ -627,6 +627,9 @@ h1.oops a:hover {
 		padding-bottom: 15px;
 		.aside {
 			 @include span-columns(4);
+			 @include media($mobile) {
+				@include span-columns(3);
+			}
 			 .credits {
 			 	margin:0 0 0.5em;
 			 	h2 {
@@ -657,6 +660,9 @@ h1.oops a:hover {
 		}
 		.post_info {
 			@include span-columns(8);
+			@include media($mobile) {
+				@include span-columns(3);
+			}
 			h3 {
 				margin:0.5em 0
 			}
