@@ -594,18 +594,25 @@ h1.oops a:hover {
 
 #arrow-up {
 	cursor:pointer;
-	right: 58px;
-  	bottom: 43px;
+	right: 55px;
+  	bottom: 20px;
 	position:absolute;
 	z-index:999;
+	font-family: $font-stack;
+	@include transform(rotate(90deg));
 	@include transition(transform 0.7s ease-in-out);
 	display:none;
 	@include media(min-width 768px) {
        display:block;
+       font-size:em(36);
+	   line-height:em(24);
   	}
 }
+#arrow-up:hover {
+	color:$onblack
+}
 #arrow-up.up {
-	@include transform(rotate(180deg));
+	@include transform(rotate(270deg));
 }
 
 /* SINGLE FOOTER */
@@ -632,6 +639,9 @@ h1.oops a:hover {
 			}
 			 .credits {
 			 	margin:0 0 0.5em;
+			 	p{
+			 		font-size:em(16)
+			 	}
 			 	h2 {
 					margin:0.5em 0
 				}
@@ -667,8 +677,8 @@ h1.oops a:hover {
 				margin:0.5em 0
 			}
 			p {
-			 	margin-top:0.7em;
-			 	font-size: 1.25em;
+			 	margin-top:1.5em;
+			 	font-size:em(16)
 			}
 		}
 		.related {
@@ -779,10 +789,6 @@ footer {
        		font-size: em(24);
        		line-height:em(24);
     	}
-    	@include media(min-width 768px max-width 1024px) {
-    		font-size: em(17);
-       		line-height:em(17);
-    	}
 	}
 }
 
@@ -809,10 +815,6 @@ footer.off #name h1{
 		@include media(min-width 768px) {
        		font-size: em(24);
        		line-height:em(24);
-    	}
-    	@include media(min-width 768px max-width 1024px) {
-    		font-size: em(17);
-       		line-height:em(17);
     	}
 	}
 }
@@ -841,10 +843,6 @@ footer.off #name h1{
 		@include media(min-width 768px) {
        		font-size: em(24);
        		line-height:em(24);
-    	}
-    	@include media(min-width 768px max-width 1024px) {
-    		font-size: em(17);
-       		line-height:em(17);
     	}
 	}
 }
