@@ -4,7 +4,7 @@
 	    <div class="aside">
 		
 			<div class="credits">
-				<h3>{{post.title}}</h3>
+				<h3>{{ post.ref_hover }}</h3>
 				
 				{% if post.get_field('credits') %}
 					<p>{{ post.get_field('credits')}}</p>
@@ -50,7 +50,6 @@
 
 		<div class="row">
 			<div class="related">	
-				<h4>More like this.</h4>
 				<div class="row">
 					{% for post in related %}
 					    <article class="related-thumb">
@@ -59,7 +58,7 @@
 							    	{% if post.get_field('square_th') %}
 							    		<img class="img-responsive" src="{{TimberImage(post.get_field('square_th')).get_src|resize(500)}}" alt="{{site.name}} - {{post.title}}"/>
 							    	{% else %}
-							    		<img class="img-responsive" src="{{ post.thumbnail.src|resize(500, 500,'center')}}" alt="{{site.name}} - {{post.title}}">
+							    		<img class="img-responsive" src="{{ post.thumbnail.src|resize(300, 300,'center')}}" alt="{{site.name}} - {{post.title}}">
 							    	{% endif %}
 							    	<div>
 								    	<figcaption>
