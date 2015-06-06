@@ -846,6 +846,11 @@ h1.oops a:hover {
 			}
 			.related-thumb {
 		 		@include span-columns(3 of 12);
+		 		@include media($mobile) {
+					@include span-columns(6 of 12);
+					@include omega(2n);
+					margin-bottom: 2.35%
+				}
 			}
 		}
 	}
@@ -880,9 +885,11 @@ h1.oops a:hover {
 				@include backface-visibility(hidden);
 				h5 {
 					color:#fff;
-					font-size: .6em;
-  					margin: .7em .5em;
-
+					font-size: .5em;
+  					margin: .7em 0;
+  					@include media($mobile) {
+						font-size: .4em;
+					}
 				}
 			}
 		}

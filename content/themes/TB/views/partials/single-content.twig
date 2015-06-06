@@ -11,7 +11,7 @@
 	    			 {% if tb.caption %}<p><span></span>{{ tb.caption }}</p>{% endif %}
 	    		</div>
 	    	</div>
-		</section>
+		</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'background_image' %}
 
@@ -22,7 +22,7 @@
 					{% if tb.sm_caption %}<h3 class="{{tb.color_capt}}">{{ tb.sm_caption }}</h3>{% endif %}
 				</div>
 			</div>	
-		</section>
+		</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'highlights' %}
 		
@@ -32,7 +32,7 @@
 					<h1 class="quote">{{ tb.quote }}</h1>
 				</div>
 			</div>
-		</section>
+		</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'gallery' %}
 
@@ -65,7 +65,7 @@
 			    	</div>
     			</div>
     		{% endfor %}
-    	</section>
+    	</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'description' %}
 
@@ -87,7 +87,7 @@
 					</div>
 				</div>
 			</div>
-		</section>!-- section -->
+		</section><!-- section -->
 
 	{% endif %}
 	
