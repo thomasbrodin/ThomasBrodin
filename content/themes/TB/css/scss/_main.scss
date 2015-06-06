@@ -25,7 +25,7 @@ body, html {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	background-color:#fff;
+	background-color:#f2f2f2;
 	color:#111;
 }
 
@@ -469,8 +469,21 @@ h1.oops a:hover {
 
 /* SINGLE
 -------------------------------------------------- */
+#loader {
+	background-image: url('../img/loading.gif');
+	background-position:center center;
+	background-repeat: no-repeat;
+	background-color:#F6F6F6;
+	height: 100%;
+	width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 2;
+}
+
 #single {
-  background-color: #f6f6f6;
+  background-color: #f2f2f2;
   padding-bottom:30px;
 }
 #single-content {
@@ -488,7 +501,7 @@ h1.oops a:hover {
 }
 .section {
 	@include outer-container(81rem);	
-	background-color:#f6f6f6;
+	background-color:#f2f2f2;
 	.inner {
 		display: table;
   		table-layout: fixed;
@@ -500,7 +513,78 @@ h1.oops a:hover {
 			display: table-cell;
 			vertical-align: middle;
 			width: 100%;
-			height: 100%;
+			height: 100%; 
+			p {
+				font-size:1em;
+				margin:0;
+				color:#000;
+					span {
+						width: 55px;
+  						border-bottom: 5px solid #232323;
+						display: block;
+						margin-top:20px;
+					}
+			}
+			&.thumbs {
+				p {
+					color:#999;
+					text-align:center;
+					margin-bottom: 20px;
+					span {
+						width: 40px;
+						border-bottom: 1px solid;
+						border-color: grey;
+						display: block;
+						margin:20px auto;
+					}
+				}
+			}
+			/* right */
+			&.vert {
+				img {
+					float: right;
+				}
+				p {
+					text-align:right;
+					clear:both;
+					padding-right:2.35%;
+					margin-top: 20px;
+					span {
+						float:right;
+						margin-left:2.35%;
+					}
+				}
+			}/* centered */
+			&.sq {
+				img {
+			 		margin:0 auto;
+				}
+				p {
+					text-align:center;
+					margin-top: 10px;
+					color:#232323;
+					span {
+						margin:0px auto 30px;
+					}
+				}
+			}
+			/* horizontal */
+			&.hori {
+				img {
+					max-width: 100%;
+					height:auto;
+					max-height:480px!important
+				}
+				p {
+					text-align:left;
+					padding-left:2.35%;
+					margin-top: 20px;
+					span {
+						float:left;
+						margin-right:2.35%;
+					}
+				}
+			}
 		}
 		.row{
 			@include row;
@@ -511,8 +595,17 @@ h1.oops a:hover {
 				 	padding-bottom:21px
 				}
 				img.slides {
-					max-height: 480px;
 					margin:0 auto;
+				}
+				&:first-child {
+					img.slides {
+						margin-right:0;
+					}
+				}
+				&:last-child {
+					img.slides {
+						margin-left:0;
+					}
 				}
 			}
 			.third{
@@ -522,8 +615,17 @@ h1.oops a:hover {
 				 	padding-bottom:21px
 				}
 				img.slides {
-					max-height: 380px;
 					margin:0 auto;
+				}
+				&:first-child {
+					img.slides {
+						margin-right:0;
+					}
+				}
+				&:last-child {
+					img.slides {
+						margin-left:0;
+					}
 				}
 			}
 		}
@@ -533,27 +635,28 @@ h1.oops a:hover {
 			width:auto;
 			max-width: 100%;
 			height:auto;
+			max-height: 70%;
 			@include transition(opacity 0.35s);
 			@include media(min-width 768px) {
 		        max-height:450px;
 		    }
 		    @include media(min-width 990px) {
-		        max-height:530px;
+		        max-height:480px;
 		    }
 		    @include media(min-width 1200px) {
-		        max-height:600px;
+		        max-height:550px;
 		    }
 		    @include media(min-width 1380px) {
-		        max-height:680px;
+		        max-height:600px;
 		    }
 		    @include media(min-width 1540px) {
-		        max-height:720px;
+		        max-height:650px;
 		    }
 		    @include media(min-width 1680px) {
-		       	max-height:750px;
+		       	max-height:700px;
 		    }
 		    @include media(min-width 1800px) {
-		        max-height:780px;
+		        max-height:750px;
 		    }
 		    @include media(max-width 400px) {
 		        max-height:400px;
@@ -561,11 +664,38 @@ h1.oops a:hover {
 		    @include media(min-width 320px max-width 736px orientation landscape) {
 		        max-height:300px;
 		    }
+		    &.captioned {
+		    	@include media(min-width 768px) {
+		        	max-height:400px;
+			    }
+			    @include media(min-width 990px) {
+			        max-height:430px;
+			    }
+			    @include media(min-width 1200px) {
+			        max-height:500px;
+			    }
+			    @include media(min-width 1380px) {
+			        max-height:550px;
+			    }
+			    @include media(min-width 1540px) {
+			        max-height:600px;
+			    }
+			    @include media(min-width 1680px) {
+			       	max-height:650px;
+			    }
+			    @include media(min-width 1800px) {
+			        max-height:700px;
+			    }
+		    }
 		}
 		h1.quote {
 			text-transform: capitalize;
 			@include media(min-width 768px) {
-		       font-size:em(48);
+		       font-size:em(56);
+		       line-height: 1.25
+		  	}
+		  	a {
+		  		  border-bottom: 3px solid #000;
 		  	}
 		}
 	}
@@ -574,22 +704,30 @@ h1.oops a:hover {
        		display:none!important
      	}
 	}
-}
-
-
-/* right */
-.vert img {
-	float: right;
-}
-/* centered */
-.sq img {
- 	margin:0 auto;
-}
-/* horizontal */
-.hori img {
-	width: 100%;
-	height:auto;
-	max-height:480px!important
+	&#full-bg {
+		max-width:none;
+		margin:0 -60px;
+		background-size:cover;
+		@include media($mobile) {
+			margin: 100px 18px 0;
+		}
+		h1 {
+			font-family: 'Apercu Medium';
+			@include media(min-width 768px) {
+		       font-size:em(56);
+		       line-height: 1.25;
+		  	}
+		  	&.white {
+				color: white;
+			}
+		}
+		h3 {
+			text-transform: capitalize;
+			&.white {
+				color: white;
+			}
+		}
+	}
 }
 
 #arrow-up {
@@ -607,6 +745,12 @@ h1.oops a:hover {
        font-size:em(36);
 	   line-height:em(24);
   	}
+  	&.white {
+  		color:#fff
+  	}
+  	&.off {
+  		display: none
+  	}
 }
 #arrow-up:hover {
 	color:$onblack
@@ -622,7 +766,7 @@ h1.oops a:hover {
   	left: 0;
   	right: 0;
   	z-index:0;
-  	background-color: #f6f6f6;
+  	background-color: #f2f2f2;
   	@include outer-container(81rem);
   	@include media(min-width 768px) {
        	padding: 0 59px 40px;
@@ -683,8 +827,11 @@ h1.oops a:hover {
 		}
 		.related {
 			@include span-columns(12);
+			h4 {
+				margin:0
+			}
 			.related-thumb {
-		 		@include span-columns(4 of 12);
+		 		@include span-columns(3 of 12);
 			}
 		}
 	}
@@ -765,6 +912,16 @@ footer {
 	@include media(min-width 768px) {
         display:block
     }
+    &.off {
+    	#name h1 {
+    		display: none
+    	}
+    }
+    &.white {
+    	#name h1{
+    		color:#fff!important
+    	}
+    }
 }
 #bottom-titles {
 	display: block;
@@ -791,10 +948,6 @@ footer {
        		line-height:em(24);
     	}
 	}
-}
-
-footer.off #name h1{
-	display:none
 }
 
 /* title cat and Search */
