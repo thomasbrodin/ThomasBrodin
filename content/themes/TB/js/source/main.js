@@ -240,6 +240,9 @@ jQuery(document).ready(function($) {
 			touchSensitivity: 15,
 			loopBottom: false,
 			responsive: 768,
+			afterRender: function(){
+				$('#loader').delay(800).fadeOut(100);
+			},
 			onLeave: function (index, nextIndex, direction){
 				var numSec = $( ".section" ).length;
 				if (index == (numSec-1) && direction == 'down') {
