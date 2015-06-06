@@ -374,6 +374,9 @@ h1.oops a:hover {
 		position: relative;
 		float: left;
 		padding:0 2em 2em 0;
+		@include media($mobile) {
+			padding: 0 0 2em 0;
+		}
 		figure {
 			text-align: left;
 			overflow: hidden;
@@ -382,6 +385,9 @@ h1.oops a:hover {
 			img{
 				max-width: 100%;
 				display: block;
+				@include media($mobile) {
+					width:100%
+				}
 			}
 		}
 	}
@@ -565,6 +571,9 @@ h1.oops a:hover {
 					color:#232323;
 					span {
 						margin:0px auto 30px;
+						@include media($mobile) {
+							margin-top: 50px
+						}
 					}
 				}
 			}
@@ -686,6 +695,11 @@ h1.oops a:hover {
 			    @include media(min-width 1800px) {
 			        max-height:700px;
 			    }
+		    }
+		    &.slides {
+		    	@include media($mobile) {
+					margin:0 auto!important
+				}
 		    }
 		}
 		h1.quote {
