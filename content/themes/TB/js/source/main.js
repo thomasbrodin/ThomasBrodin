@@ -208,10 +208,24 @@ jQuery(document).ready(function($) {
 	}
 	/* ============================================================= About */
 	if ($('body').hasClass('page-template-page-about')) {
+		TweenLite.set("#top, #bottom", {visibility:"visible"});
+		var tl = new TimelineMax();
+		tl.timeScale(2);
+		tl.from("#bottom", 1, {
+			drawSVG:0,
+			stroke:"black",
+			ease: Power4.easeIn
+		})
+		.from("#top", 1, {
+			drawSVG:"50% 50%",
+			stroke:"black",
+			ease: Power1.easeOut
+		});
 		$(window).load(function() {
+			$('#loader').delay(1000).fadeOut(100);
 			$("header").addClass('white');
 			$('footer').addClass('off');
-			$('.loading').fadeIn(500);
+			$('.loading').fadeIn(1000);
 		});
 	}
 	$( "#trigger-overlay" ).click(function() {
