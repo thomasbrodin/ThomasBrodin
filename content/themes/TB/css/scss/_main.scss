@@ -476,16 +476,23 @@ h1.oops a:hover {
 /* SINGLE
 -------------------------------------------------- */
 #loader {
-	background-image: url('../img/loading.gif');
-	background-position:center center;
-	background-repeat: no-repeat;
-	background-color:#F6F6F6;
+	background-color:#F2F2F2;
 	height: 100%;
 	width: 100%;
     left: 0;
     top: 0;
     position: absolute;
     z-index: 2;
+    svg#preloader {
+		top:50%;
+		left:50%;
+		position:absolute;
+		margin-top:-70px;
+		margin-left: -70px;
+		#top, #bottom {
+			visibility: hidden
+		}
+    }
 }
 
 #single {
@@ -709,7 +716,10 @@ h1.oops a:hover {
 		       line-height: 1.25
 		  	}
 		  	a {
-		  		  border-bottom: 3px solid #000;
+		  		border-bottom: 3px solid #000;
+		  		@include media($mobile) {
+					padding-bottom:0
+		  		}
 		  	}
 		}
 	}
@@ -727,6 +737,8 @@ h1.oops a:hover {
 		}
 		h1 {
 			font-family: 'Apercu Medium';
+			font-size: 1.5em;
+  			margin-bottom: 0;
 			@include media(min-width 768px) {
 		       font-size:em(56);
 		       line-height: 1.25;
@@ -737,6 +749,9 @@ h1.oops a:hover {
 		}
 		h3 {
 			text-transform: capitalize;
+			@include media($mobile) {
+				font-size: 1em;
+			}
 			&.white {
 				color: white;
 			}
@@ -897,7 +912,9 @@ h1.oops a:hover {
 	span{
 		text-align: center;
 		display: block;
-		padding-top: 4px;
+		&.copyright {
+			padding-top: 4px;
+		}
 	}
 }
 .cssanimations .related-thumb figure h5 {

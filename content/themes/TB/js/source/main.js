@@ -1,14 +1,14 @@
 jQuery(document).ready(function($) {
 	$( "#T_shaped" ).bind('mouseenter',function() {
-		TweenMax.to($("polygon#red"), 1, { x:-4, y:-4, scale:1.1, opacity:0.8, ease: Power4.easeOut });
-		TweenMax.to($("polygon#green"), 1, {x:-6, scale:1.1, opacity:1, ease: Power4.easeOut });
-		TweenMax.to($("polygon#blue"), 1, {x:-2, y:-2, scale:1.1, opacity:1, ease: Power4.easeOut });
-		TweenMax.to($("polygon#black"), 1, {x:3, opacity:0.8, ease: Power4.easeOut});
+		TweenLite.to($("polygon#red"), 1, { x:-4, y:-4, scale:1.1, opacity:0.8, ease: Power4.easeOut });
+		TweenLite.to($("polygon#green"), 1, {x:-6, scale:1.1, opacity:1, ease: Power4.easeOut });
+		TweenLite.to($("polygon#blue"), 1, {x:-2, y:-2, scale:1.1, opacity:1, ease: Power4.easeOut });
+		TweenLite.to($("polygon#black"), 1, {x:3, opacity:0.8, ease: Power4.easeOut});
 	}).bind('mouseleave',function() {
-		TweenMax.to($("polygon#red"), 0.3, { opacity:0, ease: Power0.easeOut });
-		TweenMax.to($("polygon#green"), 0.3, {opacity:0, ease: Power0.easeOut});
-		TweenMax.to($("polygon#blue"), 0.3, {opacity:0, ease: Power0.easeOut });
-		TweenMax.to($("polygon#black"), 0.7, {x:0, y:0, opacity:1, ease: Power4.easeOut});
+		TweenLite.to($("polygon#red"), 0.3, { opacity:0, ease: Power0.easeOut });
+		TweenLite.to($("polygon#green"), 0.3, {opacity:0, ease: Power0.easeOut});
+		TweenLite.to($("polygon#blue"), 0.3, {opacity:0, ease: Power0.easeOut });
+		TweenLite.to($("polygon#black"), 0.7, {x:0, y:0, opacity:1, ease: Power4.easeOut});
 	});
 	/* ============================================================= sharethis button */
 	if ( $("#share-this").length ) {
@@ -227,6 +227,19 @@ jQuery(document).ready(function($) {
 	});
 	/* ============================================================= single */
 	if ($("#single").length){
+		TweenLite.set("#top, #bottom", {visibility:"visible"});
+		var tl = new TimelineMax();
+		tl.timeScale(2);
+		tl.from("#bottom", 1, {
+			drawSVG:0,
+			stroke:"black",
+			ease: Power4.easeIn
+		})
+		.from("#top", 1, {
+			drawSVG:"50% 50%",
+			stroke:"black",
+			ease: Power1.easeOut
+		});
 		$('#single-content').fullpage({
 			verticalCentered: false,
 			scrollingSpeed: 800,
@@ -235,7 +248,7 @@ jQuery(document).ready(function($) {
 			loopBottom: false,
 			responsive: 768,
 			afterRender: function(){
-				$('#loader').delay(800).fadeOut(100);
+				$('#loader').delay(1200).fadeOut(100);
 				var headerColor = $('#full-bg .middle h1').attr('class');
 				$("header").addClass(headerColor);
 				$("footer").addClass(headerColor);

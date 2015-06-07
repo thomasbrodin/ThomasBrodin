@@ -67,6 +67,9 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 	font-size:em(16);
 	letter-spacing: -0.01em;
 	margin: 0 0 0.2em 0;
+	@include media($mobile) {
+		font-size:em(12);
+	}
 }
 
 .overlay ul li a:hover,
