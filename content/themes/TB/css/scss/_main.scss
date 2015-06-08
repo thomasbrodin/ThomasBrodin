@@ -58,7 +58,7 @@ a:focus {
 	position: relative;
 	z-index: 0
 }
-.loading, .T-landing {
+.T-landing {
 	display:none;
 }
 
@@ -377,6 +377,86 @@ h1.oops a:hover {
 		@include media($mobile) {
 			padding: 0 0 2em 0;
 		}
+		&.pdt-3 {
+			@include media(min-width 990px) {
+		    padding-top:3em
+			}
+		}
+		&.pdt-4 {
+			@include media(min-width 990px) {
+		    padding-top:4em
+			}
+		}
+		&.pdt-5 {
+			@include media(min-width 990px) {
+		    padding-top:5em
+			}
+		}
+		&.pdt-6 {
+			@include media(min-width 990px) {
+		    padding-top:6em
+			}
+		}
+		&.pdr-3 {
+			@include media(min-width 990px) {
+		    padding-right:3em
+			}
+		}
+		&.pdr-4 {
+			@include media(min-width 990px) {
+		    padding-right:4em
+			}
+		}
+		&.pdr-5 {
+			@include media(min-width 990px) {
+		    padding-right:5em
+			}
+		}
+		&.pdr-6 {
+			@include media(min-width 990px) {
+		    padding-right:6em
+			}
+		}
+		&.pdb-3 {
+			@include media(min-width 990px) {
+		    padding-bottom:3em
+			}
+		}
+		&.pdb-4 {
+			@include media(min-width 990px) {
+		    padding-bottom:4em
+			}
+		}
+		&.pdb-5 {
+			@include media(min-width 990px) {
+		    padding-bottom:5em
+			}
+		}
+		&.pdb-6 {
+			@include media(min-width 990px) {
+		    padding-bottom:6em
+			}
+		}
+		&.pdl-3 {
+			@include media(min-width 990px) {
+		    padding-left:3em
+			}
+		}
+		&.pdl-4 {
+			@include media(min-width 990px) {
+		    padding-left:4em
+			}
+		}
+		&.pdl-5 {
+			@include media(min-width 990px) {
+		    padding-left:5em
+			}
+		}
+		&.pdl-6 {
+			@include media(min-width 990px) {
+		    padding-left:6em
+			}
+		}
 		figure {
 			text-align: left;
 			overflow: hidden;
@@ -481,7 +561,7 @@ h1.oops a:hover {
 	width: 100%;
     left: 0;
     top: 0;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     svg#preloader {
 		top:50%;

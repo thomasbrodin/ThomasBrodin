@@ -222,10 +222,9 @@ jQuery(document).ready(function($) {
 			ease: Power1.easeOut
 		});
 		$(window).load(function() {
-			$('#loader').delay(1000).fadeOut(100);
+			$('#loader').delay(1100).fadeOut(300);
 			$("header").addClass('white');
 			$('footer').addClass('off');
-			$('.loading').fadeIn(1000);
 		});
 	}
 	$( "#trigger-overlay" ).click(function() {
@@ -240,11 +239,11 @@ jQuery(document).ready(function($) {
 		}
 	});
 	/* ============================================================= single */
-	if ($("#single").length){
+	if ($('body').hasClass('single')) {
 		TweenLite.set("#top, #bottom", {visibility:"visible"});
-		var tl = new TimelineMax();
-		tl.timeScale(2);
-		tl.from("#bottom", 1, {
+		var tl2 = new TimelineMax();
+		tl2.timeScale(2);
+		tl2.from("#bottom", 1, {
 			drawSVG:0,
 			stroke:"black",
 			ease: Power4.easeIn
@@ -254,6 +253,8 @@ jQuery(document).ready(function($) {
 			stroke:"black",
 			ease: Power1.easeOut
 		});
+	}
+	if ($("#single").length){
 		$('#single-content').fullpage({
 			verticalCentered: false,
 			scrollingSpeed: 800,
@@ -262,7 +263,7 @@ jQuery(document).ready(function($) {
 			loopBottom: false,
 			responsive: 768,
 			afterRender: function(){
-				$('#loader').delay(1200).fadeOut(100);
+				$('#loader').delay(1200).fadeOut(300);
 				var headerColor = $('#full-bg .middle h1').attr('class');
 				$("header").addClass(headerColor);
 				$("footer").addClass(headerColor);
