@@ -12,14 +12,8 @@
     <!-- borders-->
 
     {% include 'partials/header.twig' %}
-    
-    <div id="loader">
-	 	<svg id="preloader" width="140px" height="140px" viewBox="0 0 140 140">
-			<polyline id="top" fill="none" stroke="#000000" stroke-width="16" stroke-miterlimit="10" points="36.2,31.3 69.7,31.3 102.8,31.3 "/>
-			<polyline id="bottom" fill="none" stroke="#000000" stroke-width="17" stroke-miterlimit="10" points="69.7,113.8 69.7,72.5 69.7,31.3 "/>
-		</svg>
-	</div>
-	
+    {% include 'partials/loader.twig' %} 
+
 	<div class="about" style="background-image: url('{{TimberImage(post.get_field('portrait')).src}}')"></div>
 
 	<section class="page-content">	

@@ -924,14 +924,6 @@ var acf;
 			$selector = $el.find('select, textarea, input');
 			
 			
-			// filter out hidden field groups
-			$selector = $selector.filter(function(){
-				
-				return $(this).closest('.postbox.acf-hidden').exists() ? false : true;
-								
-			});
-			
-			
 			// populate data
 			$.each( $selector.serializeArray(), function( i, pair ) {
 				
@@ -1058,7 +1050,7 @@ var acf;
 				height		: $el.height(),
 				width		: $el.width(),
 				position	: 'absolute',
-				padding		: 0
+				//padding		: 0
 			});
 			
 			
@@ -1441,9 +1433,9 @@ var acf;
 		
 		
 		/*
-		*  is_ajax_error
+		*  get_ajax_message
 		*
-		*  This function will return true if an error message exists
+		*  This function will return an object containing error/message information
 		*
 		*  @type	function
 		*  @date	8/09/2014
@@ -1453,15 +1445,60 @@ var acf;
 		*  @return	(boolean)
 		*/
 		
-		is_ajax_error : function( json ) {
+		get_ajax_message: function( json ) {
 			
-			if( json && json.data && json.data.error ) {
+			// vars
+			var message = {
+				text: '',
+				type: 'error'
+			};
+			
+			
+			// bail early if no json
+			if( !json ) {
 				
-				return true;
+				return message;
 				
 			}
 			
-			return false;
+			
+			// PHP error (too may themes will have warnings / errors. Don't show these in ACF taxonomy popup)
+/*
+			if( typeof json === 'string' ) {
+				
+				message.text = json;
+				return message;
+					
+			}
+*/
+			
+			
+			// success
+			if( json.success ) {
+				
+				message.type = 'success';
+
+			}
+			
+						
+			// message
+			if( json.data && json.data.message ) {
+				
+				message.text = json.data.message;
+				
+			}
+			
+			
+			// error
+			if( json.data && json.data.error ) {
+				
+				message.text = json.data.error;
+				
+			}
+			
+			
+			// return
+			return message;
 			
 		},
 		
@@ -1557,6 +1594,28 @@ var acf;
 				
 			}
 			
+		},
+		
+		
+		/*
+		*  str_replace
+		*
+		*  This function will perform a str replace similar to php function str_replace
+		*
+		*  @type	function
+		*  @date	1/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$search (string)
+		*  @param	$replace (string)
+		*  @param	$subject (string)
+		*  @return	(string)
+		*/
+		
+		str_replace: function(search, replace, subject) {
+			
+			return subject.split(search).join(replace);
+			
 		}
 		
 	};
@@ -1636,6 +1695,7 @@ var acf;
 				// add event
 				$(document).on(event, selector, function( e ){
 					
+					//console.log( 'event: %o %o %o %o', event, selector, $(this), model );
 					// appen $el to event object
 					e.$el = $(this);
 					
@@ -1890,8 +1950,19 @@ var acf;
 		
 	};
 	
+	acf.add_action('prepare', function( $el ){
+		
+		acf.get_fields('', $el).each(function(){
+			
+			acf.do_action('prepare_field', $(this));
+			acf.do_action('prepare_field/type=' + acf.get_field_type($(this)), $(this));
+			
+		});
+		
+	});
+	
 	acf.add_action('ready', function( $el ){
-				
+		
 		acf.get_fields('', $el).each(function(){
 			
 			acf.do_action('ready_field', $(this));
@@ -2095,7 +2166,7 @@ var acf;
 		
 		validation_complete: function( json, $form ){
 			
-			if( json.errors ) {
+			if( json && json.errors ) {
 				
 				this.on();
 				
@@ -2272,7 +2343,7 @@ var acf;
 			// visibility
 			if( args.visibility ) {
 				
-				$toggle.attr('checked', 'checked');
+				$toggle.prop('checked', true);
 				
 			} else {
 				
@@ -2540,6 +2611,18 @@ console.time("acf_test_ready");
 					
 				}
 				
+				
+				// enable inputs
+				$postbox.find('.acf-hidden-by-postbox').prop('disabled', false);
+				
+			});
+			
+			
+			// disable inputs
+			$('.acf-postbox.acf-hidden').find('select, textarea, input').not(':disabled').each(function(){
+				
+				$(this).addClass('acf-hidden-by-postbox').prop('disabled', true);
+				
 			});
 			
 		},
@@ -2806,7 +2889,7 @@ console.time("acf_test_ready");
 	acf.conditional_logic = acf.model.extend({
 			
 		actions: {
-			'ready 20': 	'render',
+			'prepare 20': 	'render',
 			'append 20': 	'render'
 		},
 		
@@ -2818,46 +2901,48 @@ console.time("acf_test_ready");
 		
 		items: {},
 		triggers: {},
-		cache: {},
 		
-		add : function( key, groups ){
+		
+		/*
+		*  add
+		*
+		*  This function will add a set of conditional logic rules
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	target (string) target field key
+		*  @param	groups (array) rule groups
+		*  @return	$post_id (int)
+		*/
+		
+		add: function( target, groups ){
 			
 			// debug
-			//console.log( 'conditional_logic.add(%o, %o)', key, groups );
-			
-			
-			// reference
-			var self = this;
+			//console.log( 'conditional_logic.add(%o, %o)', target, groups );
 			
 			
 			// populate triggers
 			for( var i in groups ) {
 				
+				// vars
 				var group = groups[i];
 				
 				for( var k in group ) {
 					
-					var rule = group[k];
-					
-										
-					// add rule.field to triggers
-					if( typeof this.triggers[rule.field] === 'undefined' ) {
-					
-						this.triggers[rule.field] = [];
-						
-					}
+					// vars
+					var rule = group[k],
+						trigger = rule.field,
+						triggers = this.triggers[ trigger ] || {};
 					
 					
-					// ignore trigger if already exists
-					if( $.inArray( key, this.triggers[rule.field] ) !== -1 ) {
-						
-						 continue;
-						 
-					}
+					// append trigger (sub field will simply override)
+					triggers[ target ] = target;
 					
 					
-					// append key to this trigger
-					this.triggers[rule.field].push( key );
+					// update
+					this.triggers[ trigger ] = triggers;
 										
 				}
 				
@@ -2865,53 +2950,25 @@ console.time("acf_test_ready");
 			
 			
 			// append items
-			this.items[ key ] = groups;
+			this.items[ target ] = groups;
 			
 		},
 		
-		change : function( e ){
-			
-			// debug
-			//console.log( 'conditional_logic.change(%o)', $input );
-			
-			
-			// vars
-			var $input	= e.$el,
-				$field	= acf.get_field_wrap( $input ),
-				$parent = $field.parent(),
-				key		= acf.get_field_key( $field );
-			
-			
-			// bail early if this field does not trigger any actions
-			if( typeof this.triggers[key] === 'undefined' ) {
-				
-				return false;
-				
-			}
-			
-			
-			// update visibility
-			for( var i in this.triggers[ key ] ) {
-				
-				// get the target key
-				var target_key = this.triggers[ key ][ i ];
-				
-				
-				// get targets
-				var $targets = acf.get_fields(target_key, $parent, true);
-				
-				
-				this.render_fields( $targets );
-				
-			}
-			
-			
-			// action for 3rd party customization
-			acf.do_action('refresh', $parent);
-			
-		},
 		
-		render : function( $el ){
+		/*
+		*  render
+		*
+		*  This function will render all fields
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		render: function( $el ){
 			
 			// debug
 			//console.log('conditional_logic.render(%o)', $el);
@@ -2934,7 +2991,81 @@ console.time("acf_test_ready");
 			
 		},
 		
-		render_fields : function( $targets ) {
+		
+		/*
+		*  change
+		*
+		*  This function is called when an input is changed and will render any fields which are considered targets of this trigger
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		change: function( e ){
+			
+			// debug
+			//console.log( 'conditional_logic.change(%o)', $input );
+			
+			
+			// vars
+			var $input = e.$el,
+				$field = acf.get_field_wrap( $input ),
+				key = $field.data('key');
+			
+			
+			// bail early if this field does not trigger any actions
+			if( typeof this.triggers[key] === 'undefined' ) {
+				
+				return false;
+				
+			}
+			
+			
+			// vars
+			$parent = $field.parent();
+			
+			
+			// update visibility
+			for( var i in this.triggers[ key ] ) {
+				
+				// get the target key
+				var target_key = this.triggers[ key ][ i ];
+				
+				
+				// get targets
+				var $targets = acf.get_fields(target_key, $parent, true);
+				
+				
+				// render
+				this.render_fields( $targets );
+				
+			}
+			
+			
+			// action for 3rd party customization
+			acf.do_action('refresh', $parent);
+			
+		},
+		
+		
+		/*
+		*  render_fields
+		*
+		*  This function will render a selection of fields
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		render_fields: function( $targets ) {
 		
 			// reference
 			var self = this;
@@ -2947,29 +3078,38 @@ console.time("acf_test_ready");
 				
 			});
 			
-			
-			// clear cache
-			this.cache = {};
-			
 		},
 		
-		render_field : function( $field ){
-			
-			// reference
-			var self = this;
-			
+		
+		/*
+		*  render_field
+		*
+		*  This function will render a field
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		render_field : function( $target ){
 			
 			// vars
-			var visibility	= false,
-				key			= acf.get_field_key( $field );
-				
+			var key = $target.data('key');
+			
 			
 			// bail early if this field does not contain any conditional logic
-			if( typeof this.items[key] === 'undefined' ) {
+			if( typeof this.items[ key ] === 'undefined' ) {
 				
 				return false;
 				
 			}
+			
+			
+			// vars
+			var visibility = false;
 			
 			
 			// debug
@@ -2984,14 +3124,21 @@ console.time("acf_test_ready");
 			for( var i in groups ) {
 				
 				// vars
-				var group		= groups[i],
+				var group = groups[i],
 					match_group	= true;
 				
 				for( var k in group ) {
 					
+					// vars
 					var rule = group[k];
 					
-					if( !self.get_visibility( $field, rule) ) {
+					
+					// get trigger for rule
+					var $trigger = this.get_trigger( $target, rule.field );
+					
+					
+					// break if rule did not validate
+					if( !this.calculate(rule, $trigger, $target) ) {
 						
 						match_group = false;
 						break;
@@ -3001,6 +3148,7 @@ console.time("acf_test_ready");
 				}
 				
 				
+				// set visibility if rule group did validate
 				if( match_group ) {
 					
 					visibility = true;
@@ -3014,17 +3162,31 @@ console.time("acf_test_ready");
 			// hide / show field
 			if( visibility ) {
 				
-				self.show_field( $field );					
+				this.show_field( $target );					
 			
 			} else {
 				
-				self.hide_field( $field );
+				this.hide_field( $target );
 			
 			}
 			
 		},
 		
-		show_field : function( $field ){
+		
+		/*
+		*  show_field
+		*
+		*  This function will show a field
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		show_field: function( $field ){
 			
 			// debug
 			//console.log('show_field(%o)', $field);
@@ -3034,13 +3196,13 @@ console.time("acf_test_ready");
 			// Note: Do not bail early! Instead, allow show_field to run on already visible fields. 
 			// This fixes an issue where showing a repeater field would enable sub field inputs which 
 			// should remain hidden due to another conditiona logic rule
-/*
+			/*
 			if( !$field.hasClass('hidden-by-conditional-logic') ) {
 				
 				return;
 				
 			}
-*/
+			*/
 			
 			
 			// remove class
@@ -3058,6 +3220,20 @@ console.time("acf_test_ready");
 			
 		},
 		
+		
+		/*
+		*  hide_field
+		*
+		*  This function will hide a field
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
 		hide_field : function( $field ){
 			
 			// debug
@@ -3065,13 +3241,13 @@ console.time("acf_test_ready");
 			
 			
 			// bail early if field is already hidden
-/*
+			/*
 			if( $field.hasClass('hidden-by-conditional-logic') ) {
 				
 				return;
 				
 			}
-*/
+			*/
 			
 			
 			// add class
@@ -3087,51 +3263,48 @@ console.time("acf_test_ready");
 			
 		},
 		
-		get_visibility : function( $target, rule ){
-			
-			//console.log( 'conditional_logic.get_visibility(%o, %o)', $target, rule );
-			
-			// update cache (cache is cleared after render_fields)
-			if( !acf.isset(this.cache, rule.field) ) {
-				
-				//console.log('get_fields(%o)', rule.field);
-				
-				// get all fields for this field_key and store in cache
-				this.cache[ rule.field ] = acf.get_fields(rule.field, false, true);
-				
-			}
-			
+		/*
+		*  get_trigger
+		*
+		*  This function will return the relevant $trigger for a $target
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		get_trigger: function( $target, key ){
 			
 			// vars
-			var $triggers = this.cache[ rule.field ],
-				$trigger = null;
+			var selector = acf.get_selector( key );
 			
 			
-			// bail early if no triggers found
-			if( !$triggers.exists() ) {
+			// find sibling $trigger
+			var $trigger = $target.siblings( selector );
+			
+			
+			// parent trigger
+			if( !$trigger.exists() ) {
 				
-				return false;
+				// vars
+				var parent = acf.get_selector();
 				
-			}
-			
-			
-			// set $trigger
-			$trigger = $triggers.first();
-			
-			
-			// find better $trigger
-			if( $triggers.length > 1 ) {
 				
-				$triggers.each(function(){
+				// loop through parent fields and review their siblings too
+				$target.parents( parent ).each(function(){
 					
-					// vars
-					$parent = $(this).parent();
+					// find sibling $trigger
+					$trigger = $(this).siblings( selector );
 					
 					
-					if( $target.closest( $parent ).exists() ) {
+					// bail early if $trigger is found
+					if( $trigger.exists() ) {
 						
-						$trigger = $(this);
 						return false;
+						
 					}
 	
 				});
@@ -3139,22 +3312,49 @@ console.time("acf_test_ready");
 			}
 			
 			
-			// calculate
-			var visibility = this.calculate( rule, $trigger, $target );
+			// bail early if no $trigger is found
+			if( !$trigger.exists() ) {
+				
+				return false;
+				
+			}
 			
 			
 			// return
-			return visibility;
+			return $trigger;
+			
 		},
 		
+		
+		/*
+		*  calculate
+		*
+		*  This function will calculate if a rule matches based on the $trigger
+		*
+		*  @type	function
+		*  @date	22/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
 		calculate : function( rule, $trigger, $target ){
+			
+			// bail early if $trigger could not be found
+			if( !$trigger || !$target ) {
+				
+				return false;
+				
+			}
+			
 			
 			// debug
 			//console.log( 'calculate(%o, %o, %o)', rule, $trigger, $target);
 			
 			
 			// vars
-			var type = acf.get_data($trigger, 'type');
+			var type = $trigger.data('type');
 			
 			
 			// input with :checked
@@ -3627,19 +3827,24 @@ console.time("acf_test_ready");
 			var self = this;
 			
 			
-			// debug
-			//console.log('is_ready: %o', this.status);
-			
-			// check
+			// ready
 			if( this.status == 'ready' ) {
 				
 				return true;
 				
-			} else if( this.status == 'loading' ) {
+			}
+			
+			
+			// loading
+			if( this.status == 'loading' ) {
 				
 				return false;
 				
-			} else if( typeof google === 'undefined' ) {
+			}
+			
+			
+			// no google
+			if( typeof google === 'undefined' ) {
 				
 				// set status
 				self.status = 'loading';
@@ -3664,11 +3869,22 @@ console.time("acf_test_ready");
 				
 				return false;
 					
-			} else if( typeof google.maps === 'undefined' ) {
-				
+			}
+			
+			
+			// no maps or places
+			if( !google.maps || !google.maps.places ) {
 				
 				// set status
 				self.status = 'loading';
+				
+				
+				// bail early if no load function (avoid modified google library conflict)
+				if( !google.load ) {
+					
+					return;
+					
+				}
 				
 				
 				// load maps
@@ -3680,6 +3896,8 @@ console.time("acf_test_ready");
 			    	
 			    	// initialize pending
 			    	self.initialize_pending();
+			    	
+			    	
 			        
 			    }});
 				
@@ -3743,20 +3961,18 @@ console.time("acf_test_ready");
 				$el = this.$el;
 			
 			
-			// vars
-			var args = {
-        		zoom		: parseInt(this.o.zoom),
-        		center		: new google.maps.LatLng(this.o.lat, this.o.lng),
-        		mapTypeId	: google.maps.MapTypeId.ROADMAP
-        	};
+			// map
+			var map_args = acf.apply_filters('google_map_args', {
+				
+        		zoom:		parseInt(this.o.zoom),
+        		center:		new google.maps.LatLng(this.o.lat, this.o.lng),
+        		mapTypeId:	google.maps.MapTypeId.ROADMAP
+        		
+        	}, this.$field);
         	
 			
-			// filter for 3rd party customization
-			args = acf.apply_filters('google_map_args', args, this.$field);
-			
-			
 			// create map	        	
-        	this.map = new google.maps.Map( this.$el.find('.canvas')[0], args);
+        	this.map = new google.maps.Map( this.$el.find('.canvas')[0], map_args);
 	        
 	        
 	        // add search
@@ -3765,12 +3981,18 @@ console.time("acf_test_ready");
 			autocomplete.bindTo('bounds', this.map);
 			
 			
-			// add dummy marker
-	        this.map.marker = new google.maps.Marker({
-		        draggable	: true,
-		        raiseOnDrag	: true,
-		        map			: this.map,
-		    });
+			// marker
+			var marker_args = acf.apply_filters('google_map_marker_args', {
+				
+		        draggable: 		true,
+		        raiseOnDrag: 	true,
+		        map: 			this.map
+		        
+		    }, this.$field);
+		    
+		    
+		    // add marker
+	        this.map.marker = new google.maps.Marker( marker_args );
 		    
 		    
 		    // add references
@@ -3814,7 +4036,9 @@ console.time("acf_test_ready");
 						lng = place.geometry.location.lng();
 						
 					
+					// update
 					self.doFocus( $field ).update( lat, lng ).center();
+				    
 				    
 				    // bail early
 				    return;
@@ -3916,8 +4140,13 @@ console.time("acf_test_ready");
 			this.$field.removeClass('error');
 			
 			
+			// action
+			acf.do_action('google_map_change', latlng, this.map, this.$field);
+			
+			
 	        // return for chaining
 	        return this;
+	        
 		},
 		
 		center : function(){
@@ -4103,6 +4332,7 @@ console.time("acf_test_ready");
 		
 	});
 
+	
 })(jQuery);
 
 (function($){
@@ -6104,7 +6334,7 @@ var scroll_timer = null;
 		$el: null,
 		
 		actions: {
-			'ready':	'initialize',
+			'prepare':	'initialize',
 			'append':	'initialize',
 			'hide':		'hide',
 			'show':		'show'
@@ -6400,46 +6630,57 @@ var scroll_timer = null;
 			
 	});
 	
-	acf.add_filter('validation_complete', function( json, $form ){
+	var tab_validation = acf.model.extend({
 		
-		// show field error messages
-		$.each( json.errors, function( k, item ){
+		active: 1,
 		
-			var $input = $form.find('[name="' + item.input + '"]').first(),
-				$field = acf.get_field_wrap( $input ),
-				$tab = $field.prevAll('.acf-field-tab:first');
+		actions: {
+			'add_field_error': 'add_field_error'
+		},
+		
+		add_field_error: function( $field ){
 			
-			
-			// does tab group exist?
-			if( ! $tab.exists() )
-			{
+			// bail early if already focused
+			if( !this.active ) {
+				
 				return;
-			}
-
-			
-			// is this field hidden
-			if( $field.hasClass('hidden-by-tab') )
-			{
-				// show this tab
-				$tab.siblings('.acf-tab-wrap').find('a[data-key="' + acf.get_data($tab, 'key') + '"]').trigger('click');
 				
-				// end loop
-				return false;
 			}
 			
 			
-			// field is within a tab group, and the tab is already showing
-			// end loop
-			return false;
-			
-		});
-		
-		
-		// return
-		return json;
+			// bail early if not hidden by tab
+			if( !$field.hasClass('hidden-by-tab') ) {
 				
-	});
-	
+				return;
+				
+			}
+			
+			
+			// reference
+			var self = this;
+			
+			
+			// vars
+			var $tab = $field.prevAll('.acf-field-tab:first'),
+				$group = $field.prevAll('.acf-tab-wrap:first');
+			
+			
+			// focus
+			$group.find('a[data-key="' + $tab.data('key') + '"]').trigger('click');
+			
+			
+			// disable functionality for 1sec (allow next validation to work)
+			this.active = 0;
+			
+			setTimeout(function(){
+				
+				self.active = 1;
+				
+			}, 1000);
+			
+		}
+		
+	});	
 	
 
 })(jQuery);
@@ -6617,7 +6858,7 @@ var scroll_timer = null;
 			
 			// show loading
 			$submit.find('button').attr('disabled', 'disabled');
-			$submit.find('.acf-loading').attr('style', 'display: inline-block;');
+			$submit.find('.acf-spinner').addClass('is-active');
 			
 			
 			// vars
@@ -6638,7 +6879,7 @@ var scroll_timer = null;
 				success:	function( json ){
 					
 					// vars
-					var message = '';
+					var message = acf.get_ajax_message(json);
 					
 					
 					// success
@@ -6650,29 +6891,16 @@ var scroll_timer = null;
 						
 						// update term lists
 						self.append_new_term( json.data );
-						
-						
-						// update message
-						message = json.data.message;
-					
-					// error
-					} else if( acf.is_ajax_error(json) ) {
-						
-						message = json.data.error;
-						
+
 					}
 					
 					
 					// message
-					if( message ) {
+					if( message.text ) {
 						
-						$submit.find('span').html( message );
+						$submit.find('span').html( message.text );
 						
 					}
-					
-					
-					// log
-					console.log( json );
 					
 				},
 				complete: function(){
@@ -6682,7 +6910,7 @@ var scroll_timer = null;
 					
 					
 					// hide loading
-					$submit.find('.acf-loading').removeAttr('style');
+					$submit.find('.acf-spinner').removeClass('is-active');
 					
 					
 					// remove message
@@ -6712,18 +6940,47 @@ var scroll_timer = null;
 			
 			
 			// append to all taxonomy lists
-			$('.acf-taxonomy-field[data-taxonomy="' + this.o.taxonomy + '"] .acf-checkbox-list').each(function(){
+			$('.acf-taxonomy-field[data-taxonomy="' + this.o.taxonomy + '"]').each(function(){
 				
 				// vars
-				var $ul = $(this),
-					$li = $ul.find('li:first').clone();
+				var type = $(this).data('type');
 				
 				
-				// update
-				$li.attr('data-id', term.term_id);
-				$li.find('input').attr('value', term.term_id);
-				$li.find('input').removeAttr('checked');
-				$li.find('span').text(term.term_label);
+				// bail early if not checkbox/radio
+				if( type == 'radio' || type == 'checkbox' ) {
+					
+					// allow
+					
+				} else {
+					
+					return;
+					
+				}
+				
+				
+				// vars
+				var $hidden = $(this).children('input[type="hidden"]'),
+					$ul = $(this).find('ul:first'),
+					name = $hidden.attr('name');
+				
+				
+				// allow multiple selection
+				if( type == 'checkbox' ) {
+					
+					name += '[]';
+						
+				}
+				
+				
+				// create new li
+				var $li = $([
+					'<li data-id="' + term.term_id + '">',
+						'<label>',
+							'<input type="' + type + '" value="' + term.term_id + '" name="' + name + '" /> ',
+							'<span>' + term.term_label + '</span>',
+						'</label>',
+					'</li>'
+				].join(''));
 				
 				
 				// find parent
@@ -6863,100 +7120,348 @@ var scroll_timer = null;
 })(jQuery);
 
 (function($){
-    
+  
 	acf.validation = acf.model.extend({
 		
 		actions: {
-			'ready 20': 'onReady'
+			'ready':	'ready',
+			'append':	'ready'
+		},
+		
+		filters: {
+			'validation_complete':	'validation_complete'
+		},
+		
+		events: {
+			'click #save-post':				'click_ignore',
+			'click input[type="submit"]':	'click_publish',
+			'submit form':					'submit_form',
+			'click .acf-error-message a':	'click_message'
 		},
 		
 		
 		// vars
-		active	: 1,
-		ignore	: 0,
+		active: 1,
+		ignore: 0,
+		busy: 0,
+		valid: true,
+		errors: [],
 		
 		
 		// classes
-		error_class : 'acf-error',
-		message_class : 'acf-error-message',
+		error_class: 'acf-error',
+		message_class: 'acf-error-message',
 		
 		
 		// el
-		$trigger : null,
+		$trigger: null,
 		
 		
-		// functions
-		onReady : function(){
+		/*
+		*  ready
+		*
+		*  This function will add 'non bubbling' events
+		*
+		*  @type	function
+		*  @date	26/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		ready: function( $el ){
 			
-			// read validation setting
-			this.active = acf.get('validation');
+			// reference
+			$el.find('.acf-field input').filter('[type="number"], [type="email"], [type="url"]').on('invalid', function( e ){
+				
+				// prvent defual
+				// fixes chrome bug where 'hidden-by-tab' field throws focus error
+				e.preventDefault();
+				
+				
+				// append to errors
+				acf.validation.errors.push({
+					input: $(this).attr('name'),
+					message: e.target.validationMessage
+				});
+				
+				
+				// run validation
+				acf.validation.fetch( $(this).closest('form') );
+			
+			});
+			
+		},
+		
+		
+		/*
+		*  validation_complete
+		*
+		*  This function will modify the JSON response and add local 'invalid' errors
+		*
+		*  @type	function
+		*  @date	26/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		validation_complete: function( json, $form ) {
+			
+			// append errors
+			if( this.errors && this.errors.length > 0 ) {
+				
+				// set valid
+				json.valid = 0;
+				
+				
+				// require array
+				json.errors = json.errors || [];
+				
+				
+				// append
+				json.errors = json.errors.concat( this.errors );
+				
+			}
 			
 			
-			// bail early if disabled
+			// reset
+			this.errors = [];
+			
+			
+			// return
+			return json;
+			
+		},
+		
+		
+		/*
+		*  click_message
+		*
+		*  This function will dismiss the validation message
+		*
+		*  @type	function
+		*  @date	26/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		click_message: function( e ) {
+			
+			e.preventDefault();
+			
+			acf.remove_el( e.$el.parent() );
+			
+		},
+		
+		
+		/*
+		*  click_ignore
+		*
+		*  This event is trigered via submit butons which ignore validation
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		click_ignore: function( e ) {
+			
+			this.ignore = 1;
+			this.$trigger = e.$el;
+			
+		},
+		
+		
+		/*
+		*  click_publish
+		*
+		*  This event is trigered via submit butons which trigger validation
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		click_publish: function( e ) {
+			
+			this.$trigger = e.$el;
+			
+		},
+		
+		
+		/*
+		*  submit_form
+		*
+		*  description
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		submit_form: function( e ){
+			
+			// bail early if not active
 			if( !this.active ) {
 			
-				return;
+				return true;
 				
 			}
 			
 			
-			// add events
-			this.add_events();
-		},
-		
-		add_error : function( $field, message ){
+			// ignore validation (only ignore once)
+			if( this.ignore ) {
 			
-			// add class
-			$field.addClass(this.error_class);
-			
-			
-			// add message
-			if( message !== undefined ) {
+				this.ignore = 0;
+				return true;
 				
-				$field.children('.acf-input').children('.' + this.message_class).remove();
-				$field.children('.acf-input').prepend('<div class="' + this.message_class + '"><p>' + message + '</p></div>');
-			
 			}
 			
 			
-			// hook for 3rd party customization
-			acf.do_action('add_field_error', $field);
+			// bail early if this form does not contain ACF data
+			if( !e.$el.find('#acf-form-data').exists() ) {
+			
+				return true;
+				
+			}
+				
+			
+			// bail early if is preview
+			var $preview = e.$el.find('#wp-preview');
+			if( $preview.exists() && $preview.val() ) {
+				
+				// WP will lock form, unlock it
+				this.toggle( e.$el, 'unlock' );
+				return true;
+				
+			}
+			
+			
+			// prevent default
+			e.preventDefault();
+			
+			
+			// run validation
+			this.fetch( e.$el );
+			
 		},
 		
-		remove_error : function( $field ){
+		
+		/*
+		*  lock
+		*
+		*  description
+		*
+		*  @type	function
+		*  @date	7/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		toggle: function( $form, state ){
 			
-			// var
-			$message = $field.children('.acf-input').children('.' + this.message_class);
+			// defaults
+			state = state || 'unlock';
 			
 			
-			// remove class
-			$field.removeClass(this.error_class);
+			// debug
+			// console.log('toggle %o %o', $form, state);
+			
+			// vars
+			var $submit = null,
+				$spinner = null,
+				$parent = $('#submitdiv');
 			
 			
-			// remove message
-			setTimeout(function(){
+			// term, user
+			if( !$parent.exists() ) {
 				
-				acf.remove_el( $message );
+				$parent = $form.find('p.submit').last();
 				
-			}, 250);
+			}
 			
 			
-			// hook for 3rd party customization
-			acf.do_action('remove_field_error', $field);
+			// front end form
+			if( !$parent.exists() ) {
+				
+				$parent = $form.find('.acf-form-submit');
+				
+			}
+			
+			
+			// default
+			if( !$parent.exists() ) {
+				
+				$parent = $form;
+					
+			}
+			
+			
+			// find elements
+			// note: media edit page does not use .button, this is why we need to look for generic input[type="submit"]
+			$submit = $parent.find('input[type="submit"], .button');
+			$spinner = $parent.find('.spinner, .acf-spinner');
+			
+			
+			// hide all spinners (hides the preview spinner)
+			this.hide_spinner( $spinner );
+			
+			
+			// unlock
+			if( state == 'unlock' ) {
+				
+				this.enable_submit( $submit );
+				
+			// lock
+			} else if( state == 'lock' ) {
+				
+				// show only last spinner (allow all spinners to be hidden - preview spinner + submit spinner)
+				this.disable_submit( $submit );
+				this.show_spinner( $spinner.last() );
+				
+			}
+			
 		},
 		
-		add_warning : function( $field, message ){
-			
-			this.add_error( $field, message );
-			
-			setTimeout(function(){
-				
-				acf.validation.remove_error( $field )
-				
-			}, 1000);
-		},
 		
-		fetch : function( $form ){
+		/*
+		*  fetch
+		*
+		*  description
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		fetch: function( $form ){
+			
+			// bail aelry if already busy
+			if( this.busy ) {
+				
+				return false;
+				
+			}
+			
 			
 			// reference
 			var self = this;
@@ -6969,83 +7474,150 @@ var scroll_timer = null;
 			// append AJAX action		
 			data.action = 'acf/validate_save_post';
 			
-				
+			
+			// set busy
+			this.busy = 1;
+			
+			
+			// lock form
+			this.toggle( $form, 'lock' );
+			
+			
 			// ajax
 			$.ajax({
-				url			: acf.get('ajaxurl'),
-				data		: data,
-				type		: 'post',
-				dataType	: 'json',
-				success		: function( json ){
+				url: acf.get('ajaxurl'),
+				data: data,
+				type: 'post',
+				dataType: 'json',
+				success: function( json ){
 					
-					self.complete( $form, json );
+					// bail early if not json success
+					if( !acf.is_ajax_success(json) ) {
+						
+						return;
+						
+					}
 					
+					
+					self.fetch_success( $form, json.data );
+					
+				},
+				complete: function(){
+					
+					self.fetch_complete( $form );
+			
 				}
 			});
 			
 		},
 		
-		complete : function( $form, json ){
+		
+		/*
+		*  fetch_complete
+		*
+		*  description
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		fetch_complete: function( $form ){
 			
-			// filter for 3rd party customization
-			json = acf.apply_filters('validation_complete', json, $form);
+			// set busy
+			this.busy = 0;
 			
 			
-			// reference
-			var self = this;
+			// unlock so WP can publish form
+			this.toggle( $form, 'unlock' );
 			
 			
-			// hide ajax stuff on submit button
-			var $submit = $('#submitpost').exists() ? $('#submitpost') : $('#submitdiv');
-			
-			if( $submit.exists() ) {
+			// bail early if validationw as not valid
+			if( !this.valid ) {
 				
-				// remove disabled classes
-				$submit.find('.disabled').removeClass('disabled');
-				$submit.find('.button-disabled').removeClass('button-disabled');
-				$submit.find('.button-primary-disabled').removeClass('button-primary-disabled');
-				
-				
-				// remove spinner
-				$submit.find('.spinner').hide();
+				return;
 				
 			}
 			
 			
-			// validate json
-			if( !json || typeof json.result === 'undefined' || json.result == 1) {
+			// update ignore (allow form submit to not run validation)
+			this.ignore = 1;
 				
-				// remove previous error message
-				acf.remove_el( $form.children('.' + this.message_class) );
 				
+			// remove previous error message
+			var $message = $form.children('.acf-error-message');
 			
-				// remove hidden postboxes (this will stop them from being posted to save)
-				$form.find('.acf-postbox.acf-hidden').remove();
-					
-					
-				// bypass JS and submit form
-				this.ignore = 1;
+			if( $message.exists() ) {
 				
+				$message.removeClass('error');
+				$message.children('p').html( acf._e('validation_successful') );
 				
-				// action for 3rd party customization
-				acf.do_action('submit', $form);
+			}
+			
+		
+			// remove hidden postboxes (this will stop them from being posted to save)
+			$form.find('.acf-postbox.acf-hidden').remove();
+			
+			
+			// action for 3rd party customization
+			acf.do_action('submit', $form);
+			
+			
+			// submit form again
+			if( this.$trigger ) {
 				
+				this.$trigger.click();
+			
+			} else {
 				
-				// submit form again
-				if( this.$trigger ) {
-					
-					this.$trigger.click();
+				$form.submit();
+			
+			}
+			
+			
+			// lock form
+			this.toggle( $form, 'lock' );
+			
+		},
+		
+		
+		/*
+		*  fetch_success
+		*
+		*  description
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$post_id (int)
+		*  @return	$post_id (int)
+		*/
+		
+		fetch_success: function( $form, json ){
+			
+			// filter for 3rd party customization
+			json = acf.apply_filters('validation_complete', json, $form);
+						
+			
+			// validate json
+			if( !json || json.valid || !json.errors ) {
 				
-				} else {
-					
-					$form.submit();
-				
-				}
+				// set valid (allows fetch_complete to run)
+				this.valid = true;
 				
 				
 				// end function
 				return;
+				
 			}
+			
+			
+			// set valid (prevents fetch_complete from runing)
+			this.valid = false;
 			
 			
 			// reset trigger
@@ -7056,8 +7628,12 @@ var scroll_timer = null;
 			var $first_field = null;
 			
 			
+			// message
+			var message = acf._e('validation_failed');
+			
+			
 			// show field error messages
-			if( json.errors ) {
+			if( json.errors && json.errors.length > 0 ) {
 				
 				for( var i in json.errors ) {
 					
@@ -7093,114 +7669,313 @@ var scroll_timer = null;
 					}
 					
 				}
+				
+				
+				// message
+				message += '. ';
+				
+				if( json.errors.length == 1 ) {
+					
+					message += acf._e('validation_failed_1');
+					
+				} else {
+					
+					message += acf._e('validation_failed_2').replace('%d', json.errors.length);
+					
+				}
 			
 			}
 			
 				
 			// get $message
-			var $message = $form.children('.' + this.message_class);
+			var $message = $form.children('.acf-error-message');
 			
 			if( !$message.exists() ) {
 				
-				$message = $('<div class="' + this.message_class + '"><p></p></div>');
+				$message = $('<div class="acf-error-message"><p></p><a href="#" class="acf-icon small dark"><i class="acf-sprite-delete"></i></a></div>');
 				
 				$form.prepend( $message );
 				
 			}
 			
 			
-			// update message text
-			$message.children('p').text( json.message );
+			// update message
+			$message.children('p').html( message );
 			
-			
+						
 			// if message is not in view, scroll to first error field
-			if( !acf.is_in_view($message) && $first_field ) {
+			if( $first_field ) {
 				
-				$("html, body").animate({ scrollTop: ($first_field.offset().top - 32 - 20) }, 500);
+				// timeout avoids flicker jump
+				setTimeout(function(){
+					
+					$("html, body").animate({ scrollTop: $first_field.offset().top - ( $(window).height() / 2 ) }, 500);
+					
+				}, 1);
 				
 			}
 			
 		},
 		
-		add_events : function(){
+		
+		/*
+		*  add_error
+		*
+		*  This function will add error markup to a field
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$field (jQuery)
+		*  @param	message (string)
+		*  @return	n/a
+		*/
+		
+		add_error: function( $field, message ){
 			
+			// reference
 			var self = this;
 			
 			
-			// focus
-			$(document).on('focus click change', '.acf-field[data-required="1"] input, .acf-field[data-required="1"] textarea, .acf-field[data-required="1"] select', function( e ){
-
-				self.remove_error( $(this).closest('.acf-field') );
-				
-			});
+			// add class
+			$field.addClass(this.error_class);
 			
 			
-			// ignore validation
-			$(document).on('click', '#save-post, #post-preview', function(){
+			// add message
+			if( message !== undefined ) {
 				
-				self.ignore = 1;
-				self.$trigger = $(this);
-				
-			});
+				$field.children('.acf-input').children('.' + this.message_class).remove();
+				$field.children('.acf-input').prepend('<div class="' + this.message_class + '"><p>' + message + '</p></div>');
+			
+			}
 			
 			
-			// save trigger
-			$(document).on('click', '#publish, input[type="submit"]', function(){
+			// add event
+			var event = function(){
 				
-				self.$trigger = $(this);
+				// remove error
+				self.remove_error( $field );
+			
 				
-			});
+				// remove self
+				$field.off('focus change', 'input, textarea, select', event);
+				
+			}
+			
+			$field.on('focus change', 'input, textarea, select', event);
 			
 			
-			// submit
-			$(document).on('submit', 'form', function( e ){
+			// hook for 3rd party customization
+			acf.do_action('add_field_error', $field);
+			
+		},
+		
+		
+		/*
+		*  remove_error
+		*
+		*  This function will remove error markup from a field
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$field (jQuery)
+		*  @return	n/a
+		*/
+		
+		remove_error: function( $field ){
+			
+			// var
+			$message = $field.children('.acf-input').children('.' + this.message_class);
+			
+			
+			// remove class
+			$field.removeClass(this.error_class);
+			
+			
+			// remove message
+			setTimeout(function(){
 				
-				// bail early if this form does not contain ACF data
-				if( !$(this).find('#acf-form-data').exists() ) {
+				acf.remove_el( $message );
 				
-					return true;
-					
-				} else if( !$(this).find('.acf-field:first').exists() ) {
+			}, 250);
+			
+			
+			// hook for 3rd party customization
+			acf.do_action('remove_field_error', $field);
+			
+		},
+		
+		
+		/*
+		*  add_warning
+		*
+		*  This functino will add and auto remove an error message to a field
+		*
+		*  @type	function
+		*  @date	4/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$field (jQuery)
+		*  @param	message (string)
+		*  @return	n/a
+		*/
+		
+		add_warning: function( $field, message ){
+			
+			this.add_error( $field, message );
+			
+			setTimeout(function(){
 				
-					return true;
-					
-				}
+				acf.validation.remove_error( $field )
 				
+			}, 1000);
+			
+		},
+		
+		
+		/*
+		*  show_spinner
+		*
+		*  This function will show a spinner element. Logic changed in WP 4.2
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		show_spinner: function( $spinner ){
+			
+			// bail early if no spinner
+			if( !$spinner.exists() ) {
 				
-				// filter for 3rd party customization
-				self.ignore = acf.apply_filters('ignore_validation', self.ignore, self.$trigger, $(this) );
-
+				return;
 				
-				// ignore this submit?
-				if( self.ignore == 1 ) {
+			}
+			
+			
+			// vars
+			var wp_version = acf.get('wp_version');
+			
+			
+			// show
+			if( parseFloat(wp_version) >= 4.2 ) {
 				
-					self.ignore = 0;
-					return true;
-					
-				}
+				$spinner.addClass('is-active');
+			
+			} else {
 				
+				$spinner.css('display', 'inline-block');
+			
+			}
+			
+		},
+		
+		
+		/*
+		*  hide_spinner
+		*
+		*  This function will hide a spinner element. Logic changed in WP 4.2
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		hide_spinner: function( $spinner ){
+			
+			// bail early if no spinner
+			if( !$spinner.exists() ) {
 				
-				// bail early if disabled
-				if( self.active == 0 ) {
+				return;
 				
-					return true;
-					
-				}
+			}
+			
+			
+			// vars
+			var wp_version = acf.get('wp_version');
+			
+			
+			// hide
+			if( parseFloat(wp_version) >= 4.2 ) {
 				
+				$spinner.removeClass('is-active');
+			
+			} else {
 				
-				// prevent default
-				e.preventDefault();
+				$spinner.css('display', 'none');
+			
+			}
+			
+		},
+		
+		
+		/*
+		*  disable_submit
+		*
+		*  This function will disable the $trigger is possible
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		disable_submit: function( $submit ){
+			
+			// bail early if no submit
+			if( !$submit.exists() ) {
 				
+				return;
 				
-				// run validation
-				self.fetch( $(this) );
-								
-			});
+			}
+			
+			
+			// add class
+			$submit.addClass('disabled button-disabled button-primary-disabled');
+			
+		},
+		
+		
+		/*
+		*  enable_submit
+		*
+		*  This function will enable the $trigger is possible
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		enable_submit: function( $submit ){
+			
+			// bail early if no submit
+			if( !$submit.exists() ) {
+				
+				return;
+				
+			}
+			
+			
+			// remove class
+			$submit.removeClass('disabled button-disabled button-primary-disabled');
 			
 		}
 		
 	});
-	
 
 })(jQuery);
 
@@ -7245,16 +8020,18 @@ var scroll_timer = null;
 			
 			// generate new id
 			var old_id = this.o.id,
-				new_id = acf.get_uniqid('acf-editor-');
+				new_id = acf.get_uniqid('acf-editor-'),
+				html = this.$el.outerHTML();
 			
 			
-			this.$field.find('[id]').each(function(){
-				
-				$(this).attr('id', $(this).attr('id').replace( old_id, new_id ) );
-				
-			});
+			// replace
+			html = acf.str_replace( old_id, new_id, html );
 			
 			
+			// swap
+			this.$el.replaceWith( html );			
+			
+						
 			// update id
 			this.o.id = new_id
 			

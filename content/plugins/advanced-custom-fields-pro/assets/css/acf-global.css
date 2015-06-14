@@ -93,15 +93,28 @@ img.acf-fw {
   text-align: center;
 }
 /* loading */
-.acf-loading {
+.acf-loading,
+.acf-spinner {
   display: inline-block;
   height: 20px;
   width: 20px;
   vertical-align: text-top;
   background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
 }
-.acf-loading + .acf-button {
+.acf-loading + .acf-button,
+.acf-spinner + .acf-button {
   margin-left: 3px;
+}
+/* spinner */
+.acf-spinner {
+  display: none;
+}
+.acf-spinner.is-active {
+  display: inline-block;
+}
+/* WP < 4.2 */
+.spinner.is-active {
+  display: inline-block;
 }
 /* required */
 .acf-required {
@@ -492,13 +505,24 @@ img.acf-fw {
   min-height: 0px;
 }
 .acf-error-message p {
-  font-size: 12px !important;
-  line-height: 14px;
+  font-size: 13px !important;
+  line-height: 1;
   margin: 10px 0 !important;
   padding: 0;
   text-shadow: none;
   color: #fff;
   text-shadow: 0 1px 0 #DD4232;
+}
+.acf-error-message .acf-icon.dark {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background-color: #dd4232;
+  transition: none;
+  box-shadow: none;
+}
+.acf-error-message .acf-icon.dark:hover {
+  background-color: #F1F1F1;
 }
 /*--------------------------------------------------------------------------------------------
 *
@@ -606,8 +630,8 @@ img.acf-fw {
 }
 /* blue */
 .acf-button.blue {
-  background-color: #2EA2CC;
-  border-color: #0074A2;
+  background-color: #00a0d2;
+  border-color: #0073aa;
 }
 .acf-button.blue:hover {
   background-color: #298CBA;
@@ -718,6 +742,10 @@ img.acf-fw {
 }
 .acf-postbox .hndle .acf-hndle-cog:hover {
   color: #777777;
+}
+.acf-replace-with-fields {
+  padding: 15px;
+  text-align: center;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -936,27 +964,6 @@ img.acf-fw {
   transition: all 0.25s ease-out;
   transform: translate(50px, 0);
   opacity: 0;
-}
-/*--------------------------------------------------------------------------------------------
-*
-*	User
-*
-*--------------------------------------------------------------------------------------------*/
-.form-table .acf-label {
-  padding: 10px;
-  width: 200px;
-}
-.form-table th.acf-th {
-  width: auto;
-}
-/*--------------------------------------------------------------------------------------------
-*
-*	Comment
-*
-*--------------------------------------------------------------------------------------------*/
-.editcomment td:first-child {
-  white-space: nowrap;
-  width: 131px;
 }
 /*--------------------------------------------------------------------------------------------
 *
@@ -1189,7 +1196,8 @@ html[dir="rtl"] .acf-input-table > tbody > tr > td.order + td {
     background-image: url(../images/sprite@2x.png);
     background-size: 500px 500px;
   }
-  .acf-loading {
+  .acf-loading,
+  .acf-spinner {
     background-image: url(../images/spinner@2x.gif);
     background-size: 20px 20px;
   }

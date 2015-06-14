@@ -689,13 +689,18 @@ class acf_field_taxonomy extends acf_field {
 			
 		}
 		
-				
+		
+		// taxonomy
+		$taxonomy_obj = get_taxonomy($field['taxonomy']);
+		
+		
 		// vars
 		$args = array(
-			'taxonomy'     => $field['taxonomy'],
-			'hide_empty'   => false,
-			'style'        => 'none',
-			'walker'       => new acf_taxonomy_field_walker( $field ),
+			'taxonomy'     		=> $field['taxonomy'],
+			'show_option_none'	=> __('No', 'acf') . ' ' . $taxonomy_obj->labels->name,
+			'hide_empty'   		=> false,
+			'style'        		=> 'none',
+			'walker'       		=> new acf_taxonomy_field_walker( $field ),
 		);
 		
 		
@@ -978,7 +983,7 @@ class acf_field_taxonomy extends acf_field {
 		}
 		
 		
-		?><p class="acf-submit"><button class="acf-button blue" type="submit"><?php _e("Add", 'acf'); ?></button><i class="acf-loading"></i><span></span></p></form><?php
+		?><p class="acf-submit"><button class="acf-button blue" type="submit"><?php _e("Add", 'acf'); ?></button><i class="acf-spinner"></i><span></span></p></form><?php
 		
 		
 		// die

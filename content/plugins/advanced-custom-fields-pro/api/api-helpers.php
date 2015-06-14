@@ -37,6 +37,7 @@ function acf_get_setting( $name, $allow_filter = true ) {
 	
 	// return
 	return $r;
+	
 }
 
 
@@ -1245,9 +1246,17 @@ function acf_get_posts( $args = array() ) {
 	// leave suppress_filters as true becuase we don't want any plugins to modify the query as we know exactly what 
 	$args = acf_parse_args( $args, array(
 		'posts_per_page'	=> -1,
-		'post_type'			=> acf_get_post_types(),
+		'post_type'			=> '',
 		'post_status'		=> 'any',
 	));
+	
+
+	// post type
+	if( empty($args['post_type']) ) {
+		
+		$args['post_type'] = acf_get_post_types();
+		
+	}
 	
 	
 	// validate post__in
@@ -1854,6 +1863,14 @@ function acf_get_updates() {
 	$plugin_version = acf_get_setting('version');
 	$acf_version = get_option('acf_version');
 	$path = acf_get_path('admin/updates');
+	
+	
+	// bail early if no version (not activated)
+	if( !$acf_version ) {
+		
+		return false;
+		
+	}
 	
 	
 	// check that path exists
@@ -3001,6 +3018,36 @@ function acf_get_valid_terms( $terms = false, $taxonomy = 'category' ) {
 	// return
 	return $terms;
 	
+}
+
+
+/*
+*  _acf_settings_uploader
+*
+*  Dynamic logic for uploader setting
+*
+*  @type	function
+*  @date	7/05/2015
+*  @since	5.2.3
+*
+*  @param	$uploader (string)
+*  @return	$uploader
+*/
+
+add_filter('acf/settings/uploader', '_acf_settings_uploader');
+
+function _acf_settings_uploader( $uploader ) {
+	
+	// if can't upload files
+	if( !current_user_can('upload_files') ) {
+		
+		$uploader = 'basic';
+		
+	}
+	
+	
+	// return
+	return $uploader;
 }
 
 
