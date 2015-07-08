@@ -884,19 +884,16 @@ h1.oops a:hover {
 	.row {
 		@include row;
 		padding-top: 15px;
-		padding-bottom: 15px;
+		padding-bottom:15px;
 		.aside {
 			 @include span-columns(4);
 			 @include media($mobile) {
 				@include span-columns(3);
 			}
-			 .credits {
+			 .meta {
 			 	margin:0 0 0.5em;
-			 	p{
-			 		font-size:em(16)
-			 	}
-			 	h2 {
-					margin:0.5em 0
+			 	h3 {
+					margin:0
 				}
 				ul {
 					margin:0 0 2em 0;
@@ -926,14 +923,17 @@ h1.oops a:hover {
 			@include media($mobile) {
 				@include span-columns(3);
 			}
-			h3 {
-				margin:0.5em 0
-			}
 			p {
-			 	margin-top:1.5em;
-			 	font-size:em(16)
+				font-size:em(16);
+				&.caption {
+			 		margin-top:em(8);
+				}
+				&.credits {
+					margin-top:0;
+			 	}
 			}
 		}
+
 		.related {
 			@include span-columns(12);
 			h4 {

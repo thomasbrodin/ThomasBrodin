@@ -3,13 +3,9 @@
 			
 	    <div class="aside">
 		
-			<div class="credits">
+			<div class="meta">
 				<h3>{{post.title}}</h3>
 				
-				{% if post.get_field('credits') %}
-					<p>{{ post.get_field('credits')}}</p>
-				{% endif %}
-
 				{% if post.post_type == 'photography' %}
 
 					<ul>
@@ -33,6 +29,10 @@
 		{% if post.proj_caption %}
 			<div class="post_info">
 				<p class="caption">{{post.proj_caption}}</p>
+				{% if post.get_field('credits') %}
+					<p class="credits">{{ post.get_field('credits')}}</p>
+				{% endif %}
+
     		</div>
     	 {% endif %}
     </div>
