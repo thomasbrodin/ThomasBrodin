@@ -271,6 +271,7 @@ jQuery(document).ready(function($) {
 				if ($('html').hasClass('touch')) {
 					$("header").removeClass('white');
 				}
+				$( "section.active .inner" ).delay(500).animate({"opacity":"1"},1500);
 			},
 			onLeave: function (index, nextIndex, direction){
 				var numSec = $( ".section" ).length;
@@ -296,6 +297,7 @@ jQuery(document).ready(function($) {
 					$(".spacer").fadeIn();
 					$('#arrow-up').removeClass('up');
 				}
+				$( "section.active .inner" ).delay(500).animate({"opacity":"1"},800);
 			}
 		});
 		$( "#trigger-overlay").click(function() {

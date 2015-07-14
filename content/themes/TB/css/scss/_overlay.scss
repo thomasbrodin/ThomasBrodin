@@ -54,7 +54,10 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 	padding: 0 2px 8px;
 	margin: 0;
 	font-family: $font-stack;
-	@include transition(color 0.2s)
+	@include transition(color 0.2s);
+	&:after {
+		display: none
+	}
 }
 .overlay nav h1 {
 	text-transform:none;

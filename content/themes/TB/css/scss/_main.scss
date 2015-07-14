@@ -6,7 +6,9 @@
 
 @import "normalize";
 @import "base";
-@import "bourbon" , "neat";;
+@import "bourbon" ;
+@import "grid-settings";
+@import "neat";
 @import "fonts";
 @import "overlay";
 @import "T-Landing";
@@ -32,8 +34,22 @@ body, html {
 a {
 	color: #000;
 	text-decoration: none;
-	padding-bottom: 2px;
-	@include transition(all 0.3s ease-out);
+	position:relative;
+	overflow: hidden;
+}
+a:after {
+	content: "";
+  	display: block;
+  	position: absolute;
+  	bottom: 1px;
+  	left: 0;
+  	width: 100%;
+  	height: 2px;
+  	background-color: #000;
+  	@include transition(all .25s cubic-bezier(.39,.575,.565,1));
+}
+a:hover:after {
+	bottom:45%
 }
 a:hover, 
 a:focus {
@@ -164,6 +180,9 @@ a:focus {
     	height:70px;
     	width:70px;
     	display: block;
+   		&:after {
+			display: none
+   		}
 	    h1 {
 			display: none;
 		}	
@@ -303,10 +322,10 @@ header.white #trigger-overlay i:after {
 		        padding-right:4.2em
 		    }
 			a {
-				color:$onblack
-			}
-			a:hover {
-				color:white
+				color:white;
+				&:after {
+					background-color:white
+				}
 			}
 			small {
 				font-size:65%
@@ -332,19 +351,14 @@ header.white input[type="text"].sb-search-input:focus {
 /* 404
 -------------------------------------------------- */
 h1.oops{
-	font-family: $font-stack;
 	font-size: em(100);
 	margin:0;
-	color:$primary-blue;
 	text-transform: none;
 }
-h1.oops a {
-	color:$primary-blue;
-}
-h1.oops a:hover {
-	text-decoration: none;
-	border:none;
-	color:#000;
+h2.oops{
+	font-size: em(36);
+	margin:0;
+	text-transform: none;
 }
 
 /* animations
@@ -568,7 +582,7 @@ h1.oops a:hover {
 	background-color:$primary-blue;
 }
 .creative-direction .article_overlay {
-	color: #000;
+	color: #fff;
 	background-color:$primary-green;
 }
 
@@ -593,9 +607,10 @@ h1.oops a:hover {
     }
 }
 .section {
-	@include outer-container(81rem);	
+	@include outer-container();	
 	background-color:#f2f2f2;
 	.inner {
+		opacity: 0;
 		display: table;
   		table-layout: fixed;
   		width: 100%;
@@ -688,24 +703,53 @@ h1.oops a:hover {
 				@include span-columns(6);
 				@include media($mobile) {
 				 	@include span-columns(3);
-				 	padding-bottom:21px
 				}
 				img.slides {
 					margin:0 auto;
+					@include media(min-width 768px) {
+				        max-height:390px;
+				    }
+				    @include media(min-width 990px) {
+				        max-height:420px;
+				    }
+				    @include media(min-width 1200px) {
+				        max-height:490px;
+				    }
+				    @include media(min-width 1380px) {
+				        max-height:540px;
+				    }
+				    @include media(min-width 1540px) {
+				        max-height:590px;
+				    }
+				    @include media(min-width 1680px) {
+				       	max-height:610px;
+				    }
+				    @include media(min-width 1800px) {
+				        max-height:660px;
+				    }
+				    @include media(max-width 400px) {
+				        max-height:100%
+				    }
+				    @include media(min-width 320px max-width 736px orientation landscape) {
+				        max-height:100%
+				    }
 				}
 				&:first-child {
-					img.slides {
-						margin-right:0;
+					@include pad(0 4% 0 0);
+					@include media($mobile) {
+						@include pad(0 0 21px 0);
 					}
 				}
 				&:last-child {
-					img.slides {
-						margin-left:0;
+					@include pad(0 0 0 4%);
+					@include media($mobile) {
+						@include pad(0 0 21px 0);
 					}
 				}
 			}
 			.third{
 				@include span-columns(4);
+				@include pad(0 1.5% 0 1.5%);
 				@include media($mobile) {
 				 	@include span-columns(3);
 				 	padding-bottom:21px
@@ -714,14 +758,10 @@ h1.oops a:hover {
 					margin:0 auto;
 				}
 				&:first-child {
-					img.slides {
-						margin-right:0;
-					}
+					@include pad(0 3% 0 0);
 				}
 				&:last-child {
-					img.slides {
-						margin-left:0;
-					}
+					@include pad(0 0 0 3%);
 				}
 			}
 		}
@@ -794,12 +834,6 @@ h1.oops a:hover {
 			@include media(min-width 768px) {
 		       font-size:em(56);
 		       line-height: 1.25
-		  	}
-		  	a {
-		  		border-bottom: 3px solid #000;
-		  		@include media($mobile) {
-					padding-bottom:0
-		  		}
 		  	}
 		}
 	}
@@ -877,7 +911,7 @@ h1.oops a:hover {
   	right: 0;
   	z-index:0;
   	background-color: #f2f2f2;
-  	@include outer-container(81rem);
+  	@include outer-container();
   	@include media(min-width 768px) {
        	padding: 0 59px 40px;
     	position: fixed;
@@ -909,7 +943,10 @@ h1.oops a:hover {
 						padding:0;
 						line-height:1;
 						a {
-							color:#b1b1b1
+							color:#b1b1b1;
+							&:after {
+								display: none
+					   		}
 						}
 						a:hover {
 							color:#111;

@@ -19,6 +19,9 @@
 		padding: 4px 8px 3px 9px;
 		font-size:em(12);
 	}
+	&:after {
+		display: none
+	}
 }
 .btn:hover {
 	box-shadow: 0 6px 10px rgba(0,0,0,.23),0 10px 30px rgba(0,0,0,.19);

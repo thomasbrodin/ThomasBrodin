@@ -26,10 +26,11 @@
 	height: 40px;
 	margin: 0;
 	z-index: 10;
-	padding: 4px;
+	padding: 4px 12px;
 	font-family: inherit;
 	font-size: 14px;
 	color: #333;
+	text-indent:-999px
 }
 
 input[type="search"].sb-search-input {
@@ -41,6 +42,7 @@ input[type="search"].sb-search-input {
 input[type="text"].sb-search-input:focus {
 	background-color: #000!important;
 	color:#fff!important;
+	text-indent:0
 }
 
 .sb-icon-search,
