@@ -338,4 +338,5 @@ jQuery(document).ready(function($) {
 	}).bind('mouseleave',function() {
 		$(this).children('.article_overlay').animate({'opacity':'0'},'slow');
 	});
+	console.image(script_vars.themeUrl+'/img/T.jpg');
 });

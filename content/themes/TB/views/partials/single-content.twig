@@ -44,20 +44,20 @@
     					{% if tb_rep.img1_cap %}<p>{{ tb_rep.img1_cap }}<span></span></p>{% endif %}
 	    				<div class="row">
 		    				{% if columns_img == '2' %}
-			    				<div class="half">
+			    				<div class="half {{tb_rep.pos_img }}">
 			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="half ">
+			    				<div class="half {{tb_rep.pos_img }}">
 			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>	
 		    				{% elseif columns_img == '3' %}	    
-			    				<div class="third">
+			    				<div class="third {{tb_rep.pos_img }}">
 			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="third">
+			    				<div class="third {{tb_rep.pos_img }}">
 			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="third">
+			    				<div class="third {{tb_rep.pos_img }}">
 			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>	
 			    			{% endif %}	
@@ -72,16 +72,16 @@
 		{% set columns_text = tb.columns_text %}
 		<section class="section">
 			<div class="inner">
-				<div class="middle">
+				<div class="middle description">
 					<div class="row">
 						{% if columns_text == '1' %}
-							<p class="tb-description">{{tb.text}}</p>
+							{{tb.text}}
 						{% elseif columns_text == '2' %}	    
 							<div class="half">
-								<p class="tb-description">{{tb.text}}</p>
+								{{tb.text}}
 							</div>
 							<div class="half">
-								<p class="tb-description">{{tb.text_2}}</p>
+								{{tb.text_2}}
 							</div>	
 						{% endif %}	
 					</div>

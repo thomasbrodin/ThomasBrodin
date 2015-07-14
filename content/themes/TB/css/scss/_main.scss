@@ -647,6 +647,25 @@ h2.oops{
 					}
 				}
 			}
+			&.description {
+				h1 {
+				  text-transform: capitalize;
+				  font-weight: bold;
+				  @include media(min-width 768px) {
+				       font-size:em(56);
+				       line-height: 1.25
+				  }
+				}
+				p {
+					padding:0 2em;
+  					margin: 0 auto;
+  					@include media(min-width 768px) {
+  						width: 50%;
+  						line-height: 1.5;
+  						font-size: em(18);
+  					}
+				}
+			}
 			/* right */
 			&.vert {
 				img {
@@ -739,11 +758,23 @@ h2.oops{
 					@include media($mobile) {
 						@include pad(0 0 21px 0);
 					}
+					&.centered {
+						@include pad(0 0 0 4%);
+						img.slides {
+							margin-right: 0
+						}
+					}
 				}
 				&:last-child {
 					@include pad(0 0 0 4%);
 					@include media($mobile) {
 						@include pad(0 0 21px 0);
+					}
+					&.centered {
+						@include pad(0 4% 0 0);
+						img.slides {
+							margin-left: 0
+						}
 					}
 				}
 			}
@@ -759,9 +790,21 @@ h2.oops{
 				}
 				&:first-child {
 					@include pad(0 3% 0 0);
+					&.centered {
+						@include pad(0 0 0 3%);
+						img.slides {
+							margin-right: 0
+						}
+					}
 				}
 				&:last-child {
 					@include pad(0 0 0 3%);
+					&.centered {
+						@include pad(0 3% 0 0);
+						img.slides {
+							margin-left: 0
+						}
+					}
 				}
 			}
 		}
@@ -995,12 +1038,18 @@ h2.oops{
 		cursor: pointer;
 		background:transparent;
 		@include transition(background 0.35s);
-			img {
+		img {
 			position: relative;
 			display: block;
 			width:auto;
 			@include transition(opacity 0.35s);
 			max-width: 100%;
+		}
+		a {
+			display: block;
+			&:after {
+				display: none
+			}
 		}
 		div{
 			height: 100%;
