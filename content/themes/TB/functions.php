@@ -25,6 +25,8 @@
 
 			add_filter('acf/options_page/settings', array($this, 'options_page_settings'));
 
+			// add_filter('acf/settings/show_admin', array($this,'__return_false'));
+
 			add_action('wp_enqueue_scripts', array($this, 'load_scripts'));	
 			add_action('wp_enqueue_scripts', array($this, 'load_styles'));
 
@@ -56,7 +58,7 @@
 			);
 		}
 		function load_styles() {
-			wp_enqueue_style( 'custom', THEME_URL . '/css/main.css'); 
+			wp_enqueue_style( 'custom', THEME_URL . '/css/main.css', false, filemtime(get_stylesheet_directory() .'/css/main.css')); 
 		}
 
 		function removeHeadLinks() {

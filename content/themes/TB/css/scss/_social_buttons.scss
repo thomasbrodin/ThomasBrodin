@@ -86,6 +86,9 @@
 	@include media($mobile) {
 		padding: 6px 6px 5px 5px;
 	}
+	&:after {
+		display: none
+	}
 }
 .at-share-btn:hover >.at4-icon{
  	color:#fff!important;
