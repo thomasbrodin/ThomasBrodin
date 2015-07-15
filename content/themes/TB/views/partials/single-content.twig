@@ -34,37 +34,35 @@
 			</div>
 		</section><!-- section -->
 
-	{% elseif tb.acf_fc_layout == 'gallery' %}
+	{% elseif tb.acf_fc_layout == 'row_img' %}
 
 		<section class="section">
-			{% for tb_rep in tb.row_images %}
-				{% set columns_img = tb_rep.columns_img %}
+				{% set columns_img = tb.col_img %}
     			<div class="inner">
     				<div class="middle thumbs">
-    					{% if tb_rep.img1_cap %}<p>{{ tb_rep.img1_cap }}<span></span></p>{% endif %}
+    					{% if tb.cap_img %}<p>{{ tb.cap_img }}<span></span></p>{% endif %}
 	    				<div class="row">
 		    				{% if columns_img == '2' %}
-			    				<div class="half {{tb_rep.pos_img }}">
-			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				<div class="half {{ tb.pos_img }}">
+			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="half {{tb_rep.pos_img }}">
-			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				<div class="half {{ tb.pos_img }}">
+			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>	
 		    				{% elseif columns_img == '3' %}	    
-			    				<div class="third {{tb_rep.pos_img }}">
-			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				<div class="third {{ tb.pos_img }}">
+			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="third {{tb_rep.pos_img }}">
-			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				<div class="third">
+			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
-			    				<div class="third {{tb_rep.pos_img }}">
-			    					<img class="slides{% if tb_rep.img1_cap %} captioned{% endif %}" src="{{TimberImage(tb_rep.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
+			    				<div class="third {{ tb.pos_img }}">
+			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>	
 			    			{% endif %}	
 			    		</div>
 			    	</div>
     			</div>
-    		{% endfor %}
     	</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'description' %}

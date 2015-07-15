@@ -652,15 +652,16 @@ h2.oops{
 				  text-transform: capitalize;
 				  font-weight: bold;
 				  @include media(min-width 768px) {
-				       font-size:em(56);
-				       line-height: 1.25
+				       font-size:em(43);
+				       line-height: 1;
+				       margin-top: 0
 				  }
 				}
 				p {
 					padding:0 2em;
-  					margin: 0 auto;
+  					margin: 0 auto 1em;
   					@include media(min-width 768px) {
-  						width: 50%;
+  						width: 60%;
   						line-height: 1.5;
   						font-size: em(18);
   					}
@@ -760,6 +761,9 @@ h2.oops{
 					}
 					&.centered {
 						@include pad(0 0 0 4%);
+						@include media($mobile) {
+							@include pad(0 0 21px 0);
+						}
 						img.slides {
 							margin-right: 0
 						}
@@ -772,6 +776,9 @@ h2.oops{
 					}
 					&.centered {
 						@include pad(0 4% 0 0);
+						@include media($mobile) {
+							@include pad(0 0 21px 0);
+						}
 						img.slides {
 							margin-left: 0
 						}
@@ -792,6 +799,9 @@ h2.oops{
 					@include pad(0 3% 0 0);
 					&.centered {
 						@include pad(0 0 0 3%);
+						@include media($mobile) {
+							@include pad(0 0 21px 0);
+						}
 						img.slides {
 							margin-right: 0
 						}
@@ -801,6 +811,9 @@ h2.oops{
 					@include pad(0 0 0 3%);
 					&.centered {
 						@include pad(0 3% 0 0);
+						@include media($mobile) {
+							@include pad(0 0 21px 0);
+						}
 						img.slides {
 							margin-left: 0
 						}
@@ -899,6 +912,7 @@ h2.oops{
 			@include media(min-width 768px) {
 		       font-size:em(56);
 		       line-height: 1.25;
+		       margin-top:-100px;
 		  	}
 		  	&.white {
 				color: white;
