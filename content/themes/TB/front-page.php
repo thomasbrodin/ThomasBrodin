@@ -31,18 +31,5 @@
         )
 	);
 	$context['posts'] = Timber::get_posts($args);
-	// Category List Order
-	$argp = array(      
-    			'orderby' => 'term_order',       
-	        	'hide_empty' => false,
-	        	'parent' => 0    
-	        );      
-	$context['photo_categories'] = Timber::get_terms('photo_category', $argp);
-	$argw = array(      
-    			'orderby' => 'term_order',       
-	        	'hide_empty' => false,
-	        	'parent' => 0    
-	        );      
-	$context['project_categories'] = Timber::get_terms('project_category', $argw);
 
 	Timber::render('front-page.twig', $context);

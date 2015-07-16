@@ -16,13 +16,13 @@
 						</div>
 						{% if post.post_type == 'photography' %}
 							<ul>
-								{% for term in post.terms('photo_category') %}
+								{% for term in post.get_terms('photo_category') %}
 									<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
 								{% endfor %}
 							</ul>
 						{% elseif post.post_type == 'creative-direction' %}
 							<ul>
-								{% for term in post.terms('project_category') %}
+								{% for term in post.get_terms('project_category') %}
 									<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
 								{% endfor %}
 							</ul>
@@ -53,6 +53,7 @@
 				{% endif %}
 
 			</figure><!-- figure -->
+			
 
 		{% endif %}
 		

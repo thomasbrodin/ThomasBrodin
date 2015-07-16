@@ -12,7 +12,7 @@
 $context = Timber::get_context();
 
 $templates = array('taxonomy.twig', 'archive.twig', 'index.twig');
-
+// Footer title
 $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); 
 $term_name = $term->name;
 $post_type = get_post_type();
@@ -23,17 +23,4 @@ $context['title'] = $term_name;
 $context['cpt_title'] = $term_name;
 $context['cpt'] = $post_type;
 
-$argp = array(      
-			'orderby' => 'term_order',       
-        	'hide_empty' => false,
-        	'parent' => 0    
-        );      
-$context['photo_categories'] = Timber::get_terms('photo_category', $argp);
-$argw = array(      
-			'orderby' => 'term_order',       
-        	'hide_empty' => false,
-        	'parent' => 0    
-        );      
-$context['project_categories'] = Timber::get_terms('project_category', $argw);
-	
 Timber::render($templates, $context);
