@@ -31,8 +31,22 @@
 			$data['title'] = single_cat_title('', false);
 			array_unshift($templates, 'archive-'.get_query_var('cat').'.twig');
 		} else if (is_post_type_archive()){
+			// Footer Title
 			$data['cpt_title'] = post_type_archive_title('', false);
 			$data['cpt'] = get_post_type();
+			// Category List Order
+			$argp = array(      
+						'orderby' => 'term_order',       
+			        	'hide_empty' => false,
+			        	'parent' => 0    
+			        );      
+			$context['photo_categories'] = Timber::get_terms('photo_category', $argp);
+			$argw = array(      
+						'orderby' => 'term_order',       
+			        	'hide_empty' => false,
+			        	'parent' => 0    
+			        );      
+			$context['project_categories'] = Timber::get_terms('project_category', $argw);
 			array_unshift($templates, 'archive-'.get_post_type().'.twig');
 		}
 
