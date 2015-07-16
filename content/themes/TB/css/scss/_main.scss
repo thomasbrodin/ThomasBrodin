@@ -537,19 +537,53 @@ h2.oops{
 		padding:1em 1.5em;
 		display: table;
 		div {
-			display: table-cell;
+			display: table-row;
 			vertical-align: top;
-			height: 100%;
 			h2 {
 				padding:0;
 				margin: 0;
 				text-transform: none
 			}
 			h6 {
-				font-size: 1.1em;
-				margin:.3em 0 2em;
+				font-size: 1em;
+				margin:.3em 0 1.6em;
 			}
-
+		}
+		ul {
+			display: table-cell;
+			vertical-align: bottom;
+			padding:0;
+			li {
+				display: inline-block;
+				list-style: none;
+				padding-right:4px;
+				a {
+					color:white;
+					font-size: 1em;
+					text-transform: uppercase;
+					&:after {
+						position: absolute;
+						top: 50%;
+						margin-top: 0;
+						content: '';
+						display: block;
+						width: 0;
+						height: 0.16667em;
+						background: white;
+						@include transition-property(width);
+						@include transition-duration(0.4s);
+						@include transition-timing-function(cubic-bezier(0.215, 0.61, 0.355, 1));
+						@include transition-delay(0s);
+					}
+					&:hover:after {
+						width: 100%;
+  						@include transition-property(width);
+						@include transition-duration(0.4s);
+						@include transition-timing-function(cubic-bezier(0.215, 0.61, 0.355, 1));
+						@include transition-delay(0s);
+					}
+				}
+			}
 		}
 	}
 }
@@ -664,6 +698,12 @@ h2.oops{
   						width: 60%;
   						line-height: 1.5;
   						font-size: em(18);
+  					}
+  					a {
+  						font-weight:bold;
+  						a:after {
+  							bottom: 0px;
+  						}
   					}
 				}
 			}
