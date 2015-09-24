@@ -669,7 +669,7 @@ h2.oops{
 			}
 			&.thumbs {
 				p {
-					color:#999;
+					color:grey;
 					text-align:center;
 					margin-bottom: 20px;
 					span {
@@ -739,20 +739,23 @@ h2.oops{
 					}
 				}
 			}
-			/* horizontal */
+			/* horizontal & centered */
 			&.hori {
 				img {
 					max-width: 100%;
 					height:auto;
-					max-height:480px!important
+					max-height:480px!important;
+					margin:0 auto;
 				}
 				p {
-					text-align:left;
-					padding-left:2.35%;
-					margin-top: 20px;
+					text-align:center;
+					margin-top: 30px;
+					color:#232323;
 					span {
-						float:left;
-						margin-right:2.35%;
+						margin:0px auto 30px;
+						@include media($mobile) {
+							margin-top: 50px
+						}
 					}
 				}
 			}
@@ -942,6 +945,7 @@ h2.oops{
 		max-width:none;
 		margin:0 -60px;
 		background-size:cover;
+		background-position: center center;
 		@include media($mobile) {
 			margin: 100px 18px 0;
 		}
@@ -954,18 +958,12 @@ h2.oops{
 		       line-height: 1.25;
 		       margin-top:-100px;
 		  	}
-		  	&.white {
-				color: white;
-			}
 		}
 		h3 {
 			text-transform: capitalize;
 			margin:.3em 0 0 0;
 			@include media($mobile) {
 				font-size: 1em;
-			}
-			&.white {
-				color: white;
 			}
 		}
 	}

@@ -15,11 +15,11 @@
 
 	{% elseif tb.acf_fc_layout == 'background_image' %}
 
-		<section class="section" id="full-bg" style="background-image: url('{{TimberImage(tb.bg_image).src}}');">
+		<section class="section" id="full-bg" data-color="{{tb.color_capt}}" style="background-image: url('{{TimberImage(tb.bg_image).src}}');">
 			<div class="inner">
 				<div class="middle">
-					{% if tb.lg_caption %}<h1 class="{{tb.color_capt}}">{{ tb.lg_caption }}</h1>{% endif %}
-					{% if tb.sm_caption %}<h3 class="{{tb.color_capt}}">{{ tb.sm_caption }}</h3>{% endif %}
+					{% if tb.lg_caption %}<h1 style="color:{{tb.color_capt}}">{{ tb.lg_caption }}</h1>{% endif %}
+					{% if tb.sm_caption %}<h3 style="color:{{tb.color_capt}}">{{ tb.sm_caption }}</h3>{% endif %}
 				</div>
 			</div>	
 		</section><!-- section -->

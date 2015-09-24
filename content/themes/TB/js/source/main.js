@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
 		var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg'];
 		var templateUrl = script_vars.themeUrl;
 		$('.subliminal').css({'background-image': 'url('+templateUrl+'/img/'+images[Math.floor(Math.random() * images.length)] + ')'});
-		
+
 		/* words typing */
 		var animationDelay = 2500,
 			//loading bar effect
@@ -62,10 +62,10 @@ jQuery(document).ready(function($) {
 			typeLettersDelay = 150,
 			selectionDuration = 500,
 			typeAnimationDelay = selectionDuration + 800,
-			//clip effect 
+			//clip effect
 			revealDuration = 600,
 			revealAnimationDelay = 1500;
-		
+
 		initHeadline();
 	} else {
 		$(window).load(function() {
@@ -98,7 +98,7 @@ jQuery(document).ready(function($) {
 		var duration = animationDelay;
 		$headlines.each(function(){
 			var headline = $(this);
-			
+
 			if(headline.hasClass('loading-bar')) {
 				duration = barAnimationDelay;
 				setTimeout(function(){ headline.find('.words-wrapper').addClass('is-loading') }, barWaiting);
@@ -124,15 +124,15 @@ jQuery(document).ready(function($) {
 
 	function hideWord($word) {
 		var nextWord = takeNext($word);
-		
+
 		if($word.parents('.tb-words').hasClass('type')) {
 			var parentSpan = $word.parent('.words-wrapper');
-			parentSpan.removeClass('waiting');	
-			setTimeout(function(){ 
+			parentSpan.removeClass('waiting');
+			setTimeout(function(){
 				$word.removeClass('is-visible').addClass('is-hidden').children('i').removeClass('in').addClass('out');
 			}, selectionDuration);
 			setTimeout(function(){ showWord(nextWord, typeLettersDelay) }, typeAnimationDelay);
-		
+
 		} else if($word.parents('.tb-words').hasClass('letters')) {
 			var bool = ($word.children('i').length >= nextWord.children('i').length) ? true : false;
 			hideLetter($word.find('i').eq(0), $word, bool, lettersDelay);
@@ -162,15 +162,15 @@ jQuery(document).ready(function($) {
 			$word.addClass('is-visible').removeClass('is-hidden');
 
 		}  else if($word.parents('.tb-words').hasClass('clip')) {
-			$word.parents('.words-wrapper').animate({ 'width' : $word.width() + 10 }, revealDuration, function(){ 
-				setTimeout(function(){ hideWord($word) }, revealAnimationDelay); 
+			$word.parents('.words-wrapper').animate({ 'width' : $word.width() + 10 }, revealDuration, function(){
+				setTimeout(function(){ hideWord($word) }, revealAnimationDelay);
 			});
 		}
 	}
 
 	function hideLetter($letter, $word, $bool, $duration) {
 		$letter.removeClass('in').addClass('out');
-		
+
 		if(!$letter.is(':last-child')) {
 			setTimeout(function(){ hideLetter($letter.next(), $word, $bool, $duration); }, $duration);
 		} else if($bool) {
@@ -185,7 +185,7 @@ jQuery(document).ready(function($) {
 
 	function showLetter($letter, $word, $bool, $duration) {
 		$letter.addClass('in').removeClass('out');
-		
+
 		if(!$letter.is(':last-child')) {
 			setTimeout(function(){ showLetter($letter.next(), $word, $bool, $duration); }, $duration);
 		} else {
@@ -264,24 +264,8 @@ jQuery(document).ready(function($) {
 			responsive: 768,
 			afterRender: function(){
 				$('#loader').delay(1200).fadeOut(300);
-				var headerColor = $('#full-bg .middle h1').attr('class');
-				$("header").addClass(headerColor);
-				$("footer").addClass(headerColor);
-				$('#arrow-up').addClass(headerColor);
-				if ($('html').hasClass('touch')) {
-					$("header").removeClass('white');
-				}
-				$( "section.active .inner" ).delay(500).animate({"opacity":"1"},1500);
-			},
-			onLeave: function (index, nextIndex, direction){
-				var numSec = $( ".section" ).length;
-				var headerColor = $('#full-bg .middle h1').attr('class');
-				if (index == 1 && direction == 'down') {
-					$("header").removeClass(headerColor);
-					$("footer").removeClass(headerColor);
-					$('#arrow-up').removeClass(headerColor);
-				}
-				if (index == 2 && direction == 'up') {
+				var headerColor = $('#full-bg').data('color');
+				if ($('#full-bg').hasClass('active') ) {
 					$("header").addClass(headerColor);
 					$("footer").addClass(headerColor);
 					$('#arrow-up').addClass(headerColor);
@@ -289,19 +273,38 @@ jQuery(document).ready(function($) {
 						$("header").removeClass(headerColor);
 					}
 				}
-				if (index == (numSec-1) && direction == 'down') {
-					$(".spacer").fadeOut();
-					$('#arrow-up').addClass('up');
+				$( "section.active .inner" ).delay(500).animate({"opacity":"1"},1500);
+			},
+			afterLoad: function (index, nextIndex, direction){
+				$( "section.active .inner" ).animate({"opacity":"1"},500);
+				var headerColor = $('#full-bg').data('color');
+				if ($('#full-bg').hasClass('active') ) {
+						$("header").addClass(headerColor);
+						$("footer").addClass(headerColor);
+						$('#arrow-up').addClass(headerColor);
+						if ($('html').hasClass('touch')) {
+							$("header").removeClass(headerColor);
+						}
+					} else {
+						$("header").removeClass(headerColor);
+						$("footer").removeClass(headerColor);
+						$('#arrow-up').removeClass(headerColor);
+					}
+			},
+			onLeave: function (index, nextIndex, direction) {
+					var numSec = $( ".section" ).length;
+					if (index == (numSec-1) && direction == 'down') {
+						$(".spacer").fadeOut();
+						$('#arrow-up').addClass('up');
+					}
+					if (index == numSec && direction == 'up') {
+						$(".spacer").fadeIn();
+						$('#arrow-up').removeClass('up');
+					}
 				}
-				if (index == numSec && direction == 'up') {
-					$(".spacer").fadeIn();
-					$('#arrow-up').removeClass('up');
-				}
-				$( "section.active .inner" ).delay(500).animate({"opacity":"1"},800);
-			}
 		});
 		$( "#trigger-overlay").click(function() {
-			var headerColor = $('#full-bg.active .middle h1').attr('class');
+			var headerColor = $('#full-bg').data('color');
 			if (!$('#main-nav-content').hasClass('open')){
 				$("header").addClass(headerColor);
 				$("footer").addClass(headerColor);
@@ -314,7 +317,7 @@ jQuery(document).ready(function($) {
 		});
 		if ($('#arrow-up').length ) {
 			$('#smooth-scroll').click(function () {
-				var headerColor = $('#full-bg .middle h1').attr('class');
+				var headerColor = $('#full-bg').data('color');
 				if ($('#arrow-up').hasClass('up')) {
 					$.fn.fullpage.moveTo(1);
 					$("header").addClass(headerColor);

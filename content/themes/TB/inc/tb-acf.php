@@ -72,6 +72,7 @@ acf_add_local_field_group(array (
 				'id' => '',
 			),
 			'choices' => array (
+				'' => 'Plain',
 				'ThWidth' => 'Thumbnail size - Width 100',
 				'XSWidth' => 'X-Small size - Width 150',
 				'SWidth' => 'Small size - Width 200',
@@ -83,7 +84,7 @@ acf_add_local_field_group(array (
 				'XXXLWidth' => 'XXX-Large size - Width 900',
 			),
 			'default_value' => array (
-				'' => '',
+				'Plain' => 'Plain',
 			),
 			'allow_null' => 0,
 			'multiple' => 0,
@@ -116,7 +117,7 @@ acf_add_local_field_group(array (
 		),
 		array (
 			'key' => 'field_54f614720c92e',
-			'label' => 'Services & Credits',
+			'label' => 'Credits & Services',
 			'name' => 'credits',
 			'type' => 'textarea',
 			'instructions' => '',
@@ -193,9 +194,9 @@ acf_add_local_field_group(array (
 								'id' => '',
 							),
 							'choices' => array (
-								'hori' => 'Horizontal',
-								'vert' => 'Vertical',
-								'sq' => 'Square',
+								'hori' => 'Centered & Padding',
+								'vert' => 'Aligned Right',
+								'sq' => 'Middle',
 							),
 							'default_value' => array (
 								'' => '',
@@ -296,7 +297,7 @@ acf_add_local_field_group(array (
 					'sub_fields' => array (
 						array (
 							'key' => 'field_55a6a3916c1fa',
-							'label' => 'Columns Images',
+							'label' => 'Columns',
 							'name' => 'col_img',
 							'type' => 'select',
 							'instructions' => '',
@@ -312,7 +313,6 @@ acf_add_local_field_group(array (
 								3 => 3,
 							),
 							'default_value' => array (
-								'' => '',
 							),
 							'allow_null' => 0,
 							'multiple' => 0,
@@ -340,7 +340,6 @@ acf_add_local_field_group(array (
 								'aligned' => 'Aligned Container',
 							),
 							'default_value' => array (
-								'' => '',
 							),
 							'allow_null' => 0,
 							'multiple' => 0,
@@ -600,7 +599,8 @@ acf_add_local_field_group(array (
 							),
 							'choices' => array (
 								'white' => 'White',
-								'dark' => 'Black',
+								'black' => 'Black',
+								'lightgrey' => 'Grey',
 							),
 							'default_value' => array (
 								'' => '',
