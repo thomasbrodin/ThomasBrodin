@@ -5,7 +5,7 @@
 	{% block content %}
 
 		{% if post.get_thumbnail %}
-			
+
 			<figure class="article_inner" onclick="window.location='{{post.link}}'">
 
 				<div class="article_overlay">
@@ -39,7 +39,7 @@
 				{% elseif post.thumbnail_size == 'SMWidth' %}
 					<img src="{{post.thumbnail.src|resize(250)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'MWidth' %}
-					<img src="{{post.thumbnail.src|resize(350)}}" alt="{{post.ref_hover}} - {{site.name}}"/>	
+					<img src="{{post.thumbnail.src|resize(350)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'LWidth' %}
 					<img src="{{post.thumbnail.src|resize(450)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'XLWidth' %}
@@ -53,9 +53,9 @@
 				{% endif %}
 
 			</figure><!-- figure -->
-			
+
 
 		{% endif %}
-		
+
 	{% endblock %}
 </article><!-- article -->

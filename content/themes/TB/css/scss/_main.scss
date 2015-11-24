@@ -1,4 +1,4 @@
-/* 
+/*
 	Copyright (C) Hotel Existence LLC - All Rights Reserved
 	Unauthorized copying of this file via any medium is strictly prohibited
 	Proprietary and confidential
@@ -39,19 +39,19 @@ a {
 }
 a:after {
 	content: "";
-  	display: block;
-  	position: absolute;
-  	bottom: 1px;
-  	left: 0;
-  	width: 100%;
-  	height: 2px;
-  	background-color: #000;
-  	@include transition(all .25s cubic-bezier(.39,.575,.565,1));
+		display: block;
+		position: absolute;
+		bottom: 1px;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #000;
+		@include transition(all .25s cubic-bezier(.39,.575,.565,1));
 }
 a:hover:after {
-	bottom:45%
+	bottom:35%
 }
-a:hover, 
+a:hover,
 a:focus {
 	color: #000;
 	text-decoration: none;
@@ -67,8 +67,8 @@ a:focus {
 .wrap {
 	padding:105px 21px;
 	@include media(min-width 768px) {
-       padding:135px 58px 68px;
-    }
+			 padding:135px 58px 68px;
+		}
 }
 #wall {
 	position: relative;
@@ -78,15 +78,18 @@ a:focus {
 	display:none;
 }
 
+.loading {
+	display: none
+}
 #loader {
 	background-color:#fff;
 	height: 100%;
 	width: 100%;
-    left: 0;
-    top: 0;
-    position: fixed;
-    z-index: 2;
-    svg#preloader {
+		left: 0;
+		top: 0;
+		position: fixed;
+		z-index: 2;
+		svg#preloader {
 		top:50%;
 		left:50%;
 		position:absolute;
@@ -95,54 +98,54 @@ a:focus {
 		#top, #bottom {
 			visibility: hidden
 		}
-    }
+		}
 }
 
 @include media(min-width 768px) {
-  .thin-bd {
-    background: #111111;
-    position: fixed;
-    z-index: 99;
-  }
-  .on-top, .on-bottom{
-    left: 12px;
-    right: 12px;
-    height: 1px;
-    margin:12px 0;
-  }
-  .on-left, .on-right {
-    top: 12px;
-    bottom: 12px;
-    width: 1px;
-    margin:0 12px;
-  }
-  .on-bottom {
-    bottom: 0
-  }
-  .on-right {
-    right: 0
-  }
-  .large-bd {
-    background: #fff;
-    position: fixed;
-    z-index: 99;
-  }
-  .to-top, .to-bottom{
-    left: 0px;
-    right: 0px;
-    height: 12px;
-  }
-  .to-left, .to-right {
-    top: 0px;
-    bottom: 0px;
-    width: 12px;
-  }
-  .to-bottom {
-    bottom: 0
-  }
-  .to-right {
-    right: 0
-  }
+	.thin-bd {
+		background: #111111;
+		position: fixed;
+		z-index: 99;
+	}
+	.on-top, .on-bottom{
+		left: 12px;
+		right: 12px;
+		height: 1px;
+		margin:12px 0;
+	}
+	.on-left, .on-right {
+		top: 12px;
+		bottom: 12px;
+		width: 1px;
+		margin:0 12px;
+	}
+	.on-bottom {
+		bottom: 0
+	}
+	.on-right {
+		right: 0
+	}
+	.large-bd {
+		background: #fff;
+		position: fixed;
+		z-index: 99;
+	}
+	.to-top, .to-bottom{
+		left: 0px;
+		right: 0px;
+		height: 12px;
+	}
+	.to-left, .to-right {
+		top: 0px;
+		bottom: 0px;
+		width: 12px;
+	}
+	.to-bottom {
+		bottom: 0
+	}
+	.to-right {
+		right: 0
+	}
 }
 
 /* HEADER
@@ -157,11 +160,11 @@ a:focus {
 	padding: 0px 2px 0;
 	border-bottom: 1px solid #000;
 	@include media(min-width 768px) {
-        padding: 12px 12px 0;
-    	border-bottom:none
-    }
-    @include media (min-width 321px orientation landscape) { 
-   		border:none
+				padding: 12px 12px 0;
+			border-bottom:none
+		}
+		@include media (min-width 321px orientation landscape) {
+			 border:none
 	}
 }
 
@@ -174,18 +177,18 @@ a:focus {
 	margin-right:2%;
 	padding:5px 0px 6px 2px;
 	@include media(min-width 768px) {
-        padding:22px 0 0 28px;
-    }
+				padding:22px 0 0 28px;
+		}
 	a {
-    	height:70px;
-    	width:70px;
-    	display: block;
-   		&:after {
+			height:70px;
+			width:70px;
+			display: block;
+			 &:after {
 			display: none
-   		}
-	    h1 {
+			 }
+			h1 {
 			display: none;
-		}	
+		}
 		&:hover {
 			border:none;
 		}
@@ -202,8 +205,8 @@ a:focus {
 	margin-left:2%;
 	padding:19px 18px 0;
 	@include media(min-width 768px) {
-        padding:32px 47px 0;
-    }
+				padding:32px 47px 0;
+		}
 }
 
 /* overlay button */
@@ -242,11 +245,11 @@ a:focus {
 }
 
 #trigger-overlay i:before{
-  top: 11px;
+	top: 11px;
 }
 
 #trigger-overlay i:after{
-  top: 25px;
+	top: 25px;
 }
 #trigger-overlay.clicked i {
 	background: none !important;
@@ -272,55 +275,55 @@ header.white #trigger-overlay i:after {
 	background-position:top center;
 	background-size: cover;
 	z-index:0;
-    color: #fff;
-    height:100%;
-    width: 100%;
-    position: fixed;
-    top:0;
-    left:0;
+		color: #fff;
+		height:100%;
+		width: 100%;
+		position: fixed;
+		top:0;
+		left:0;
 }
 
-.page-content{ 
+.page-content{
 	padding: 106px 29px 90px;
 	position: relative;
 	z-index:1;
 	color:#fff;
 	@include media(min-width 768px) {
-        padding:140px 59px 100px;
-    }
+				padding:140px 59px 100px;
+		}
 	.article-body {
 		p {
 			font-family: $font-stack;
 			padding-right:0;
 			font-size: 3em;
 			@include media(min-width 768px) {
-		        padding-right: 3.5em;
-      			font-size:4em
-		    }
-		    @include media(min-width 990px) {
-		        padding-right: 4.5em;
-		    }
-		    @include media(min-width 1200px) {
-		        padding-right:5.5em
-		    }
-		    @include media(min-width 1380px) {
-		        padding-right:6.7em
-		    }
-		    @include media(min-width 1540px) {
-		        padding-right:9em
-		    }
-		    @include media(min-width 1680px) {
-		        padding-right:10em
-		    }
-		    @include media(min-width 1800px) {
-		        padding-right:11em
-		    }
-		    @include media(max-width 400px) {
-		        padding-right: 2em;
-		    }
-		    @include media(min-width 320px max-width 736px orientation landscape) {
-		        padding-right:4.2em
-		    }
+						padding-right: 3.5em;
+						font-size:4em
+				}
+				@include media(min-width 990px) {
+						padding-right: 4.5em;
+				}
+				@include media(min-width 1200px) {
+						padding-right:5.5em
+				}
+				@include media(min-width 1380px) {
+						padding-right:6.7em
+				}
+				@include media(min-width 1540px) {
+						padding-right:9em
+				}
+				@include media(min-width 1680px) {
+						padding-right:10em
+				}
+				@include media(min-width 1800px) {
+						padding-right:11em
+				}
+				@include media(max-width 400px) {
+						padding-right: 2em;
+				}
+				@include media(min-width 320px max-width 736px orientation landscape) {
+						padding-right:4.2em
+				}
 			a {
 				color:white;
 				&:after {
@@ -364,39 +367,39 @@ h2.oops{
 /* animations
 -------------------------------------------------- */
 @include keyframes (articleShow) {
-    0% {
-        opacity:0;
-        @include transform(translateY(30px));
-    }
+		0% {
+				opacity:0;
+				@include transform(translateY(30px));
+		}
 
-    100% {
-       opacity:1;
-       @include transform(translateY(0px) rotate(0deg));
-    }
+		100% {
+			 opacity:1;
+			 @include transform(translateY(0px) rotate(0deg));
+		}
 }
 
 @include keyframes (captionUp) {
-    0% {
-        opacity:0;
-        @include transform(translateY(-10px));
-    }
+		0% {
+				opacity:0;
+				@include transform(translateY(-10px));
+		}
 
-    100% {
-       opacity:1;
-        @include transform(translateY(0px) rotate(0deg));
-    }
+		100% {
+			 opacity:1;
+				@include transform(translateY(0px) rotate(0deg));
+		}
 }
 
 @include keyframes (captionDown) {
-    0% {
-        opacity:0;
-        @include transform(translateY(10px));
-    }
+		0% {
+				opacity:0;
+				@include transform(translateY(10px));
+		}
 
-    100% {
-       opacity:1;
-       @include transform(translateY(0px) rotate(0deg));
-    }
+		100% {
+			 opacity:1;
+			 @include transform(translateY(0px) rotate(0deg));
+		}
 }
 
 
@@ -413,82 +416,82 @@ h2.oops{
 		}
 		&.pdt-3 {
 			@include media(min-width 990px) {
-		    padding-top:3em
+				padding-top:3em
 			}
 		}
 		&.pdt-4 {
 			@include media(min-width 990px) {
-		    padding-top:4em
+				padding-top:4em
 			}
 		}
 		&.pdt-5 {
 			@include media(min-width 990px) {
-		    padding-top:5em
+				padding-top:5em
 			}
 		}
 		&.pdt-6 {
 			@include media(min-width 990px) {
-		    padding-top:6em
+				padding-top:6em
 			}
 		}
 		&.pdr-3 {
 			@include media(min-width 990px) {
-		    padding-right:3em
+				padding-right:3em
 			}
 		}
 		&.pdr-4 {
 			@include media(min-width 990px) {
-		    padding-right:4em
+				padding-right:4em
 			}
 		}
 		&.pdr-5 {
 			@include media(min-width 990px) {
-		    padding-right:5em
+				padding-right:5em
 			}
 		}
 		&.pdr-6 {
 			@include media(min-width 990px) {
-		    padding-right:6em
+				padding-right:6em
 			}
 		}
 		&.pdb-3 {
 			@include media(min-width 990px) {
-		    padding-bottom:3em
+				padding-bottom:3em
 			}
 		}
 		&.pdb-4 {
 			@include media(min-width 990px) {
-		    padding-bottom:4em
+				padding-bottom:4em
 			}
 		}
 		&.pdb-5 {
 			@include media(min-width 990px) {
-		    padding-bottom:5em
+				padding-bottom:5em
 			}
 		}
 		&.pdb-6 {
 			@include media(min-width 990px) {
-		    padding-bottom:6em
+				padding-bottom:6em
 			}
 		}
 		&.pdl-3 {
 			@include media(min-width 990px) {
-		    padding-left:3em
+				padding-left:3em
 			}
 		}
 		&.pdl-4 {
 			@include media(min-width 990px) {
-		    padding-left:4em
+				padding-left:4em
 			}
 		}
 		&.pdl-5 {
 			@include media(min-width 990px) {
-		    padding-left:5em
+				padding-left:5em
 			}
 		}
 		&.pdl-6 {
 			@include media(min-width 990px) {
-		    padding-left:6em
+				padding-left:6em
 			}
 		}
 		figure {
@@ -522,7 +525,7 @@ h2.oops{
 
 
 @for $i from 1 through 24 {
-  .js #wall article:nth-of-type(#{$i}) { @include animation-delay(0.2s*$i); }
+	.js #wall article:nth-of-type(#{$i}) { @include animation-delay(0.2s*$i); }
 }
 
 .article_overlay {
@@ -563,7 +566,7 @@ h2.oops{
 					text-transform: uppercase;
 					&:after {
 						position: absolute;
-						top: 50%;
+						top: 45%;
 						margin-top: 0;
 						content: '';
 						display: block;
@@ -577,7 +580,7 @@ h2.oops{
 					}
 					&:hover:after {
 						width: 100%;
-  						@include transition-property(width);
+						@include transition-property(width);
 						@include transition-duration(0.4s);
 						@include transition-timing-function(cubic-bezier(0.215, 0.61, 0.355, 1));
 						@include transition-delay(0s);
@@ -624,30 +627,30 @@ h2.oops{
 /* SINGLE
 -------------------------------------------------- */
 #single {
-  background-color: #f2f2f2;
-  padding-bottom:30px;
+	background-color: #f2f2f2;
+	padding-bottom:30px;
 }
 #single-content {
 	z-index:1;
 	@include media(min-width 768px) {
 		border-bottom: 2px solid #232323;
 		padding:0 58px;
-    }
-    &.fp-responsive {
-    	.section {
-    		height:100%!important;
-    		padding:105px 21px;
-    	}
-    }
+		}
+		&.fp-responsive {
+			.section {
+				height:100%!important;
+				padding:105px 21px;
+			}
+		}
 }
 .section {
-	@include outer-container();	
+	@include outer-container();
 	background-color:#f2f2f2;
 	.inner {
 		opacity: 0;
 		display: table;
-  		table-layout: fixed;
-  		width: 100%;
+			table-layout: fixed;
+			width: 100%;
 		height: 100%;
 		position: relative;
 		text-align: center;
@@ -655,14 +658,14 @@ h2.oops{
 			display: table-cell;
 			vertical-align: middle;
 			width: 100%;
-			height: 100%; 
+			height: 100%;
 			p {
 				font-size:1em;
 				margin:0;
 				color:#000;
 					span {
 						width: 55px;
-  						border-bottom: 5px solid #232323;
+							border-bottom: 5px solid #232323;
 						display: block;
 						margin-top:20px;
 					}
@@ -683,28 +686,28 @@ h2.oops{
 			}
 			&.description {
 				h1 {
-				  text-transform: capitalize;
-				  font-weight: bold;
-				  @include media(min-width 768px) {
-				       font-size:em(43);
-				       line-height: 1;
-				       margin-top: 0
-				  }
+					text-transform: capitalize;
+					font-weight: bold;
+					@include media(min-width 768px) {
+							 font-size:em(43);
+							 line-height: 1;
+							 margin-top: 0
+					}
 				}
 				p {
 					padding:0 2em;
-  					margin: 0 auto 1em;
-  					@include media(min-width 768px) {
-  						width: 60%;
-  						line-height: 1.5;
-  						font-size: em(18);
-  					}
-  					a {
-  						font-weight:bold;
-  						a:after {
-  							bottom: 0px;
-  						}
-  					}
+						margin: 0 auto 1em;
+						@include media(min-width 768px) {
+							width: 60%;
+							line-height: 1.5;
+							font-size: em(18);
+						}
+						a {
+							font-weight:bold;
+							a:after {
+								bottom: 0px;
+							}
+						}
 				}
 			}
 			/* right */
@@ -725,7 +728,7 @@ h2.oops{
 			}/* centered */
 			&.sq {
 				img {
-			 		margin:0 auto;
+					 margin:0 auto;
 				}
 				p {
 					text-align:center;
@@ -765,37 +768,37 @@ h2.oops{
 			.half {
 				@include span-columns(6);
 				@include media($mobile) {
-				 	@include span-columns(3);
+					 @include span-columns(3);
 				}
 				img.slides {
 					margin:0 auto;
 					@include media(min-width 768px) {
-				        max-height:390px;
-				    }
-				    @include media(min-width 990px) {
-				        max-height:420px;
-				    }
-				    @include media(min-width 1200px) {
-				        max-height:490px;
-				    }
-				    @include media(min-width 1380px) {
-				        max-height:540px;
-				    }
-				    @include media(min-width 1540px) {
-				        max-height:590px;
-				    }
-				    @include media(min-width 1680px) {
-				       	max-height:610px;
-				    }
-				    @include media(min-width 1800px) {
-				        max-height:660px;
-				    }
-				    @include media(max-width 400px) {
-				        max-height:100%
-				    }
-				    @include media(min-width 320px max-width 736px orientation landscape) {
-				        max-height:100%
-				    }
+								max-height:390px;
+						}
+						@include media(min-width 990px) {
+								max-height:420px;
+						}
+						@include media(min-width 1200px) {
+								max-height:490px;
+						}
+						@include media(min-width 1380px) {
+								max-height:540px;
+						}
+						@include media(min-width 1540px) {
+								max-height:590px;
+						}
+						@include media(min-width 1680px) {
+								 max-height:610px;
+						}
+						@include media(min-width 1800px) {
+								max-height:660px;
+						}
+						@include media(max-width 400px) {
+								max-height:100%
+						}
+						@include media(min-width 320px max-width 736px orientation landscape) {
+								max-height:100%
+						}
 				}
 				&:first-child {
 					@include pad(0 4% 0 0);
@@ -832,8 +835,8 @@ h2.oops{
 				@include span-columns(4);
 				@include pad(0 1.5% 0 1.5%);
 				@include media($mobile) {
-				 	@include span-columns(3);
-				 	padding-bottom:21px
+					 @include span-columns(3);
+					 padding-bottom:21px
 				}
 				img.slides {
 					margin:0 auto;
@@ -873,73 +876,73 @@ h2.oops{
 			max-height: 70%;
 			@include transition(opacity 0.35s);
 			@include media(min-width 768px) {
-		        max-height:450px;
-		    }
-		    @include media(min-width 990px) {
-		        max-height:480px;
-		    }
-		    @include media(min-width 1200px) {
-		        max-height:550px;
-		    }
-		    @include media(min-width 1380px) {
-		        max-height:600px;
-		    }
-		    @include media(min-width 1540px) {
-		        max-height:650px;
-		    }
-		    @include media(min-width 1680px) {
-		       	max-height:700px;
-		    }
-		    @include media(min-width 1800px) {
-		        max-height:750px;
-		    }
-		    @include media(max-width 400px) {
-		        max-height:400px;
-		    }
-		    @include media(min-width 320px max-width 736px orientation landscape) {
-		        max-height:300px;
-		    }
-		    &.captioned {
-		    	@include media(min-width 768px) {
-		        	max-height:400px;
-			    }
-			    @include media(min-width 990px) {
-			        max-height:430px;
-			    }
-			    @include media(min-width 1200px) {
-			        max-height:500px;
-			    }
-			    @include media(min-width 1380px) {
-			        max-height:550px;
-			    }
-			    @include media(min-width 1540px) {
-			        max-height:600px;
-			    }
-			    @include media(min-width 1680px) {
-			       	max-height:650px;
-			    }
-			    @include media(min-width 1800px) {
-			        max-height:700px;
-			    }
-		    }
-		    &.slides {
-		    	@include media($mobile) {
+						max-height:450px;
+				}
+				@include media(min-width 990px) {
+						max-height:480px;
+				}
+				@include media(min-width 1200px) {
+						max-height:550px;
+				}
+				@include media(min-width 1380px) {
+						max-height:600px;
+				}
+				@include media(min-width 1540px) {
+						max-height:650px;
+				}
+				@include media(min-width 1680px) {
+						 max-height:700px;
+				}
+				@include media(min-width 1800px) {
+						max-height:750px;
+				}
+				@include media(max-width 400px) {
+						max-height:400px;
+				}
+				@include media(min-width 320px max-width 736px orientation landscape) {
+						max-height:300px;
+				}
+				&.captioned {
+					@include media(min-width 768px) {
+							max-height:400px;
+					}
+					@include media(min-width 990px) {
+							max-height:430px;
+					}
+					@include media(min-width 1200px) {
+							max-height:500px;
+					}
+					@include media(min-width 1380px) {
+							max-height:550px;
+					}
+					@include media(min-width 1540px) {
+							max-height:600px;
+					}
+					@include media(min-width 1680px) {
+							 max-height:650px;
+					}
+					@include media(min-width 1800px) {
+							max-height:700px;
+					}
+				}
+				&.slides {
+					@include media($mobile) {
 					margin:0 auto!important
 				}
-		    }
+				}
 		}
 		h1.quote {
 			text-transform: capitalize;
 			@include media(min-width 768px) {
-		       font-size:em(56);
-		       line-height: 1.25
-		  	}
+					 font-size:em(56);
+					 line-height: 1.25
+				}
 		}
 	}
 	&.spacer {
 		@include media($mobile) {
-       		display:none!important
-     	}
+					 display:none!important
+			 }
 	}
 	&#full-bg {
 		max-width:none;
@@ -952,12 +955,12 @@ h2.oops{
 		h1 {
 			font-family: 'Apercu Medium';
 			font-size: 1.5em;
-  			margin: 0;
+				margin: 0;
 			@include media(min-width 768px) {
-		       font-size:em(56);
-		       line-height: 1.25;
-		       margin-top:-100px;
-		  	}
+					 font-size:em(56);
+					 line-height: 1.25;
+					 margin-top:-100px;
+				}
 		}
 		h3 {
 			text-transform: capitalize;
@@ -972,7 +975,7 @@ h2.oops{
 #arrow-up {
 	cursor:pointer;
 	right: 55px;
-  	bottom: 26px;
+		bottom: 26px;
 	position:absolute;
 	z-index:999;
 	font-family: $font-stack;
@@ -980,16 +983,16 @@ h2.oops{
 	@include transition(transform 0.7s ease-in-out);
 	display:none;
 	@include media(min-width 768px) {
-       display:block;
-       font-size:em(36);
-	   line-height:em(24);
-  	}
-  	&.white {
-  		color:#fff
-  	}
-  	&.off {
-  		display: none
-  	}
+			 display:block;
+			 font-size:em(36);
+		 line-height:em(24);
+		}
+		&.white {
+			color:#fff
+		}
+		&.off {
+			display: none
+		}
 }
 #arrow-up:hover {
 	color:$onblack
@@ -1001,16 +1004,16 @@ h2.oops{
 /* SINGLE FOOTER */
 .single-footer {
 	padding: 0 21px 40px;
-  	bottom: 0;
-  	left: 0;
-  	right: 0;
-  	z-index:0;
-  	background-color: #f2f2f2;
-  	@include outer-container();
-  	@include media(min-width 768px) {
-       	padding: 0 59px 40px;
-    	position: fixed;
-  	}
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index:0;
+		background-color: #f2f2f2;
+		@include outer-container();
+		@include media(min-width 768px) {
+				 padding: 0 59px 40px;
+			position: fixed;
+		}
 	.row {
 		@include row;
 		padding-top: 15px;
@@ -1021,8 +1024,8 @@ h2.oops{
 				@include span-columns(3);
 			}
 			 .meta {
-			 	margin:0 0 0.5em;
-			 	h3 {
+				 margin:0 0 0.5em;
+				 h3 {
 					margin:0
 				}
 				ul {
@@ -1041,7 +1044,7 @@ h2.oops{
 							color:#b1b1b1;
 							&:after {
 								display: none
-					   		}
+								 }
 						}
 						a:hover {
 							color:#111;
@@ -1059,11 +1062,11 @@ h2.oops{
 			p {
 				font-size:em(16);
 				&.caption {
-			 		margin-top:em(8);
+					 margin-top:em(8);
 				}
 				&.credits {
 					margin-top:0;
-			 	}
+				 }
 			}
 		}
 
@@ -1073,8 +1076,8 @@ h2.oops{
 				margin:0
 			}
 			.related-thumb {
-		 		@include span-columns(3 of 12);
-		 		@include media($mobile) {
+				 @include span-columns(3 of 12);
+				 @include media($mobile) {
 					@include span-columns(6 of 12);
 					@include omega(2n);
 					margin-bottom: 2.35%
@@ -1120,8 +1123,8 @@ h2.oops{
 				h5 {
 					color:#fff;
 					font-size: .5em;
-  					margin: .7em 0;
-  					@include media($mobile) {
+						margin: .7em 0;
+						@include media($mobile) {
 						font-size: .4em;
 					}
 				}
@@ -1152,7 +1155,7 @@ h2.oops{
 	@include animation-delay(0.2s);
 }
 .related-thumb figure:hover img {
-    opacity: 0.2
+		opacity: 0.2
 }
 
 
@@ -1167,18 +1170,18 @@ footer {
 	padding-right:58px;
 	display:none;
 	@include media(min-width 768px) {
-        display:block
-    }
-    &.off {
-    	#name h1 {
-    		display: none
-    	}
-    }
-    &.white {
-    	#name h1{
-    		color:#fff!important
-    	}
-    }
+				display:block
+		}
+		&.off {
+			#name h1 {
+				display: none
+			}
+		}
+		&.white {
+			#name h1{
+				color:#fff!important
+			}
+		}
 }
 #bottom-titles {
 	display: block;
@@ -1201,9 +1204,9 @@ footer {
 		color:#000;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
-       		font-size: em(24);
-       		line-height:em(24);
-    	}
+					 font-size: em(24);
+					 line-height:em(24);
+			}
 	}
 }
 
@@ -1224,9 +1227,9 @@ footer {
 		color:#999;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
-       		font-size: em(24);
-       		line-height:em(24);
-    	}
+					 font-size: em(24);
+					 line-height:em(24);
+			}
 	}
 }
 
@@ -1252,8 +1255,8 @@ footer {
 		color:$grey;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
-       		font-size: em(24);
-       		line-height:em(24);
-    	}
+					 font-size: em(24);
+					 line-height:em(24);
+			}
 	}
 }
