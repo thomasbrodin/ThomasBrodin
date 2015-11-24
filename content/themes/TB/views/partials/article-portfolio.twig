@@ -31,23 +31,25 @@
 				</div><!-- .article_overlay -->
 
 				{% if post.thumbnail_size == 'ThWidth' %}
-					<img src="{{post.thumbnail.src|resize(100)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-100" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'XSWidth' %}
-					<img src="{{post.thumbnail.src|resize(150)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-150" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'SWidth' %}
-					<img src="{{post.thumbnail.src|resize(200)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-200" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'SMWidth' %}
-					<img src="{{post.thumbnail.src|resize(250)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-250" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'MWidth' %}
-					<img src="{{post.thumbnail.src|resize(350)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-350" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'LMWidth' %}
+					<img class="wth-400" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'LWidth' %}
-					<img src="{{post.thumbnail.src|resize(450)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-450" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'XLWidth' %}
-					<img src="{{post.thumbnail.src|resize(520)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-520" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'XXLWidth' %}
-					<img src="{{post.thumbnail.src|resize(600)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-600" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% elseif post.thumbnail_size == 'XXXLWidth' %}
-					<img src="{{post.thumbnail.src|resize(900)}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+					<img class="wth-900" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
 				{% else %}
 					<img src="{{post.thumbnail.src}}" />
 				{% endif %}

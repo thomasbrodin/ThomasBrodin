@@ -257,13 +257,13 @@ jQuery(document).ready(function($) {
 	if ($("#single").length){
 		$('#single-content').fullpage({
 			verticalCentered: false,
-			scrollingSpeed: 800,
+			scrollingSpeed: 500,
 			keyboardScrolling : true,
 			touchSensitivity: 15,
 			loopBottom: false,
 			responsive: 768,
 			afterRender: function(){
-				$('#loader').delay(1200).fadeOut(300);
+				$('#loader').delay(800).fadeOut(300);
 				var headerColor = $('#full-bg').data('color');
 				if ($('#full-bg').hasClass('active') ) {
 					$("header").addClass(headerColor);

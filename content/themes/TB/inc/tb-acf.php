@@ -78,6 +78,7 @@ acf_add_local_field_group(array (
 				'SWidth' => 'Small size - Width 200',
 				'SMWidth' => 'Small-Medium size - Width 250',
 				'MWidth' => 'Medium size - Width 350',
+				'LMWidth' => 'Medium-Large size - Width 400',
 				'LWidth' => 'Large size - Width 450',
 				'XLWidth' => 'X-Large size - Width 520',
 				'XXLWidth' => 'XX-Large size - Width 600',

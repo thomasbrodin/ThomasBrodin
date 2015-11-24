@@ -500,10 +500,39 @@ h2.oops{
 			position: relative;
 			cursor: pointer;
 			img{
-				max-width: 100%;
 				display: block;
+				&.wth-100 {
+					max-width: 100px
+				}
+				&.wth-150 {
+					max-width: 150px
+				}
+				&.wth-200 {
+					max-width: 200px
+				}
+				&.wth-250 {
+					max-width: 250px
+				}
+				&.wth-350 {
+					max-width: 350px
+				}
+				&.wth-400 {
+					max-width: 400px
+				}
+				&.wth-450 {
+					max-width: 450px
+				}
+				&.wth-520 {
+					max-width: 520px
+				}
+				&.wth-600 {
+					max-width: 600px
+				}
+				&.wth-900 {
+					max-width: 520px
+				}
 				@include media($mobile) {
-					width:100%
+					width:100%!important
 				}
 			}
 		}
