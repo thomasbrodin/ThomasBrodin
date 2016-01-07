@@ -3,29 +3,26 @@
 {% endblock %}
 </head>
 
-    <body class="{{body_class}}" data-source="base.twig">
-    	
-    	{% include 'partials/header.twig' %}
-    	{% include 'partials/loader.twig' %} 
+		<body class="{{body_class}}" data-source="base.twig">
 
-    	 <div id="single" class="photography">
+			{% include 'partials/header.twig' %}
+			{% include 'partials/loader.twig' %}
 
-	    	 <div id="single-content">
-					               	  
-			    {% if post.tb_single %}
-		    
-			    	{% include 'partials/single-content.twig' %}
+			<div id="single" class="photography">
+				<div id="single-content">
 
-			    {% endif %}
-			  
+					{% if post.tb_single %}
 
-			</div>
-		</div><!-- #single -->
+						{% include 'partials/single-content.twig' %}
 
-		{% include 'partials/single-footer.twig' %}
+					{% endif %}
+				
+				</div>
+			</div><!-- #single -->
 
-    	{% include 'partials/footer.twig' %}
-          
-    </body>
+			{% include 'partials/single-footer.twig' %}
+
+			{% include 'partials/footer.twig' %}
+
+		</body>
 </html>
-
