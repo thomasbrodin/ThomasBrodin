@@ -12,9 +12,9 @@
 	// 	acf_add_options_page();
 	// }
 	define('THEME_URL', get_template_directory_uri());
-	
+
 	class StarterSite extends TimberSite {
-		
+
 		function __construct(){
 
 			add_theme_support('post-thumbnails');
@@ -27,7 +27,7 @@
 
 			// add_filter('acf/settings/show_admin', array($this,'__return_false'));
 
-			add_action('wp_enqueue_scripts', array($this, 'load_scripts'));	
+			add_action('wp_enqueue_scripts', array($this, 'load_scripts'));
 			add_action('wp_enqueue_scripts', array($this, 'load_styles'));
 
 			add_action('init', array($this,  'removeHeadLinks'));
@@ -53,25 +53,25 @@
 			wp_enqueue_script( 'main-compressed', THEME_URL . '/js/main-min.js', array('jquery'), '', true);
 			//script var
 			wp_localize_script( 'main-compressed', 'script_vars', array(
-			 	'themeUrl' => get_template_directory_uri() 
-			 	)
+				 'themeUrl' => get_template_directory_uri()
+				 )
 			);
 		}
 		function load_styles() {
-			wp_enqueue_style( 'custom', THEME_URL . '/css/main.css', false, filemtime(get_stylesheet_directory() .'/css/main.css')); 
+			wp_enqueue_style( 'custom', THEME_URL . '/css/main.css', false, filemtime(get_stylesheet_directory() .'/css/main.css'));
 		}
 
 		function removeHeadLinks() {
-	    	remove_action('wp_head', 'rsd_link');
-	    	remove_action('wp_head', 'wlwmanifest_link');
-	    	remove_action('wp_head', 'wp_generator');
-	    	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-			remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	    }
+				remove_action('wp_head', 'rsd_link');
+				remove_action('wp_head', 'wlwmanifest_link');
+				remove_action('wp_head', 'wp_generator');
+				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+				remove_action( 'wp_print_styles', 'print_emoji_styles' );
+			}
 	}
-    new StarterSite();
+		new StarterSite();
 
 	function foo($text){
-    	$text .= ' bar!';
-    	return $text;
+			$text .= ' bar!';
+			return $text;
 	}

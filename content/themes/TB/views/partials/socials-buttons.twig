@@ -1,0 +1,21 @@
+<div class="social-sharing" data-permalink="{{ post.link }}">
+		<a target="_blank" href="http://www.facebook.com/sharer.php?u={{post.link}}" class="share-facebook">
+			<span class="icon icon-facebook" aria-hidden="true"></span>
+		</a>
+		<a target="_blank" href="http://twitter.com/share?url={{post.link}}&amp;text={{site.name|url_encode}}%20-%20{{ post.title|url_encode  }}" class="share-twitter">
+			<span class="icon icon-twitter" aria-hidden="true"></span>
+		</a>
+
+			<a target="_blank" href="http://pinterest.com/pin/create/button/?url={{ post.link }}&amp;media={{post.thumbnail.src}}&amp;description={{site.name|url_encode}}%20-%20{{ post.title|url_encode }}" class="share-pinterest">
+			<span class="icon icon-pinterest" aria-hidden="true"></span>
+		</a>
+
+		<a target="_blank" href="http://plus.google.com/share?url={{post.link}}" class="share-google">
+			<span class="icon icon-google" aria-hidden="true"></span>
+		</a>
+
+	<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url={{ post.link }}&title={{site.name|url_encode}}%20-%20{{ post.title|url_encode }}" class="share-linkedin">
+			<span class="icon icon-linkedin" aria-hidden="true"></span>
+		</a>
+
+</div>
