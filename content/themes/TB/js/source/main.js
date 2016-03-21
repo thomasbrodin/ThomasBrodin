@@ -285,29 +285,29 @@ jQuery(document).ready(function($) {
 			loopBottom: false,
 			responsiveWidth: 768,
 			responsiveHeight: 0,
-			afterRender: function(index){
+			afterRender: function(){
 				$('#loader').delay(800).fadeOut(300);
 				var headerColor = $('#full-bg').data('color');
 				if ($('#full-bg').hasClass('active') ) {
 					$("header").addClass(headerColor);
 					$("footer").addClass(headerColor);
 					$('#arrow-up').addClass(headerColor);
-					if ($('html').hasClass('touch')) {
-						$("header").removeClass(headerColor);
-					}
 				}
 				$( "section.active .inner" ).delay(100).animate({"opacity":"1"},1000);
-			},
-			afterLoad: function (anchorLink, index){
-				$( "section.active .inner" ).animate({"opacity":"1"},500);
-				if ($('.video-section').hasClass('active') ) {
-					var player = videojs("vid-"+index, {
+				$('.video-section').each(function() {
+					var i = $(this).index() + 1;
+					videojs("vid-"+i, {
 						"controls": true,
 						"autoplay": false,
 						"preload" : "none",
 						"poster": templateUrl+"/img/video_poster.gif",
 	        });
-	        player.ready(function(){
+				});
+			},
+			afterLoad: function (anchorLink, index){
+				$( "section.active .inner" ).animate({"opacity":"1"},500);
+				if ($('.video-section').hasClass('active') ) {
+	        videojs("vid-"+index).ready(function(){
 						this.play();
 					});
 				}
@@ -316,9 +316,6 @@ jQuery(document).ready(function($) {
 						$("header").addClass(headerColor);
 						$("footer").addClass(headerColor);
 						$('#arrow-up').addClass(headerColor);
-						if ($('html').hasClass('touch')) {
-							$("header").removeClass(headerColor);
-						}
 					} else {
 						$("header").removeClass(headerColor);
 						$("footer").removeClass(headerColor);
