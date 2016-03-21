@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+	var templateUrl = script_vars.themeUrl;
 	$( "#T_shaped" ).bind('mouseenter',function() {
 		TweenLite.to($("polygon#red"), 1, { x:-4, y:-4, scale:1.1, opacity:0.8, ease: Power4.easeOut });
 		TweenLite.to($("polygon#green"), 1, {x:-6, scale:1.1, opacity:1, ease: Power4.easeOut });
@@ -48,7 +49,6 @@ jQuery(document).ready(function($) {
 		});
 		/* BGs */
 		var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg'];
-		var templateUrl = script_vars.themeUrl;
 		$('.subliminal').css({'background-image': 'url('+templateUrl+'/img/'+images[Math.floor(Math.random() * images.length)] + ')'});
 
 		/* words typing */
@@ -285,7 +285,7 @@ jQuery(document).ready(function($) {
 			loopBottom: false,
 			responsiveWidth: 768,
 			responsiveHeight: 0,
-			afterRender: function(){
+			afterRender: function(index){
 				$('#loader').delay(800).fadeOut(300);
 				var headerColor = $('#full-bg').data('color');
 				if ($('#full-bg').hasClass('active') ) {
@@ -298,8 +298,19 @@ jQuery(document).ready(function($) {
 				}
 				$( "section.active .inner" ).delay(100).animate({"opacity":"1"},1000);
 			},
-			afterLoad: function (index, nextIndex, direction){
+			afterLoad: function (anchorLink, index){
 				$( "section.active .inner" ).animate({"opacity":"1"},500);
+				if ($('.video-section').hasClass('active') ) {
+					var player = videojs("vid-"+index, {
+						"controls": true,
+						"autoplay": false,
+						"preload" : "none",
+						"poster": templateUrl+"/img/video_poster.gif",
+	        });
+	        player.ready(function(){
+						this.play();
+					});
+				}
 				var headerColor = $('#full-bg').data('color');
 				if ($('#full-bg').hasClass('active') ) {
 						$("header").addClass(headerColor);
@@ -316,7 +327,6 @@ jQuery(document).ready(function($) {
 			},
 			onLeave: function (index, nextIndex, direction) {
 				var numSec = $( ".section" ).length;
-				console.log(numSec, index, nextIndex ,direction);
 				if (nextIndex == numSec && direction == 'down') {
 					$(".spacer").fadeOut();
 					$('#arrow-up').addClass('up');

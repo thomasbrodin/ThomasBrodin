@@ -3,24 +3,25 @@
 {% endblock %}
 </head>
     <body class="{{body_class}}" data-source="base.twig">
-        
+
         <div class="large-bd to-top"></div>
         <div class="large-bd to-right"></div>
         <div class="large-bd to-bottom"></div>
         <div class="large-bd to-left"></div>
         <!-- borders-->
-        
-        <div class="loading">  
-	        {% include 'partials/header.twig' %}
-			
-	            <div id="home" class="wrap T-landing">
 
-				    <section id="wall" role="main" class="clearfix">
-						{% for post in posts %}
-							{% include 'partials/article-portfolio.twig' %}
-						{% endfor %}
-					</section><!-- #wall -->
-				</div><!-- #wrap -->
+        <div class="loading">
+	        {% include 'partials/header.twig' %}
+
+	        <div id="home" class="wrap T-landing">
+
+			        <section id="wall" role="main" class="clearfix">
+			            {% for post in posts %}
+				              {% include 'partials/article-portfolio.twig' %}
+			            {% endfor %}
+				     </section><!-- #wall -->
+             
+				  </div><!-- #wrap -->
 
 	        {% include 'partials/footer.twig' %}
     	</div>

@@ -1,17 +1,37 @@
 
 
 {% for tb in post.get_field('tb_single') %}
-				 
+
 	{% if tb.acf_fc_layout == 'full_width_center_image' %}
-		
+
 		<section class="section">
 			<div class="inner">
-				<div class="middle {{tb.format}}">	
+				<div class="middle {{tb.format}}">
 	    			 <img class="slides{% if tb.caption %} captioned{% endif %}" src="{{TimberImage(tb.large_image).src}}" alt="{{site.name}} - {{post.title}}" />
 	    			 {% if tb.caption %}<p><span></span>{{ tb.caption }}</p>{% endif %}
 	    		</div>
 	    	</div>
 		</section><!-- section -->
+	{% elseif tb.acf_fc_layout == 'video' %}
+
+		<section class="section video-section">
+			<div class="inner">
+				<div class="middle">
+					<div class="video">
+						<div class="embed-container">
+							<video id="vid-{{loop.index}}" class="video-js">
+								<source src="{{tb.vid_2}}" type="video/webm" />
+								<source src="{{tb.vid}}" type="video/mp4" />
+						    <p class="vjs-no-js">
+						      To view this video please enable JavaScript, and consider upgrading to a web browser that
+						      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+						    </p>
+						  </video>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 	{% elseif tb.acf_fc_layout == 'background_image' %}
 
@@ -21,11 +41,11 @@
 					{% if tb.lg_caption %}<h1 style="color:{{tb.color_capt}}">{{ tb.lg_caption }}</h1>{% endif %}
 					{% if tb.sm_caption %}<h3 style="color:{{tb.color_capt}}">{{ tb.sm_caption }}</h3>{% endif %}
 				</div>
-			</div>	
+			</div>
 		</section><!-- section -->
 
 	{% elseif tb.acf_fc_layout == 'highlights' %}
-		
+
 		<section class="section">
 			<div class="inner">
 				<div class="middle">
@@ -48,8 +68,8 @@
 			    				</div>
 			    				<div class="half {{ tb.pos_img }}">
 			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_2).src}}" alt="{{site.name}} - {{post.title}}"/>
-			    				</div>	
-		    				{% elseif columns_img == '3' %}	    
+			    				</div>
+		    				{% elseif columns_img == '3' %}
 			    				<div class="third {{ tb.pos_img }}">
 			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_1).src}}" alt="{{site.name}} - {{post.title}}"/>
 			    				</div>
@@ -58,8 +78,8 @@
 			    				</div>
 			    				<div class="third {{ tb.pos_img }}">
 			    					<img class="slides{% if tb.cap_img %} captioned{% endif %}" src="{{TimberImage(tb.image_3).src}}" alt="{{site.name}} - {{post.title}}"/>
-			    				</div>	
-			    			{% endif %}	
+			    				</div>
+			    			{% endif %}
 			    		</div>
 			    	</div>
     			</div>
@@ -74,25 +94,24 @@
 					<div class="row">
 						{% if columns_text == '1' %}
 							{{tb.text}}
-						{% elseif columns_text == '2' %}	    
+						{% elseif columns_text == '2' %}
 							<div class="half">
 								{{tb.text}}
 							</div>
 							<div class="half">
 								{{tb.text_2}}
-							</div>	
-						{% endif %}	
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
 		</section><!-- section -->
 
 	{% endif %}
-	
+
 	{% if loop.last %}
 		<section class="section spacer">
 		</section>
 	{% endif %}
 
 {% endfor %}
-
