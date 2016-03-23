@@ -1,6 +1,6 @@
 /* OVERLAY NAV */
 .nav > li.active > a {
-	color:$primary-red;
+	color:$hue-red;
 	border: none
 }
 body.post-type-archive-creative-direction .nav > li.active > h1 a{
@@ -78,7 +78,7 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 .overlay ul li a:hover,
 .overlay ul li a:focus {
 	@include transition(all, 0.2s, ease-out);
-	color: $primary-red;
+	color: $hue-red;
 	background: transparent;
 	border:none
 }
@@ -108,4 +108,3 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 .overlay.close nav ul {
 	@include transform(translateY(25%) rotateX(-35deg));
 }
- 

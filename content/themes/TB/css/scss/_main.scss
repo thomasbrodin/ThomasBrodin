@@ -269,6 +269,9 @@ header.white #trigger-overlay i:after {
 	background:#fff
 }
 
+/* HOME
+-------------------------------------------------- */
+
 /* PAGE
 -------------------------------------------------- */
 .about{
@@ -298,33 +301,33 @@ header.white #trigger-overlay i:after {
 			padding-right:0;
 			font-size: 3em;
 			@include media(min-width 768px) {
-						padding-right: 3.5em;
-						font-size:4em
-				}
-				@include media(min-width 990px) {
-						padding-right: 4.5em;
-				}
-				@include media(min-width 1200px) {
-						padding-right:5.5em
-				}
-				@include media(min-width 1380px) {
-						padding-right:6.7em
-				}
-				@include media(min-width 1540px) {
-						padding-right:9em
-				}
-				@include media(min-width 1680px) {
-						padding-right:10em
-				}
-				@include media(min-width 1800px) {
-						padding-right:11em
-				}
-				@include media(max-width 400px) {
-						padding-right: 2em;
-				}
-				@include media(min-width 320px max-width 736px orientation landscape) {
-						padding-right:4.2em
-				}
+				padding-right: 3em;
+				font-size:4em
+			}
+			@include media(min-width 990px) {
+					padding-right: 4.5em;
+			}
+			@include media(min-width 1200px) {
+					padding-right:5.5em
+			}
+			@include media(min-width 1380px) {
+					padding-right:6.7em
+			}
+			@include media(min-width 1540px) {
+					padding-right:9em
+			}
+			@include media(min-width 1680px) {
+					padding-right:10em
+			}
+			@include media(min-width 1800px) {
+					padding-right:11em
+			}
+			@include media(max-width 400px) {
+					padding-right: 2em;
+			}
+			@include media(min-width 320px max-width 736px orientation landscape) {
+					padding-right:4.2em
+			}
 			a {
 				color:white;
 				&:after {
@@ -339,7 +342,7 @@ header.white #trigger-overlay i:after {
 }
 
 header.white polygon#black{
-	fill: #fff
+	fill: #fff;
 }
 header.white path {
 	stroke:#fff
@@ -367,10 +370,33 @@ h2.oops{
 
 /* animations
 -------------------------------------------------- */
+@include keyframes (FontShow) {
+	from {
+		opacity:0;
+		margin-left: -4%;
+		margin-top: -2%
+	}
+	to {
+	 opacity:1;
+	 margin-left: 0;
+	 margin-top: 0
+	}
+}
 @include keyframes (articleShow) {
 		0% {
 				opacity:0;
 				@include transform(translateY(30px));
+		}
+
+		100% {
+			 opacity:1;
+			 @include transform(translateY(0px) rotate(0deg));
+		}
+}
+@include keyframes (articleShowII) {
+		0% {
+				opacity:0;
+				@include transform(translateY(50px));
 		}
 
 		100% {
@@ -403,6 +429,15 @@ h2.oops{
 		}
 }
 
+@include keyframes (hue-rotation) {
+	0% {
+      @include filter(hue-rotate(0deg))
+    }
+
+    100% {
+      @include filter(hue-rotate(360deg))
+    }
+}
 
 /* ARTICLE
 -------------------------------------------------- */
@@ -413,87 +448,55 @@ h2.oops{
 		float: left;
 		padding:0 2em 2em 0;
 		@include media($mobile) {
-			padding: 0 0 2em 0;
+			padding: 0 0 2em 0!important;
 		}
 		&.pdt-3 {
-			@include media(min-width 990px) {
-				padding-top:3em
-			}
+			padding-top:3em
 		}
 		&.pdt-4 {
-			@include media(min-width 990px) {
-				padding-top:4em
-			}
+			padding-top:4em
 		}
 		&.pdt-5 {
-			@include media(min-width 990px) {
-				padding-top:5em
-			}
+			padding-top:5em
 		}
 		&.pdt-6 {
-			@include media(min-width 990px) {
-				padding-top:6em
-			}
+			padding-top:6em
 		}
 		&.pdr-3 {
-			@include media(min-width 990px) {
-				padding-right:3em
-			}
+			padding-right:3em
 		}
 		&.pdr-4 {
-			@include media(min-width 990px) {
-				padding-right:4em
-			}
+			padding-right:4em
 		}
 		&.pdr-5 {
-			@include media(min-width 990px) {
-				padding-right:5em
-			}
+			padding-right:5em
 		}
 		&.pdr-6 {
-			@include media(min-width 990px) {
-				padding-right:6em
-			}
+			padding-right:6em
 		}
 		&.pdb-3 {
-			@include media(min-width 990px) {
-				padding-bottom:3em
-			}
+			padding-bottom:3em
 		}
 		&.pdb-4 {
-			@include media(min-width 990px) {
-				padding-bottom:4em
-			}
+			padding-bottom:4em
 		}
 		&.pdb-5 {
-			@include media(min-width 990px) {
-				padding-bottom:5em
-			}
+			padding-bottom:5em
 		}
 		&.pdb-6 {
-			@include media(min-width 990px) {
-				padding-bottom:6em
-			}
+			padding-bottom:6em
 		}
 		&.pdl-3 {
-			@include media(min-width 990px) {
-				padding-left:3em
-			}
+			padding-left:3em
 		}
 		&.pdl-4 {
-			@include media(min-width 990px) {
-				padding-left:4em
-			}
+			padding-left:4em
 		}
 		&.pdl-5 {
-			@include media(min-width 990px) {
-				padding-left:5em
-			}
+			padding-left:5em
 		}
 		&.pdl-6 {
-			@include media(min-width 990px) {
-				padding-left:6em
-			}
+			padding-left:6em
 		}
 		figure {
 			text-align: left;
@@ -550,7 +553,6 @@ h2.oops{
 	@include animation-iteration-count(1);
 	@include animation-direction(normal);
 	@include animation-fill-mode(forwards);
-	@include animation-delay(1.2s);
 }
 
 
@@ -628,7 +630,6 @@ h2.oops{
 	@include animation-name(captionUp);
 	@include animation-duration(0.35s);
 	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
-	@include animation-delay(1.2s);
 	@include animation-iteration-count(1);
 	@include animation-direction(normal);
 	@include animation-fill-mode(forwards);
@@ -638,7 +639,6 @@ h2.oops{
 	@include animation-name(captionDown);
 	@include animation-duration(0.35s);
 	@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
-	@include animation-delay(1.2s);
 	@include animation-iteration-count(1);
 	@include animation-direction(normal);
 	@include animation-fill-mode(forwards);
@@ -661,15 +661,139 @@ h2.oops{
 	padding-bottom:30px;
 }
 #single-content {
+	background-color: #f2f2f2;
 	z-index:1;
 	@include media(min-width 768px) {
-		border-bottom: 2px solid #232323;
 		padding:0 58px;
+	}
+	@include media($mobile) {
+		opacity: 1!important
 	}
 }
 .section {
 	@include outer-container();
-	background-color:#f2f2f2;
+	&.featured {
+		max-width:960px!important;
+		@include media($mobile) {
+			margin-left:90px;
+		}
+		@include media($tablet) {
+			margin-left:145px;
+		}
+		img {
+			margin:0 auto;
+			max-height: none;
+			&:hover {
+				opacity: 0.6;
+			}
+		}
+		.block-img {
+			position: relative;
+			overflow: hidden;
+			z-index:1;
+		}
+		.featured-title {
+			position: absolute;
+	    top: 50%;
+	    left: 0;
+	    display: block;
+	    white-space: nowrap;
+			@include transform(translateY(-50%));
+	 		@include media(min-width 1100px) {
+	 		 @include transform(translate(-5%, -50%));
+	 		}
+	 		@include media(min-width 1380px) {
+	 		 @include transform(translate(-15%, -50%));
+	 		}
+	 		@include media(min-width 1560px) {
+	 		 @include transform(translate(-25%, -50%));
+	 		}
+			&.show-title {
+				@include animation-name(FontShow);
+				@include animation-duration(1s);
+				@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+				@include animation-iteration-count(1);
+				@include animation-direction(normal);
+				@include animation-fill-mode(forwards);
+			}
+			@include media($mobile) {
+				left: -80px;
+			}
+			@include media($tablet) {
+				left: -115px;
+			}
+	    h2{
+				font-size: 12rem;
+				text-transform: capitalize;
+				margin:0;
+				text-align: left;
+				@include media(min-width 768px) {
+					font-size: 8rem;
+				}
+				@include media(min-width 1100px) {
+					font-size: 9rem;
+				}
+				@include media(min-width 1380px) {
+					font-size: 10rem;
+				}
+				@include media(min-width 1440px) {
+					font-size: 11rem;
+				}
+				@include media(min-width 1560px) {
+					font-size: 12rem;
+				}
+				@include media($mobile) {
+					font-size: 2.2rem;
+				}
+				@include media($tablet) {
+					font-size: 4rem;
+				}
+			}
+			&.back {
+				z-index: 0;
+			}
+			.infos {
+				span {
+					display: block;
+					float: left;
+					&.dash {
+						width: 55px;
+						border-bottom: 5px solid;
+						margin:20px 25px 0 15px;
+						@include media($mobile) {
+							width: 25px;
+							border-bottom: 3px solid;
+							margin:10px 10px 0 2px;
+						}
+						@include media($tablet) {
+							width: 35px;
+							border-bottom: 3px solid;
+							margin:15px 10px 0 2px;
+						}
+					}
+					&.caption {
+						font-size: 2.5rem;
+						line-height: 1.2;
+						border: none;
+						width:auto;
+						text-align: left;
+						@include media($mobile) {
+							font-size: 1rem;
+						}
+						@include media($tablet) {
+							font-size: 1.7rem;
+						}
+					}
+					a:after {
+						display: none
+					}
+					a:hover {
+						opacity: 0.7
+					}
+				}
+			}
+		}
+	}
 	.inner {
 		opacity: 0;
 		display: table;
@@ -680,6 +804,14 @@ h2.oops{
 		text-align: center;
 		@include media($mobile) {
 			opacity: 1!important
+		}
+		&.show {
+			@include animation-name(articleShowII);
+			@include animation-duration(1s);
+			@include animation-timing-function(cubic-bezier(0.2, 0.3, 0.25, 0.9));
+			@include animation-iteration-count(1);
+			@include animation-direction(normal);
+			@include animation-fill-mode(forwards);
 		}
 		.middle {
 			display: table-cell;
@@ -692,7 +824,7 @@ h2.oops{
 				color:#000;
 					span {
 						width: 55px;
-							border-bottom: 5px solid #232323;
+						border-bottom: 5px solid #232323;
 						display: block;
 						margin-top:20px;
 					}
@@ -1104,9 +1236,9 @@ body {
 	&.fp-responsive {
 		.section {
 			height:100%!important;
-			padding: 40px 15px;
+			padding: 80px 15px 80px;
 			&:first-child {
-				padding:80px 15px;
+				padding-top:100px;
 			}
 			&:nth-last-child(2) {
 				padding-bottom:0
@@ -1141,106 +1273,112 @@ body {
 }
 #arrow-up.up {
 	@include transform(rotate(270deg));
+	color:#fff
 }
 
 /* SINGLE FOOTER */
 .single-footer {
-	padding: 0 21px 40px;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		z-index:0;
-		background-color: #f2f2f2;
-		@include outer-container();
+		background-color:black;
+		color:white!important;
+		position: relative;
+		padding-top:35px;
 		@include media(min-width 768px) {
-				 padding: 0 59px 40px;
 			position: fixed;
 		}
-	.row {
-		@include row;
-		padding-top: 15px;
-		padding-bottom:15px;
-		.aside {
-			 @include span-columns(4);
-			 @include media($mobile) {
-				@include span-columns(3);
+		.inner {
+			padding: 0 21px 40px;
+			@include outer-container();
+			@include media(min-width 768px) {
+				padding: 0 59px 40px;
 			}
-			 .meta {
-				 margin:0 0 0.5em;
-				 h3 {
-					margin:0
-				}
-				ul {
-					margin:0 0 2em 0;
-					padding:0;
-					li {
-						display:inline-block;
-						list-style:none;
-						font-size: 0.9em;
-						margin:0.3em 0 0 0;
-						font-family: $font-stack;
-						text-transform: uppercase;
-						padding:0;
-						line-height:1;
-						a {
-							color:#b1b1b1;
-							&:after {
-								display: none
-								 }
+			.row {
+				@include row;
+				padding-top: 15px;
+				padding-bottom:15px;
+				.aside {
+					 @include span-columns(4);
+					 @include media($mobile) {
+						@include span-columns(3);
+					}
+					 .meta {
+						 margin:0 0 0.5em;
+						 h3 {
+							margin:0
 						}
-						a:hover {
-							color:#111;
-							border:none
+						ul {
+							margin:0 0 2em 0;
+							padding:0;
+							li {
+								display:inline-block;
+								list-style:none;
+								font-size: 0.9em;
+								margin:0.3em 0 0 0;
+								font-family: $font-stack;
+								text-transform: uppercase;
+								padding:0;
+								line-height:1;
+								a {
+									color:#b1b1b1;
+									&:after {
+										display: none
+										 }
+								}
+								a:hover {
+									color:white;
+									border:none
+								}
+							}
+						}
+					 }
+				}
+				.post_info {
+					@include span-columns(8);
+					@include media($mobile) {
+						@include span-columns(3);
+					}
+					p {
+						font-size:em(16);
+						&.caption {
+							 margin-top:em(8);
+						}
+						&.credits {
+							margin-top:0;
+						 }
+					}
+				}
+
+				.related {
+					@include span-columns(12);
+					.related-thumb {
+						 @include span-columns(3 of 12);
+						 @include media($mobile) {
+							@include span-columns(6 of 12);
+							@include omega(2n);
+							margin-bottom: 2.35%
 						}
 					}
 				}
-			 }
-		}
-		.post_info {
-			@include span-columns(8);
-			@include media($mobile) {
-				@include span-columns(3);
-			}
-			p {
-				font-size:em(16);
-				&.caption {
-					 margin-top:em(8);
-				}
-				&.credits {
-					margin-top:0;
-				 }
 			}
 		}
-
-		.related {
-			@include span-columns(12);
-			h4 {
-				margin:0
-			}
-			.related-thumb {
-				 @include span-columns(3 of 12);
-				 @include media($mobile) {
-					@include span-columns(6 of 12);
-					@include omega(2n);
-					margin-bottom: 2.35%
-				}
-			}
-		}
-	}
 	article	figure {
 		position: relative;
 		margin: 0 auto;
-		height: auto;
+		height: 270px;
 		overflow: hidden;
 		cursor: pointer;
 		background:transparent;
+    background-color: $hue-red!important;
+		z-index:2;
 		@include transition(background 0.35s);
-		img {
-			position: relative;
-			display: block;
-			width:auto;
-			@include transition(opacity 0.35s);
-			max-width: 100%;
+		@include media($mobile) {
+			height: 180px;
+		}
+		@include media($tablet) {
+			height: 190px;
 		}
 		a {
 			display: block;
@@ -1250,24 +1388,23 @@ body {
 		}
 		div{
 			height: 100%;
-			position: absolute;
+			width: 100%;
 			text-align: left;
 			top: 0;
-			width: 100%;
 			figcaption {
-				font-size: 21px;
-				font-size: 2.1rem;
-				padding: .5em .75em;
-				max-width: 90%;
+				padding: 1em 2em;
 				display: inline-block;
 				vertical-align: middle;
 				@include backface-visibility(hidden);
+				@include media($mobile) {
+					padding: 1em;
+				}
 				h5 {
 					color:#fff;
-					font-size: .5em;
-						margin: .7em 0;
-						@include media($mobile) {
-						font-size: .4em;
+					font-size: 2.1rem;
+					margin: .7em 0;
+					@include media($mobile) {
+						font-size: 1em;
 					}
 				}
 			}
@@ -1290,9 +1427,6 @@ body {
 .cssanimations .related-thumb figure h5 {
 	opacity:0
 }
-.related-thumb figure:hover {
-	background:#111
-}
 .related-thumb figure:hover h5{
 	@include animation-name(captionUp);
 	@include animation-duration(0.35s);
@@ -1302,11 +1436,20 @@ body {
 	@include animation-fill-mode(forwards);
 	@include animation-delay(0.2s);
 }
-.related-thumb figure:hover img {
-		opacity: 0.2
+
+.js .related-thumb figure {
+	@include animation-name(hue-rotation);
+	@include animation-duration(1s);
+	@include animation-timing-function(linear);
+	@include animation-delay(0ms);
+	@include animation-iteration-count(infinite!important);
 }
 
-
+@for $i from 1 through 4 {
+	.js .related article:nth-of-type(#{$i}) figure{
+		@include animation-delay(0.2s*$i);
+	}
+}
 /* FOOTER
 -------------------------------------------------- */
 footer {
@@ -1403,8 +1546,8 @@ footer {
 		color:$grey;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
-					 font-size: em(24);
-					 line-height:em(24);
-			}
+			font-size: em(24);
+		 	line-height:em(24);
+	 	}
 	}
 }

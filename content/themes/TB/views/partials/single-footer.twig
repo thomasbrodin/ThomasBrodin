@@ -1,77 +1,75 @@
 <div class="single-footer">
-	<div class="row">
-
-			<div class="aside">
-
-			<div class="meta">
-				<h3>{{post.title}}</h3>
-				{% if post.post_type == 'photography' %}
-					<ul>
-						{% for term in post.terms('photo_category') %}
-							<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
-						{% endfor %}
-					</ul>
-				{% elseif post.post_type == 'creative-direction' %}
-					<ul>
-						{% for term in post.terms('project_category') %}
-							<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
-						{% endfor %}
-					</ul>
-				{% endif %}
-			</div>
-
-		</div>
-		{% if post.proj_caption %}
-			<div class="post_info">
-				<p class="caption">{{post.proj_caption}}</p>
-				{% if post.get_field('credits') %}
-					<p class="credits">{{ post.get_field('credits')}}</p>
-				{% endif %}
-
-				</div>
-			 {% endif %}
-		</div>
-
-		<div class="sharing-wrap">
-			<a href="javascript:void(0)" id="share-this" class="btn">Share this.</a>
-			<div class="sharing-buttons">
-				{% include 'partials/socials-buttons.twig' %}
-			</div>
-		</div>
-
-	{% if related %}
+	<div class="inner">
 
 		<div class="row">
-			<div class="related">
-				<div class="row">
-					{% for post in related %}
-							<article class="related-thumb">
-								<figure>
-									<a href="{{post.link}}">
-										{% if post.get_field('square_th') %}
-											<img class="img-responsive" src="{{TimberImage(post.get_field('square_th')).get_src|resize(500)}}" alt="{{site.name}} - {{post.title}}"/>
-										{% else %}
-											<img class="img-responsive" src="{{ post.thumbnail.src|resize(300, 300,'center')}}" alt="{{site.name}} - {{post.title}}">
-										{% endif %}
-										<div>
-											<figcaption>
-												<h5>{{ post.title}}</h5>
-											</figcaption>
-										 </div>
-									</a>
-							</figure>
-						</article>
-					{% endfor %}
+
+				<div class="aside">
+
+				<div class="meta">
+					<h3>{{post.title}}</h3>
+					{% if post.post_type == 'photography' %}
+						<ul>
+							{% for term in post.terms('photo_category') %}
+								<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
+							{% endfor %}
+						</ul>
+					{% elseif post.post_type == 'creative-direction' %}
+						<ul>
+							{% for term in post.terms('project_category') %}
+								<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
+							{% endfor %}
+						</ul>
+					{% endif %}
 				</div>
 
 			</div>
-		</div><!-- related -->
+			{% if post.proj_caption %}
+				<div class="post_info">
+					<p class="caption">{{post.proj_caption}}</p>
+					{% if post.get_field('credits') %}
+						<p class="credits">{{ post.get_field('credits')}}</p>
+					{% endif %}
 
-		<span class="copyright">Copyright - {{"now"|date('Y')}}</span>
-	{% else %}
-		<span class="copyright no-related">Copyright - {{"now"|date('Y')}}</span>
-	{% endif %}
+					</div>
+				 {% endif %}
+			</div>
 
+			<div class="sharing-wrap">
+				<a href="javascript:void(0)" id="share-this" class="btn">Share this.</a>
+				<div class="sharing-buttons">
+					{% include 'partials/socials-buttons.twig' %}
+				</div>
+			</div>
+
+		{% if related %}
+
+			<div class="row">
+				<div class="related">
+					<div class="row">
+						<h4>More like this.</h4>
+						{% for post in related %}
+								<article class="related-thumb">
+									<figure>
+										<a href="{{post.link}}">
+											<div>
+												<figcaption>
+													<h5>{{ post.title}}</h5>
+												</figcaption>
+											 </div>
+										</a>
+								</figure>
+							</article>
+						{% endfor %}
+					</div>
+
+				</div>
+			</div><!-- related -->
+
+			<span class="copyright">Copyright - {{"now"|date('Y')}}</span>
+		{% else %}
+			<span class="copyright no-related">Copyright - {{"now"|date('Y')}}</span>
+		{% endif %}
+	</div>
 </div><!-- single-footer -->
 
 <div id="arrow-up">

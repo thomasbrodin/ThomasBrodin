@@ -9,10 +9,13 @@
 	float: right;
 	@include transition(all 0.3s linear);
 	@include backface-visibility(hidden);
-	display:none;
-	@include media(min-width 768px) {
-       display: block
-    }
+	display:block;
+	@include media($mobile) {
+    display: none;
+  }
+	@include media($tablet) {
+    display: none;
+  }
 }
 
 .sb-search-input {

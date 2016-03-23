@@ -3,17 +3,18 @@
 {% endblock %}
 </head>
     <body class="{{body_class}}" data-source="base.twig">
-        
+
         <div class="large-bd to-top"></div>
         <div class="large-bd to-right"></div>
         <div class="large-bd to-bottom"></div>
         <div class="large-bd to-left"></div>
         <!-- borders-->
-        
+
         {% include 'partials/header.twig' %}
+        {% include 'partials/loader.twig' %}
 
         <div class="wrap">
-                
+
             {% block content %}
                 Sorry, no content
             {% endblock %}
@@ -22,6 +23,6 @@
 
 
         {% include 'partials/footer.twig' %}
-          
+
     </body>
 </html>

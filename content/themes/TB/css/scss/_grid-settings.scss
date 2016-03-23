@@ -1,4 +1,4 @@
-@import "neat/neat-helpers"; 
+@import "neat/neat-helpers";
 
 // Change the grid settings
 $gutter: modular-scale(1, 1em, $golden) !global;
@@ -6,4 +6,5 @@ $column: modular-scale(3, 1em, $golden) !global;
 $max-width: 81rem;
 
 // Define your breakpoints
-$mobile: new-breakpoint(max-width 768px 3);
+$tablet: new-breakpoint(min-width 768px max-width 1024px, 3);
+$mobile: new-breakpoint(max-width 767px, 3);
