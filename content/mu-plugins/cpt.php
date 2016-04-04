@@ -8,7 +8,7 @@ Author URI: http://www.hexcreativenetwork.com
 
 
 add_action( 'init', 'hex_cpt' );
-add_action( 'init', 'portfolio_taxonomies' );  
+add_action( 'init', 'portfolio_taxonomies' );
 add_action( 'init','maybe_rewrite_rules' );
 
 function hex_cpt() {
@@ -73,46 +73,46 @@ function hex_cpt() {
   register_post_type( 'creative-direction', $args);
 }
 
-function portfolio_taxonomies() {  
-  register_taxonomy(  
-    'photo_category',  
+function portfolio_taxonomies() {
+  register_taxonomy(
+    'photo_category',
     'photography',
-      array( 
-          'hierarchical' => true,  
-          'label' => 'Photo Category', 
-          'show_admin_column' => true, 
-          'query_var' => true,  
-          'rewrite' => array('slug' => 'photo')  
-      )  
-    ); 
-  register_taxonomy(  
-    'project_category',  
+      array(
+          'hierarchical' => true,
+          'label' => 'Photo Category',
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'photo')
+      )
+    );
+  register_taxonomy(
+    'project_category',
     'creative-direction',
-      array( 
-          'hierarchical' => true,  
-          'label' => 'Project Category', 
-          'show_admin_column' => true, 
-          'query_var' => true,  
-          'rewrite' => array('slug' => 'projects')  
-      )  
-    ); 
-  register_taxonomy(  
-    'tb_tag',  
+      array(
+          'hierarchical' => true,
+          'label' => 'Project Category',
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'projects')
+      )
+    );
+  register_taxonomy(
+    'tb_tag',
     array('photography','creative-direction'),
-      array( 
-          'hierarchical' => false,  
-          'label' => 'Tags', 
-          'show_admin_column' => true, 
-          'query_var' => true,  
-          'rewrite' => array('slug' => 'tb-tag')  
-      )  
-    ); 
+      array(
+          'hierarchical' => false,
+          'label' => 'Tags',
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'tb-tag')
+      )
+    );
    function maybe_rewrite_rules() {
-     
+
       $ver = filemtime( __FILE__ ); // Get the file time for this file as the version number
       $defaults = array( 'version' => 0, 'time' => time() );
       $r = wp_parse_args( get_option( __CLASS__ . '_flush', array() ), $defaults );
-     
+
       if ( $r['version'] != $ver || $r['time'] + 172800 < time() ) { // Flush if ver changes or if 48hrs has passed.
         flush_rewrite_rules();
         // trace( 'flushed' );
@@ -120,6 +120,6 @@ function portfolio_taxonomies() {
         if ( ! update_option( __CLASS__ . '_flush', $args ) )
           add_option( __CLASS__ . '_flush', $args );
       }
-     
+
     }
-}  
+}

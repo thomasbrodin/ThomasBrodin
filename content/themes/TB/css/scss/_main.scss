@@ -269,9 +269,6 @@ header.white #trigger-overlay i:after {
 	background:#fff
 }
 
-/* HOME
--------------------------------------------------- */
-
 /* PAGE
 -------------------------------------------------- */
 .about{
@@ -682,15 +679,63 @@ h2.oops{
 		}
 		img {
 			margin:0 auto;
-			max-height: none;
 			&:hover {
 				opacity: 0.6;
 			}
 		}
-		.block-img {
+		.wrapper-img {
 			position: relative;
-			overflow: hidden;
-			z-index:1;
+			display: block;
+			margin:0 auto;
+			max-width:100%;
+			@include media(min-width 768px) {
+					max-width:390px;
+			}
+			@include media(min-width 1100px) {
+					max-width:550px;
+			}
+			@include media(min-width 1380px) {
+					max-width:740px;
+			}
+			@include media(max-width 400px) {
+					max-width:100%
+			}
+			@include media(min-width 320px max-width 736px orientation landscape) {
+					max-width:100%
+			}
+			.block-img {
+				position: relative;
+				overflow: hidden;
+				z-index:1;
+				max-height:100%;
+				@include media(min-width 768px) {
+						max-height:390px;
+				}
+				@include media(min-width 990px) {
+						max-height:420px;
+				}
+				@include media(min-width 1200px) {
+						max-height:490px;
+				}
+				@include media(min-width 1380px) {
+						max-height:670px;
+				}
+				@include media(min-width 1540px) {
+						max-height:700px;
+				}
+				@include media(min-width 1680px) {
+						 max-height:720px;
+				}
+				@include media(min-width 1800px) {
+						max-height:770px;
+				}
+				@include media(max-width 400px) {
+						max-height:100%
+				}
+				@include media(min-width 320px max-width 736px orientation landscape) {
+						max-height:100%
+				}
+			}
 		}
 		.featured-title {
 			position: absolute;
@@ -698,15 +743,12 @@ h2.oops{
 	    left: 0;
 	    display: block;
 	    white-space: nowrap;
-			@include transform(translateY(-50%));
+			@include transform(translate(-50%, -50%));
 	 		@include media(min-width 1100px) {
-	 		 @include transform(translate(-5%, -50%));
-	 		}
-	 		@include media(min-width 1380px) {
-	 		 @include transform(translate(-15%, -50%));
+	 		 @include transform(translate(-30.8%, -50%));
 	 		}
 	 		@include media(min-width 1560px) {
-	 		 @include transform(translate(-25%, -50%));
+	 		 @include transform(translate(-35%, -50%));
 	 		}
 			&.show-title {
 				@include animation-name(FontShow);
@@ -717,9 +759,11 @@ h2.oops{
 				@include animation-fill-mode(forwards);
 			}
 			@include media($mobile) {
+				@include transform(translateY(-50%));
 				left: -80px;
 			}
 			@include media($tablet) {
+				@include transform(translateY(-50%));
 				left: -115px;
 			}
 	    h2{
@@ -730,17 +774,8 @@ h2.oops{
 				@include media(min-width 768px) {
 					font-size: 8rem;
 				}
-				@include media(min-width 1100px) {
-					font-size: 9rem;
-				}
 				@include media(min-width 1380px) {
 					font-size: 10rem;
-				}
-				@include media(min-width 1440px) {
-					font-size: 11rem;
-				}
-				@include media(min-width 1560px) {
-					font-size: 12rem;
 				}
 				@include media($mobile) {
 					font-size: 2.2rem;
@@ -1034,32 +1069,32 @@ h2.oops{
 				img.slides {
 					margin:0 auto;
 					@include media(min-width 768px) {
-								max-height:390px;
-						}
-						@include media(min-width 990px) {
-								max-height:420px;
-						}
-						@include media(min-width 1200px) {
-								max-height:490px;
-						}
-						@include media(min-width 1380px) {
-								max-height:540px;
-						}
-						@include media(min-width 1540px) {
-								max-height:590px;
-						}
-						@include media(min-width 1680px) {
-								 max-height:610px;
-						}
-						@include media(min-width 1800px) {
-								max-height:660px;
-						}
-						@include media(max-width 400px) {
-								max-height:100%
-						}
-						@include media(min-width 320px max-width 736px orientation landscape) {
-								max-height:100%
-						}
+							max-height:390px;
+					}
+					@include media(min-width 990px) {
+							max-height:420px;
+					}
+					@include media(min-width 1200px) {
+							max-height:490px;
+					}
+					@include media(min-width 1380px) {
+							max-height:540px;
+					}
+					@include media(min-width 1540px) {
+							max-height:590px;
+					}
+					@include media(min-width 1680px) {
+							 max-height:610px;
+					}
+					@include media(min-width 1800px) {
+							max-height:660px;
+					}
+					@include media(max-width 400px) {
+							max-height:100%
+					}
+					@include media(min-width 320px max-width 736px orientation landscape) {
+							max-height:100%
+					}
 				}
 				&:first-child {
 					@include pad(0 4% 0 0);
@@ -1245,6 +1280,11 @@ body {
 			}
 		}
 	}
+	&.home {
+		section:nth-last-child(2) {
+			padding-bottom:80px!important
+		}
+	}
 }
 #arrow-up {
 	cursor:pointer;
@@ -1340,6 +1380,12 @@ body {
 					@include media($mobile) {
 						@include span-columns(3);
 					}
+					a {
+						color:white;
+						&:after {
+							background-color: white;
+						}
+					}
 					p {
 						font-size:em(16);
 						&.caption {
@@ -1357,7 +1403,7 @@ body {
 						 @include span-columns(3 of 12);
 						 @include media($mobile) {
 							@include span-columns(6 of 12);
-							@include omega(2n);
+							@include omega(3n);
 							margin-bottom: 2.35%
 						}
 					}
@@ -1447,7 +1493,7 @@ body {
 
 @for $i from 1 through 4 {
 	.js .related article:nth-of-type(#{$i}) figure{
-		@include animation-delay(0.2s*$i);
+		@include animation-delay(0.4s*$i);
 	}
 }
 /* FOOTER
