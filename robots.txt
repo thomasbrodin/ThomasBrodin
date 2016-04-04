@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /portfolio-beta/
+Disallow: /theocroker/
+Disallow: /tumblr/

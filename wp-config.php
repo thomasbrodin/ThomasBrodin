@@ -12,6 +12,8 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define('DB_PASSWORD', 'XM8ds^G2');
 	define('DB_HOST', 'mysql.thomasbrodin.com');
 	$table_prefix  = 'wp_gtkcr3_';
+	define( 'SAVEQUERIES', false );
+	define( 'WP_DEBUG', false );
 }
 // ========================
 // Custom Content Directory
@@ -51,15 +53,7 @@ define( 'WPLANG', '' );
 // Hide errors
 // ===========
 ini_set( 'display_errors', 0 );
-define( 'WP_DEBUG_DISPLAY', false );
-
-// =================================================================
-// Debug mode
-// Debugging? Enable these. Can also enable them in local-config.php
-// =================================================================
-define( 'SAVEQUERIES', false );
-define( 'WP_DEBUG', false );
-
+define( 'WP_DEBUG_DISPLAY', true );
 
 // ===================
 // Bootstrap WordPress
