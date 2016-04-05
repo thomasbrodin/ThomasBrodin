@@ -37,6 +37,7 @@ a {
 	text-decoration: none;
 	position:relative;
 	overflow: hidden;
+	@include transition(all .25s cubic-bezier(.39,.575,.565,1));
 }
 a:after {
 	content: "";
@@ -1541,9 +1542,16 @@ footer {
 		color:#000;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
-					 font-size: em(24);
-					 line-height:em(24);
+			font-size: em(24);
+			line-height:em(24);
+		}
+	}
+	a {
+		&:hover{
+			h1 {
+				color:$hue-red
 			}
+		}
 	}
 }
 
