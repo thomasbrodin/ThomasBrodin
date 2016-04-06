@@ -530,8 +530,8 @@ h2.oops{
 				&.wth-600 {
 					max-width: 600px
 				}
-				&.wth-900 {
-					max-width: 520px
+				&.wth-740 {
+					max-width: 740px
 				}
 				@include media($mobile) {
 					width:100%!important
@@ -1429,6 +1429,7 @@ body {
 		}
 		a {
 			display: block;
+			height: 100%;
 			&:after {
 				display: none
 			}

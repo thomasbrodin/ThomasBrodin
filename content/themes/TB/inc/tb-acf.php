@@ -82,7 +82,7 @@ acf_add_local_field_group(array (
 				'LWidth' => 'Large size - Width 450',
 				'XLWidth' => 'X-Large size - Width 520',
 				'XXLWidth' => 'XX-Large size - Width 600',
-				'XXXLWidth' => 'XXX-Large size - Width 900',
+				'XXXLWidth' => 'XXX-Large size - Width 740',
 			),
 			'default_value' => array (
 				'Plain' => 'Plain',
