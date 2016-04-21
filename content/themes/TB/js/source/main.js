@@ -23,8 +23,6 @@ jQuery(document).ready(function($) {
 /* ============================================================= LOADING */
 
 	if ( $(".home").length ) {
-		$('.loading').hide().delay(1500).fadeIn();
-		$('.subliminal').fadeIn(300).delay(1500).fadeOut(500);
 		$('#feature').fullpage({
 			verticalCentered: false,
 			scrollingSpeed: 700,
@@ -35,10 +33,13 @@ jQuery(document).ready(function($) {
 			afterRender: function(){
 				var string = document.referrer;
 				if (string.indexOf(location.hostname) > 0){
-			      // the page was opened in a new window or tab and accessed directly
 						$('.intro').hide();
+						$('.loading').hide().delay(700).fadeIn();
+						$('.subliminal').fadeIn(300).delay(700).fadeOut(500);
 						$('.T-landing').fadeIn(500);
 			  } else if (string.indexOf(location.hostname) == -1) {
+					 $('.loading').hide().delay(1500).fadeIn();
+					 $('.subliminal').fadeIn(300).delay(1500).fadeOut(500);
 					 $('.intro').delay(1500).fadeIn();
 					 $("header").addClass('white');
 					 setTimeout(function(){
