@@ -33,30 +33,36 @@ jQuery(document).ready(function($) {
 			responsiveWidth: 768,
 			responsiveHeight: 0,
 			afterRender: function(){
-				$('.intro').delay(1500).fadeIn();
-				$("header").addClass('white');
-				setTimeout(function(){
-					var str = "is a creative developer based in New York. ",
-								i = 0,
-								isTag,
-								text;
-					(function type() {
-							text = str.slice(0, ++i);
-							if (text === str) return;
-							document.getElementById('typewriter').innerHTML = text;
-							var char = text.slice(-1);
-							if( char === '<' ) isTag = true;
-							if( char === '>' ) isTag = false;
-							if (isTag) return type();
-							setTimeout(type, 80);
-					}());
-				}, 2500);
-				setTimeout(function(){
-					$('.loading').addClass('close-splash');
-					$('.T-landing').delay(800).fadeIn(500);
-					$("header").removeClass('white');
-				}, 6000);
-
+				var string = document.referrer;
+				if (string.indexOf(location.hostname) > 0){
+			      // the page was opened in a new window or tab and accessed directly
+						$('.intro').hide();
+						$('.T-landing').fadeIn(500);
+			  } else if (string.indexOf(location.hostname) == -1) {
+					 $('.intro').delay(1500).fadeIn();
+					 $("header").addClass('white');
+					 setTimeout(function(){
+						 var str = "is a creative developer based in New York. ",
+									 i = 0,
+									 isTag,
+									 text;
+						 (function type() {
+								 text = str.slice(0, ++i);
+								 if (text === str) return;
+								 document.getElementById('typewriter').innerHTML = text;
+								 var char = text.slice(-1);
+								 if( char === '<' ) isTag = true;
+								 if( char === '>' ) isTag = false;
+								 if (isTag) return type();
+								 setTimeout(type, 80);
+						 }());
+					 }, 2500);
+					 setTimeout(function(){
+						 $('.loading').addClass('close-splash');
+						 $('.T-landing').delay(800).fadeIn(500);
+						 $("header").removeClass('white');
+					 }, 6000);
+			   }
 			},
 			afterLoad: function (anchorLink, index){
 				$( "section.active .inner" ).addClass('show');
