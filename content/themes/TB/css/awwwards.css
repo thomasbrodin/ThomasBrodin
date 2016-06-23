@@ -104,7 +104,7 @@
 	#awwwards.honorable.silver.right a{
 		background-image: url(ribbons/awwwards_honorable_silver_left.png)!important;
 	}
-	body.home.fp-responsive .section {
-		padding-top:150px!important
+	body.home.fp-responsive #feature section:nth-child(2) {
+		padding-top:210px!important
 	}
 }

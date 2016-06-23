@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 					 $('.intro').delay(1500).fadeIn();
 					 $("header").addClass('white');
 					 setTimeout(function(){
-						 var str = "is a creative developer based in New York. ",
+						 var str = "is a Digital Art Director based in New York. ",
 									 i = 0,
 									 isTag,
 									 text;
@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
 								 if (isTag) return type();
 								 setTimeout(type, 80);
 						 }());
-					 }, 2500);
+					 }, 2600);
 					 setTimeout(function(){
 						 $('.loading').addClass('close-splash');
 						 $('.T-landing').delay(800).fadeIn(500);
