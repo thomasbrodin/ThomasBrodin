@@ -41,7 +41,7 @@ function hex_cpt() {
   * Projects post type
   */
   $labels  = array(
-            'name' => 'Creative Direction',
+            'name' => 'Art Direction',
             'singular_name' => 'Project',
             'add_new' => 'Add New Project',
             'add_new_item' => 'Add New Project',
@@ -68,7 +68,7 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'creative-direction'),
+        'rewrite' => array( 'slug' => 'art-direction'),
       );
   register_post_type( 'creative-direction', $args);
 }

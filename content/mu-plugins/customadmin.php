@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: HEX Custom admin UI 
+Plugin Name: HEX Custom admin UI
 Description: Customisation of WP admin UI
 Author: HEX creative
 Author URI: http://www.hexcreativenetwork.com
@@ -14,14 +14,14 @@ add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets');
 
 function remove_admin_bar_links() {
     global $wp_admin_bar;
-    $wp_admin_bar->remove_menu('wp-logo');          
-    $wp_admin_bar->remove_menu('about');           
-    $wp_admin_bar->remove_menu('wporg');           
-    $wp_admin_bar->remove_menu('documentation');    
-    $wp_admin_bar->remove_menu('support-forums');   
-    $wp_admin_bar->remove_menu('feedback');             
-    $wp_admin_bar->remove_menu('updates');         
-    $wp_admin_bar->remove_menu('comments');         
+    $wp_admin_bar->remove_menu('wp-logo');
+    $wp_admin_bar->remove_menu('about');
+    $wp_admin_bar->remove_menu('wporg');
+    $wp_admin_bar->remove_menu('documentation');
+    $wp_admin_bar->remove_menu('support-forums');
+    $wp_admin_bar->remove_menu('feedback');
+    $wp_admin_bar->remove_menu('updates');
+    $wp_admin_bar->remove_menu('comments');
     $wp_admin_bar->remove_node( 'new-link','new-content' );
     $wp_admin_bar->remove_node( 'new-media','new-content' );
     $wp_admin_bar->remove_node( 'new-produits','new-content');
@@ -31,10 +31,10 @@ function remove_admin_bar_links() {
 function remove_menus() {
     global $wp_admin_bar, $current_user;
     remove_menu_page('index.php'); //Dashboard
-    remove_menu_page('edit-comments.php');     
+    remove_menu_page('edit-comments.php');
     remove_submenu_page( 'themes.php', 'timber-getting-started');
     remove_submenu_page( 'themes.php', 'theme-editor.php');
-     
+
 }
 
 function remove_dashboard_widgets()
@@ -44,7 +44,7 @@ function remove_dashboard_widgets()
     remove_meta_box('dashboard_activity', 'dashboard', 'normal');
 
   }
-    
+
 /**
  * Adds admin bar items for easy access to the theme creator and editor
  */
@@ -54,9 +54,9 @@ function photo_admin_bar_render() {
     hex_add_admin_bar('Add new', '/wp/wp-admin/post-new.php?post_type=photography', 'Photography');
 }
 function project_admin_bar_render() {
-    hex_add_admin_bar('Creative Direction'); // Parent item
-    hex_add_admin_bar('All Projects', '/wp/wp-admin/edit.php?post_type=creative-direction', 'Creative Direction');
-    hex_add_admin_bar('Add new project', '/wp/wp-admin/post-new.php?post_type=creative-direction', 'Creative Direction');
+    hex_add_admin_bar('Art Direction'); // Parent item
+    hex_add_admin_bar('All Projects', '/wp/wp-admin/edit.php?post_type=creative-direction', 'Art Direction');
+    hex_add_admin_bar('Add new project', '/wp/wp-admin/post-new.php?post_type=creative-direction', 'Art Direction');
 }
 
 function hex_add_admin_bar($name, $href = '', $parent = '', $custom_meta = array()) {
