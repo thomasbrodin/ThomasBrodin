@@ -32,14 +32,14 @@
       <meta property="og:title" content="{% if wp_title %}{{ site.name }} - {{ wp_title }}{% else %}{{ site.name }}{% endif %}" />
       <meta property="og:description" content="{{site.description}}" />
       <meta property="og:url" content="{{ site.url }}/{% if cpt %}{{cpt}}/{% endif %}{% if post %}{{post.post_type}}/{{post.slug}}/{% endif %}" />
-      <meta property="og:image" content="{% if post.thumbnail %}{{ post.thumbnail.src}}{% else %}{{theme.uri}}/img/bg2.jpg{% endif %}" />
+      <meta property="og:image" content="{% if post.thumbnail %}{{ post.thumbnail.src}}{% else %}{{theme.uri}}/app/img/bg2.jpg{% endif %}" />
       <meta property="og:site_name" content="{{ site.name }}" />
       <meta name="p:domain_verify" content="55969a9f0b0fbf6b9018036815433da2"/>
       <!-- Icons -->
-      <link rel="apple-touch-icon-precomposed" href="{{theme.uri}}/img/apple-touch-icon.png">
-      <link rel="apple-touch-icon" href="{{theme.uri}}/icon.png"/>
+      <link rel="apple-touch-icon-precomposed" href="{{theme.uri}}/app/img/apple-touch-icon.png">
+      <link rel="apple-touch-icon" href="{{theme.uri}}/app/icon.png"/>
       <link rel="icon" href="{{theme.uri}}/favicon.ico" />
-      <link type="text/css" media="screen" rel="stylesheet" href="{{theme.uri}}/css/awwwards.css" />
+      <link type="text/css" media="screen" rel="stylesheet" href="{{theme.uri}}/app/css/awwwards.css" />
   	  {{function('wp_head')}}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

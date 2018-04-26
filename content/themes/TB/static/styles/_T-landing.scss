@@ -1,0 +1,94 @@
+.loader {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
+	z-index: 9999;
+	background-color: #f9f9f9;
+	border:12px solid #fff;
+}
+
+.subliminal {
+	background-repeat: no-repeat;
+	background-position:top center;
+	background-size: cover;
+  color: #fff;
+  border: 12px solid white;
+  height:100%;
+  width: 100%;
+  position: fixed;
+  z-index:999;
+  top:0;
+  left:0;
+	background-image: url("../img/bg2.jpg");
+	display: none;
+}
+
+// #loading-T {
+// 	display: block;
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	height: 100%;
+// 	width: 100%;
+// }
+.loading{
+	display: none
+}
+.intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
+		.bg-intro {
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    height: 100%;
+	    background-color: black!important;
+	    opacity: 1;
+		}
+}
+.close-splash .intro {
+    transition:transform 750ms ease-in, opacity 750ms ease-in, visibility 0s linear 750ms;
+    transform:translateY(-720px);
+    opacity: 0;
+    visibility: collapse;
+}
+
+/* tb-words */
+.tb-words {
+	display:none
+}
+.home .tb-words {
+	display: inline-block;
+	position: relative;
+	padding: 106px 29px 90px;
+	@include media(min-width 768px) {
+		padding:140px 16em 100px 59px;
+	}
+}
+.words-wrapper {
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	vertical-align: top;
+	overflow: hidden;
+	font-family: 'Apercu';
+	text-transform: uppercase;
+	font-size: 3em;
+	color:white;
+	@include media($mobile) {
+		font-size: 2em;
+	}
+	p {
+		padding-right:5px;
+	}
+}
