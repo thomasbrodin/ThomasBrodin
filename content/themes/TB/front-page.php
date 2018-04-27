@@ -15,23 +15,23 @@
 	$context = Timber::get_context();
 	$post = new TimberPost();
 	$context['post'] = $post;
-	// // Query Featured
-	// $args = array(
-	// 	'post_type' => array('photography', 'creative-direction'),
-	// 	'numberposts' => -1,
-	// 	'post_status' => 'publish',
-  //       'orderby' => 'menu_order',
-	// 	'order'         => 'ASC',
-	// 	'suppress_filters' => false,
-	// 	'tax_query' => array(
-  //           array(
-  //               'taxonomy' => 'tb_tag',
-  //               'field' => 'slug',
-  //               'terms' => 'featured',
-  //               'operator' => 'IN'
-  //           )
-  //       )
-	// );
-	// $context['posts'] = Timber::get_posts($args);
+	// Query Featured
+	$args = array(
+		'post_type' => array('creative-direction'),
+		'numberposts' => -1,
+		'post_status' => 'publish',
+        'orderby' => 'menu_order',
+		'order'         => 'ASC',
+		'suppress_filters' => false,
+		'tax_query' => array(
+            array(
+                'taxonomy' => 'tb_tag',
+                'field' => 'slug',
+                'terms' => 'featured',
+                'operator' => 'IN'
+            )
+        )
+	);
+	$context['posts'] = Timber::get_posts($args);
 
 	Timber::render('front-page.twig', $context);

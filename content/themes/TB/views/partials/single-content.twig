@@ -4,7 +4,7 @@
 
 	{% if tb.acf_fc_layout == 'full_width_center_image' %}
 
-		<section class="section">
+		<section class="section{% if loop.last %} last{% endif %}">
 			<div class="inner">
 				<div class="middle {{tb.format}}">
 	    			 <img class="slides{% if tb.caption %} captioned{% endif %}" src="{{TimberImage(tb.large_image).src}}" alt="{{site.name}} - {{post.title}}" />
@@ -14,7 +14,7 @@
 		</section><!-- section -->
 	{% elseif tb.acf_fc_layout == 'video' %}
 
-		<section class="section video-section">
+		<section class="section video-section{% if loop.last %} last{% endif %}">
 			<div class="inner">
 				<div class="middle">
 					<div class="video">
@@ -35,7 +35,7 @@
 
 	{% elseif tb.acf_fc_layout == 'background_image' %}
 
-		<section class="section" id="full-bg" data-color="{{tb.color_capt}}" style="background-image: url('{{TimberImage(tb.bg_image).src}}');">
+		<section class="section{% if loop.last %} last{% endif %}" id="full-bg" data-color="{{tb.color_capt}}" style="background-image: url('{{TimberImage(tb.bg_image).src}}');">
 			<div class="inner">
 				<div class="middle">
 					{% if tb.lg_caption %}<h1 style="color:{{tb.color_capt}}">{{ tb.lg_caption }}</h1>{% endif %}
@@ -56,7 +56,7 @@
 
 	{% elseif tb.acf_fc_layout == 'row_img' %}
 
-		<section class="section">
+		<section class="section{% if loop.last %} last{% endif %}">
 				{% set columns_img = tb.col_img %}
     			<div class="inner">
     				<div class="middle thumbs">
@@ -88,7 +88,7 @@
 	{% elseif tb.acf_fc_layout == 'description' %}
 
 		{% set columns_text = tb.columns_text %}
-		<section class="section">
+		<section class="section{% if loop.last %} last{% endif %}">
 			<div class="inner">
 				<div class="middle description">
 					<div class="row">
@@ -107,11 +107,6 @@
 			</div>
 		</section><!-- section -->
 
-	{% endif %}
-
-	{% if loop.last %}
-		<section class="section spacer">
-		</section>
 	{% endif %}
 
 {% endfor %}

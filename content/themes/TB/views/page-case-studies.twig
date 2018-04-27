@@ -1,0 +1,73 @@
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+    <body class="{{body_class}}" data-source="base.twig">
+
+        <div class="large-bd to-top"></div>
+        <div class="large-bd to-right"></div>
+        <div class="large-bd to-bottom"></div>
+        <div class="large-bd to-left"></div>
+        <!-- borders-->
+
+        <div class="loading show-splash">
+
+          {% include 'partials/header.twig' %}
+          <section class="intro">
+            <div class="bg-intro"></div>
+            <div class="tb-words type">
+              <div class="words-wrapper waiting">
+                <p>Thomas brodin <span id="typewriter"></span></p>
+              </div>
+            </div>
+          </section>
+
+	        <div id="case-studies">
+
+            <div id="awwwards" class="honorable silver right">
+              <a href="http://www.awwwards.com/sites/thomas-brodin-portfolio" target="_blank">Awwwards</a>
+            </div>
+
+            {% for tb in post.get_field('home') %}
+              <section class="section featured">
+          			<div class="inner">
+          				<div class="middle">
+                    <div class="wrapper-img">
+                        <span class="featured-title back" style="color:{{tb.txt_col_back}}">
+                          <a style="color:{{tb.txt_col_back}}" href="{{tb.home_link}}"><h2>{{tb.home_title }}</h2></a>
+                          <div class="infos">
+                            <span class="dash" style="border-color:{{tb.txt_col_back}}"></span>
+                            <span class="caption">
+                              <a style="color:{{tb.txt_col_back}}" href="{{tb.home_link}}">{{ tb.home_capt }}</a>
+                            </span>
+                          </div>
+                        </span>
+                        <div class="block-img">
+                          <a href="{{tb.home_link}}">
+                            <img src="{{TimberImage(tb.home_img).src}}" alt="{{site.name}} - {{post.title}}" />
+                          </a>
+                         <span class="featured-title front" style="color:{{tb.txt_col_front}}">
+                           <a style="color:{{tb.txt_col_front}}" href="{{tb.home_link}}"><h2>{{tb.home_title }}</h2></a>
+                           <div class="infos">
+                               <span class="dash" style="border-color:{{tb.txt_col_front}}"></span>
+                               <span class="caption">
+                                 <a style="color:{{tb.txt_col_front}}!important" href="{{tb.home_link}}">{{ tb.home_capt }}</a>
+                               </span>
+                           </div>
+                         </span>
+                      </div>
+                    </div>
+          	    	</div>
+          	    </div>
+          		</section><!-- section -->
+            {% endfor %}
+
+				  </div><!-- #wrap -->
+
+	        {% include 'partials/footer.twig' %}
+    	</div>
+
+      <div class="subliminal"></div>
+
+    </body>
+</html>

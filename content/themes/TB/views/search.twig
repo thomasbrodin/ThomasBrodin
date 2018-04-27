@@ -1,7 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	
+
 	{% if posts %}
 		<section id="wall" role="main" class="clearfix">
 			{% for post in posts %}
@@ -10,9 +10,8 @@
 		</section><!-- #wall -->
 	{% else %}
 		<h1 class="oops">No Results</h1>
-			<h2 class="oops">Try another Search<br> 
-			Or take a look at <a href="/" rel="home">Our Selected Work</a></h2>
+			<h2 class="oops">Try another Search<br>
+			Or why don't you take a look at our <a href="/" rel="home">work selection.</a></h2>
 	{% endif %}
 
 {% endblock %}
-
