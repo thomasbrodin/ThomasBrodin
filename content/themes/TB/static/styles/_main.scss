@@ -728,13 +728,13 @@ h2.oops{
 	animation-fill-mode:forwards;
 	animation-delay:0.2s;
 }
-.photography .article_overlay {
-	color: #fff;
-	background-color:$primary-blue;
-}
-.creative-direction .article_overlay {
+.Advertising .article_overlay, .Editorial .article_overlay {
 	color: #fff;
 	background-color:$primary-green;
+}
+.Branding .article_overlay, .Digital .article_overlay	{
+	color: #fff;
+	background-color:$primary-blue;
 }
 
 
@@ -1615,10 +1615,10 @@ footer {
 	}
 }
 
-#cat_title h1.creative-direction {
+#cat_title h1.Advertising , #cat_title h1.Editorial {
 	color:$primary-green;
 }
-#cat_title h1.photography {
+#cat_title h1.Digital, #cat_title h1.Branding {
 	color:$primary-blue;
 }
 

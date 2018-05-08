@@ -1,7 +1,7 @@
 
 {% set th_padding = post.thumb_pad|join(' ') %}
 
-<article class="{{ post.post_type }}{% if th_padding %} {{ th_padding }}{% endif %}" id="project-{{post.ID}}">
+<article class="{{ post.terms('project_category') | join(' ') }}{% if th_padding %} {{ th_padding }}{% endif %}" id="project-{{post.ID}}">
 	{% block content %}
 
 		{% if post.get_thumbnail %}
@@ -14,19 +14,11 @@
 							<h6>{{ post.ref_hover }}</h6>
 							<h2>{{ post.title }}</h2>
 						</div>
-						{% if post.post_type == 'photography' %}
-							<ul>
-								{% for term in post.get_terms('photo_category') %}
-									<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
-								{% endfor %}
-							</ul>
-						{% elseif post.post_type == 'creative-direction' %}
 							<ul>
 								{% for term in post.get_terms('project_category') %}
 									<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
 								{% endfor %}
 							</ul>
-						{% endif %}
 					</div>
 				</div><!-- .article_overlay -->
 

@@ -13,35 +13,10 @@ add_action( 'init','maybe_rewrite_rules' );
 
 function hex_cpt() {
   /**
-  * Photography post type
-  */
-  $labels  = array(
-            'name' => 'Photography',
-            'singular_name' => 'Photography',
-            'add_new' => __( 'Add New' ),
-            'add_new_item' => __( 'Add New' ),
-            );
-  $args = array(
-        'labels' => $labels,
-        'description' => 'Thomas Brodin Photography Portfolio',
-        'menu_icon'=> 'dashicons-portfolio',
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => true,
-        'show_in_admin_bar' => true,
-        'menu_position' => 0,
-        'has_archive' => true,
-        'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'photography'),
-      );
-  register_post_type( 'photography', $args);
-  /**
   * Projects post type
   */
   $labels  = array(
-            'name' => 'Art Direction',
+            'name' => 'Portfolio',
             'singular_name' => 'Project',
             'add_new' => 'Add New Project',
             'add_new_item' => 'Add New Project',
@@ -53,11 +28,11 @@ function hex_cpt() {
             'not_found' =>  'No projects found',
             'not_found_in_trash' => 'No projects found in Trash',
             'parent_item_colon' => '',
-            'menu_name' => 'Art Direction'
+            'menu_name' => 'Portfolio'
             );
   $args = array(
         'labels' => $labels,
-        'description' => 'Thomas Brodin Creative Direction Portfolio',
+        'description' => 'Thomas Brodin Portfolio',
         'menu_icon'=> 'dashicons-portfolio',
         'public' => true,
         'publicly_queryable' => true,
@@ -68,26 +43,15 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'art-direction'),
+        'rewrite' => array( 'slug' => 'portfolio'),
       );
-  register_post_type( 'creative-direction', $args);
+  register_post_type( 'portfolio', $args);
 }
 
 function portfolio_taxonomies() {
   register_taxonomy(
-    'photo_category',
-    'photography',
-      array(
-          'hierarchical' => true,
-          'label' => 'Photo Category',
-          'show_admin_column' => true,
-          'query_var' => true,
-          'rewrite' => array('slug' => 'photo')
-      )
-    );
-  register_taxonomy(
     'project_category',
-    'creative-direction',
+    'portfolio',
       array(
           'hierarchical' => true,
           'label' => 'Project Category',
@@ -98,7 +62,7 @@ function portfolio_taxonomies() {
     );
   register_taxonomy(
     'tb_tag',
-    array('photography','creative-direction'),
+    array('portfolio'),
       array(
           'hierarchical' => false,
           'label' => 'Tags',

@@ -29,3 +29,7 @@
 /content/plugins
 /content/themes/twentyseventeen
 /content/themes/TB/config.codekit3
+.htaccess
+ThomasBrodin-before_CPT_update.sql
+thomasbrodin_com_2.sql
+wp-config.php

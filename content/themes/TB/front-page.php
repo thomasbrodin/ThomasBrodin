@@ -17,10 +17,10 @@
 	$context['post'] = $post;
 	// Query Featured
 	$args = array(
-		'post_type' => array('creative-direction'),
+		'post_type' => array('portfolio'),
 		'numberposts' => -1,
 		'post_status' => 'publish',
-        'orderby' => 'menu_order',
+    'orderby' => 'menu_order',
 		'order'         => 'ASC',
 		'suppress_filters' => false,
 		'tax_query' => array(
