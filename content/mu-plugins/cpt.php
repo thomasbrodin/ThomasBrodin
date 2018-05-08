@@ -43,7 +43,7 @@ function hex_cpt() {
         'menu_position' => 0,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
-        'rewrite' => array( 'slug' => 'portfolio'),
+        'rewrite' => array( 'slug' => 'work'),
       );
   register_post_type( 'portfolio', $args);
 }

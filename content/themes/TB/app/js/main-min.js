@@ -80,48 +80,6 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 
-(function() {
-	var triggerBttn = document.getElementById( 'trigger-overlay' ),
-		overlay = document.querySelector( 'div.overlay' ),
-		transEndEventNames = {
-			'WebkitTransition': 'webkitTransitionEnd',
-			'MozTransition': 'transitionend',
-			'OTransition': 'oTransitionEnd',
-			'msTransition': 'MSTransitionEnd',
-			'transition': 'transitionend'
-		},
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-		support = { transitions : Modernizr.csstransitions };
-
-	function toggleOverlay() {
-		if( classie.has( overlay, 'open' ) ) {
-			classie.remove(triggerBttn, 'clicked' );
-			classie.remove( overlay, 'open' );
-			classie.add( overlay, 'close' );
-			var onEndTransitionFn = function( ev ) {
-				if( support.transitions ) {
-					if( ev.propertyName !== 'visibility' ) return;
-					this.removeEventListener( transEndEventName, onEndTransitionFn );
-				}
-				classie.remove( overlay, 'close' );
-			};
-			if( support.transitions ) {
-				overlay.addEventListener( transEndEventName, onEndTransitionFn );
-			}
-			else {
-				onEndTransitionFn();
-			}
-		}
-		else if( !classie.has( overlay, 'close' ) ) {
-			classie.add( overlay, 'open' );
-			classie.add( triggerBttn, 'clicked' );
-		}
-	}
-
-	triggerBttn.addEventListener( 'click', toggleOverlay );
-})();
-
-
 ;( function( window ) {
 	
 	'use strict';
@@ -25552,18 +25510,6 @@ module.exports = exports['default'];
 				$('#wall article').addClass('placed');
 			});
 		}
-		// Nav About
-		$( "#trigger-overlay" ).click(function() {
-			if ($('body').hasClass('page-template-page-about')) {
-				if (!$('#main-nav-content').hasClass('open')){
-					$("header").addClass('white');
-					$("footer").addClass('off');
-				} else {
-					$("header").removeClass('white');
-					$('footer').removeClass('off');
-				}
-			}
-		});
 
 		// single
 		if ($("#single").length){
@@ -25631,17 +25577,7 @@ module.exports = exports['default'];
 						}
 				}
 			});
-			// Nav Single
-			$( "#trigger-overlay").click(function() {
-				var headerColor = $('#full-bg').data('color');
-				if (!$('#main-nav-content').hasClass('open')){
-					$("header, footer").addClass(headerColor);
-					$('#arrow-up').removeClass('off');
-				} else {
-					$("header, footer").removeClass(headerColor);
-					$('#arrow-up').addClass('off');
-				}
-			});
+
 			// Footer Single
 			$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
