@@ -22,7 +22,7 @@ if (!empty($terms)) {
 										return $item->slug;
 								}, $terms);
 	$related_posts = new WP_Query(array(
-			'post_type' => array('photography', 'creative-direction'),
+			'post_type' => array('portfolio'),
 			'posts_per_page' => 4,
 			'post_status' => 'publish',
 			'orderby' => 'menu_order',

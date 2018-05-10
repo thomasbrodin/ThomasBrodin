@@ -11,24 +11,15 @@
 
                 <div id="nav-icons">
 
-                  <nav>
-                      <ul id="menu-main-nav" class="nav">
-                      {% for item in menu.get_items %}
-                          <li class="nav-main-item{{item.current ? ' active'}}{% if cpt_current == item.title %} active{% endif %}">
-                              <h6>{{ item.description }}</h6>
-                              <h1><a href="{{item.get_path}}">{{item.title}}</a></h1>
-                          </li>
-                      {% endfor %}
-                      </ul>
-                  </nav>
-
-                    <div id="sb-search" class="sb-search">
-                        <form class="search" action="{{site.url}}" method="get" role="search">
-                            <input type="text" name="s" class="sb-search-input" type="text" value="" placeholder="What are you looking for?" id="search">
-                            <input class="sb-search-submit" type="submit" value="">
-                            <span class="sb-icon-search"></span>
-                         </form>
-                    </div><!-- search-->
+                    <nav class="menu">
+                        <ul id="menu-main-nav" class="nav">
+                        {% for item in menu.get_items %}
+                            <li class="nav-main-item{{item.current ? ' active'}}{% if cpt_current == item.title %} active{% endif %}">
+                                <a class="nav" href="{{item.get_path}}">{{item.title}}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </nav>
 
                 </div><!-- nav-icons-->
 

@@ -13,6 +13,7 @@
         <div class="loading show-splash">
 
           {% include 'partials/header.twig' %}
+
           <section class="intro">
             <div class="bg-intro"></div>
             <div class="tb-words type">
@@ -22,13 +23,17 @@
             </div>
           </section>
 
-          <section id="wall" role="main" class="T-landing featured clearfix">
-        		{% for post in posts %}
-        			{% include 'partials/article-portfolio.twig' %}
-        		{% endfor %}
-        	</section><!-- #wall -->
+          <div class="wrap">
+
+            <section id="wall" role="main" class="T-landing featured clearfix">
+          		{% for post in posts %}
+          			{% include 'partials/article-portfolio.twig' %}
+          		{% endfor %}
+          	</section><!-- #wall -->
+          </div><!-- #wrap -->
 
           {% include 'partials/footer.twig' %}
+
         </div>
 
       <div class="subliminal"></div>

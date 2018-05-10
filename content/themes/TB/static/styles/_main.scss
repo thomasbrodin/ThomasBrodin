@@ -10,7 +10,6 @@
 @import "grid-settings";
 @import "neat-1.9/neat";
 @import "fonts";
-@import "overlay";
 @import "T-Landing";
 @import "search";
 @import "fullPage";
@@ -39,7 +38,7 @@ a {
 	overflow: hidden;
 	transition:all .25s cubic-bezier(.39,.575,.565,1);
 }
-a:after {
+a:not(.nav):after {
 	content: "";
 		display: block;
 		position: absolute;
@@ -70,7 +69,7 @@ a:focus {
 	padding:105px 21px;
 	@include media(min-width 768px) {
 			 padding:135px 58px 68px;
-		}
+	}
 }
 #wall {
 	position: relative;
@@ -162,10 +161,10 @@ a:focus {
 	padding: 0px 2px 0;
 	border-bottom: 1px solid #000;
 	@include media(min-width 768px) {
-				padding: 12px 12px 0;
+			padding: 12px 12px 0;
 			border-bottom:none
 		}
-		@include media (min-width 321px orientation landscape) {
+	@include media (min-width 321px orientation landscape) {
 			 border:none
 	}
 }
@@ -175,12 +174,13 @@ a:focus {
 	float: left;
 	position: relative;
 	min-height: 1px;
-	width: 48%;
+	width: 33%;
 	margin-right:2%;
 	padding:5px 0px 6px 2px;
 	@include media(min-width 768px) {
-				padding:22px 0 0 28px;
-		}
+			padding:22px 0 0 28px;
+	}
+
 	a {
 			height:70px;
 			width:70px;
@@ -203,72 +203,77 @@ a:focus {
 #nav-icons {
 	float: left;
 	display: block;
-	width: 48%;
+	width: 63%;
 	margin-left:2%;
-	padding:19px 18px 0;
+	padding:13px 18px 0;
 	@include media(min-width 768px) {
-				padding:32px 47px 0;
-		}
+		padding:32px 47px 0;
+	}
 }
 
-/* overlay button */
-#trigger-overlay {
+/* NAV */
+nav.menu{
 	position:relative;
 	float:right;
 	z-index: 1000;
-	width: 24px;
-	height: 40px;
-	z-index: 1000;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	transition:all 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+	ul {
+		list-style: none;
+    padding-left: 0;
+		margin:20px 0 0 0;
+		li {
+			display: inline-block;
+			a.nav {
+				font-size: 1.2em;
+    		line-height: 1.2em;
+				&:before {
+				    background-color: black;
+				    content: "";
+				    height: 2px;
+				    left: 0;
+				    position: absolute;
+				    top: 50%;
+				    transition: width .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+				    width: 0;
+				}
+			}
+			&:first-child:after {
+				background-color: black;
+				content: "";
+				display: inline-block;
+				position: relative;
+				height: 1px;
+				margin: 0 .625rem;
+				vertical-align: middle;
+				width: 2.5rem;
+				transition: width .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+				&:hover {
+					content: none;
+					bottom: 0
+				}
+			}
+			&:last-child {
+				margin-right: .625rem
+			}
+			&:hover a.nav:before {
+				width: 100%;
+			}
+		}
+	}
 }
 
-#trigger-overlay i{
-	display:block;
-	width: 24px;
-	height: 2px;
-	margin: 18px 0;
-	background: #232323;
-	transition:all 0.3s ease-out;
+header.white polygon#black{
+	fill: #fff;
+	@include media($mobile) {
+			fill: black!important
+	}
+}
+header.white path {
+	stroke:#fff;
+	@include media($mobile) {
+			fill: black!important
+	}
 }
 
-#trigger-overlay i:before,
-#trigger-overlay i:after {
-	content: '';
-	display: block;
-	width: 24px;
-	height: 2px;
-	background: #232323;
-	position: absolute;
-	z-index: -1;
-	transition:all 0.3s ease-out;
-}
-
-#trigger-overlay i:before{
-	top: 11px;
-}
-
-#trigger-overlay i:after{
-	top: 25px;
-}
-#trigger-overlay.clicked i {
-	background: none !important;
-}
-#trigger-overlay.clicked i:before{
-	top: 18px!important;
-	transform:rotate(-45deg);
-}
-#trigger-overlay.clicked i:after{
-	top: 18px !important;
-	transform:rotate(45deg);
-}
-header.white #trigger-overlay i,
-header.white #trigger-overlay i:before,
-header.white #trigger-overlay i:after {
-	background:#fff
-}
 
 /* PAGE
 -------------------------------------------------- */
@@ -339,21 +344,31 @@ header.white #trigger-overlay i:after {
 	}
 }
 
-header.white polygon#black{
-	fill: #fff;
+.page-template-page-about {
+	header.white polygon#black {
+		@include media($mobile) {
+				fill: white!important
+		}
+	}
+	header.white path {
+		@include media($mobile) {
+				fill: white!important
+		}
+	}
+	header.white {
+		@include media($mobile) {
+			border-bottom: 1px solid white!important
+		}
+	}
+	header.white nav.menu ul li{
+		a.nav{
+			color:white!important
+		}
+		&:after {
+			background-color: white!important
+		}
+	}
 }
-header.white path {
-	stroke:#fff
-}
-header.white .sb-icon-search {
-	background: url("../img/search-w.png") no-repeat center center;
-}
-header.white input[type="text"].sb-search-input:focus {
-	background-color: #fff!important;
-	color: #000!important;
-}
-
-
 
 /* Protected
 -------------------------------------------------- */
@@ -661,11 +676,12 @@ h2.oops{
 			h2 {
 				padding:0;
 				margin: 0;
-				text-transform: none
+				text-transform: none;
 			}
 			h6 {
-				font-size: 1em;
+				font-size: 0.9em;
 				margin:.3em 0 1.6em;
+				letter-spacing: 0.16em
 			}
 		}
 		ul {
@@ -676,10 +692,26 @@ h2.oops{
 				display: inline-block;
 				list-style: none;
 				padding-right:4px;
+				&:first-child:before {
+					background-color: white;
+					content: "";
+					display: inline-block;
+					position: relative;
+					height: 1px;
+					margin: 0 .625rem;
+					vertical-align: middle;
+					width: 2.5rem;
+					transition: width .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+					&:hover {
+						content: none;
+						bottom: 0
+					}
+				}
 				a {
 					color:white;
-					font-size: 1em;
+					font-size: 0.9em;
 					text-transform: uppercase;
+					letter-spacing: 0.16em;
 					&:after {
 						position: absolute;
 						top: 45%;
@@ -758,18 +790,22 @@ h2.oops{
 }
 .section {
 	@include outer-container();
-	&.featured {
-		max-width:960px!important;
-		@include media($mobile) {
-			margin-left:90px;
-		}
-		@include media($tablet) {
-			margin-left:145px;
-		}
+	&.featured, &.single {
+		// max-width:960px!important;Only for case studies
+		// @include media($mobile) {
+		// 	margin-left:90px;
+		// }
+		// @include media($tablet) {
+		// 	margin-left:145px;
+		// }
 		img {
+			position: relative;
+			display: block;
+			max-width: 100%;
 			margin:0 auto;
-			&:hover {
-				opacity: 0.6;
+			max-height:480px;
+			@include media($lg-screen) {
+				max-height:700px!important;
 			}
 		}
 		.wrapper-img {
@@ -777,54 +813,6 @@ h2.oops{
 			display: block;
 			margin:0 auto;
 			max-width:100%;
-			@include media(min-width 768px) {
-					max-width:390px;
-			}
-			@include media(min-width 1100px) {
-					max-width:550px;
-			}
-			@include media(min-width 1380px) {
-					max-width:740px;
-			}
-			@include media(max-width 400px) {
-					max-width:100%
-			}
-			@include media(min-width 320px max-width 736px orientation landscape) {
-					max-width:100%
-			}
-			.block-img {
-				position: relative;
-				overflow: hidden;
-				z-index:1;
-				max-height:100%;
-				@include media(min-width 768px) {
-						max-height:390px;
-				}
-				@include media(min-width 990px) {
-						max-height:420px;
-				}
-				@include media(min-width 1200px) {
-						max-height:490px;
-				}
-				@include media(min-width 1380px) {
-						max-height:670px;
-				}
-				@include media(min-width 1540px) {
-						max-height:700px;
-				}
-				@include media(min-width 1680px) {
-						 max-height:720px;
-				}
-				@include media(min-width 1800px) {
-						max-height:770px;
-				}
-				@include media(max-width 400px) {
-						max-height:100%
-				}
-				@include media(min-width 320px max-width 736px orientation landscape) {
-						max-height:100%
-				}
-			}
 		}
 		.featured-title {
 			position: absolute;
@@ -979,12 +967,6 @@ h2.oops{
 						margin:20px auto;
 					}
 				}
-				img {
-					max-height:480px;
-					@include media($lg-screen) {
-						max-height:700px!important;
-					}
-				}
 			}
 			&.description {
 				h1 {
@@ -1003,6 +985,9 @@ h2.oops{
 							width: 60%;
 							line-height: 1.5;
 							font-size: em(18);
+						}
+						@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+								width: 90%;
 						}
 						a {
 							font-weight:bold;
@@ -1049,13 +1034,9 @@ h2.oops{
 				img {
 					max-width: 100%;
 					height:auto;
-					max-height:480px!important;
 					margin:0 auto;
 					@include media($mobile) {
 						margin-top: 50px
-					}
-					@include media($lg-screen) {
-						max-height:700px!important;
 					}
 				}
 				p {
@@ -1169,6 +1150,12 @@ h2.oops{
 								margin:-4px;
 							}
 						}
+						.vjs-resize-manager {
+							@include media($mobile) {
+								display: none
+							}
+
+						}
 					}
 				}
 			}
@@ -1194,7 +1181,10 @@ h2.oops{
 							@include padding(0 0 21px 0);
 						}
 						img.slides {
-							margin-right: 0
+							margin-right: 0;
+							@include media($mobile) {
+								margin:0 auto!important
+							}
 						}
 					}
 				}
@@ -1209,7 +1199,10 @@ h2.oops{
 							@include padding(0 0 21px 0);
 						}
 						img.slides {
-							margin-left: 0
+							margin-left: 0;
+							@include media($mobile) {
+								margin:0 auto!important
+							}
 						}
 					}
 				}
@@ -1232,7 +1225,10 @@ h2.oops{
 							@include padding(0 0 21px 0);
 						}
 						img.slides {
-							margin-right: 0
+							margin-right: 0;
+							@include media($mobile) {
+								margin:0 auto!important
+							}
 						}
 					}
 				}
@@ -1244,23 +1240,12 @@ h2.oops{
 							@include padding(0 0 21px 0);
 						}
 						img.slides {
-							margin-left: 0
+							margin-left: 0;
+							@include media($mobile) {
+								margin:0 auto!important
+							}
 						}
 					}
-				}
-			}
-		}
-		img {
-			position: relative;
-			display: block;
-			width:auto;
-			max-width: 100%;
-			height:auto;
-			max-height: 70%;
-			transition:opacity 0.35s;
-			&.slides {
-				@include media($mobile) {
-					margin:0 auto!important
 				}
 			}
 		}

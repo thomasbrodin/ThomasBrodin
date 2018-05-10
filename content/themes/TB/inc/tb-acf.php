@@ -717,14 +717,7 @@ acf_add_local_field_group(array (
 			array (
 				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'photography',
-			),
-		),
-		array (
-			array (
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'creative-direction',
+				'value' => 'portfolio',
 			),
 		),
 	),
@@ -815,14 +808,7 @@ acf_add_local_field_group(array (
 			array (
 				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'photography',
-			),
-		),
-		array (
-			array (
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'creative-direction',
+				'value' => 'portfolio',
 			),
 		),
 	),
@@ -980,9 +966,9 @@ acf_add_local_field_group(array (
 	'location' => array (
 		array (
 			array (
-				'param' => 'page_type',
+				'param' => 'page_template',
 				'operator' => '==',
-				'value' => 'front_page',
+				'value' => 'page-case-studies.php',
 			),
 		),
 	),
@@ -999,7 +985,6 @@ acf_add_local_field_group(array (
 		4 => 'comments',
 		5 => 'author',
 		6 => 'format',
-		7 => 'page_attributes',
 		8 => 'featured_image',
 		9 => 'categories',
 		10 => 'tags',

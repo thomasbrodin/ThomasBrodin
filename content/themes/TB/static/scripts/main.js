@@ -1,5 +1,4 @@
 (function($) {
-	var templateUrl = script_vars.themeUrl;
 
 	jQuery(document).ready(function($) {
 
@@ -26,7 +25,7 @@
 
 
 		// FullPage home
-		if ( $(".featured").length ) {
+		if ( $(".home").length ) {
 			var string = document.referrer;
 			if (string.indexOf(location.hostname) > 0){
 					$('.intro').hide();
@@ -64,6 +63,7 @@
 			 }
 			// Case Studies
 		} else if ($('body').hasClass('page-template-page-case-studies')) {
+			console.log('case');
 			$('#case-studies').fullpage({
 				verticalCentered: false,
 				scrollingSpeed: 700,
@@ -73,6 +73,8 @@
 				responsiveHeight: 0,
 				afterRender: function(){
 					$('#loader').delay(800).fadeOut(300);
+					$('.loading').hide().delay(700).fadeIn();
+					$('.T-landing').fadeIn(500);
 				},
 				afterLoad: function (anchorLink, index){
 					$( "section.active .inner" ).addClass('show');
@@ -167,7 +169,6 @@
 							"controls": true,
 							"autoplay": false,
 							"preload" : "none",
-							"poster": templateUrl+"/app/img/video_poster.gif",
 		        });
 					});
 				},
@@ -207,8 +208,6 @@
 				});
 			}
 		}
-		// Search Expand
-		new UISearch( document.getElementById( 'sb-search' ) );
 
 		// Overlay thumbnails
 		$('.article_inner').bind('mouseenter',function() {
