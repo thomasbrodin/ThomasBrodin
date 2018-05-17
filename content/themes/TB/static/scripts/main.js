@@ -158,10 +158,6 @@
 				responsiveHeight: 0,
 				afterRender: function(){
 					$('#loader').delay(800).fadeOut(300);
-					var headerColor = $('#full-bg').data('color');
-					if ($('#full-bg').hasClass('active') ) {
-						$("header, footer, #arrow-up").addClass(headerColor);
-					}
 					$( "section.active .inner" ).delay(100).animate({"opacity":"1"},1000);
 					$('.video-section').each(function() {
 						var i = $(this).index() + 1;
@@ -191,11 +187,12 @@
 			// Footer Single
 			$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+					 console.log('bottom');
 					 $('#arrow-up').addClass('up');
 					 $("footer").addClass("white");
 			   } else {
+					 console.log('top');
 					 $('#arrow-up').removeClass('up');
-					 $("footer").removeClass("white");
 				 }
 			});
 			if ($('#arrow-up').length ) {

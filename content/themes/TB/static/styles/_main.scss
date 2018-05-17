@@ -274,6 +274,19 @@ header.white path {
 	}
 }
 
+header.white {
+	@include media($mobile) {
+		border-bottom: 1px solid white!important
+	}
+}
+header.white nav.menu ul li{
+	a.nav{
+		color:white!important
+	}
+	&:after {
+		background-color: white!important
+	}
+}
 
 /* PAGE
 -------------------------------------------------- */
@@ -344,31 +357,6 @@ header.white path {
 	}
 }
 
-.page-template-page-about {
-	header.white polygon#black {
-		@include media($mobile) {
-				fill: white!important
-		}
-	}
-	header.white path {
-		@include media($mobile) {
-				fill: white!important
-		}
-	}
-	header.white {
-		@include media($mobile) {
-			border-bottom: 1px solid white!important
-		}
-	}
-	header.white nav.menu ul li{
-		a.nav{
-			color:white!important
-		}
-		&:after {
-			background-color: white!important
-		}
-	}
-}
 
 /* Protected
 -------------------------------------------------- */
@@ -1347,10 +1335,10 @@ body {
 			position: fixed;
 		}
 		.inner {
-			padding: 0 21px 40px;
+			padding: 0 21px 60px;
 			@include outer-container();
 			@include media(min-width 768px) {
-				padding: 0 59px 40px;
+				padding: 0 59px 59px;
 			}
 			.row {
 				@include row;
@@ -1415,14 +1403,11 @@ body {
 				}
 
 				.related {
-					@include span-columns(12);
+					@include clearfix();
 					.related-thumb {
-						 @include span-columns(3 of 12);
-						 @include media($mobile) {
-							@include span-columns(6 of 12);
-							@include omega(3n);
-							margin-bottom: 2.35%
-						}
+						width:100%;
+						float: left;
+						margin-top: 1.25em
 					}
 				}
 			}
@@ -1430,7 +1415,7 @@ body {
 	article	figure {
 		position: relative;
 		margin: 0 auto;
-		height: 270px;
+		height: 350px;
 		overflow: hidden;
 		cursor: pointer;
 		background:transparent;
@@ -1456,19 +1441,25 @@ body {
 			text-align: left;
 			top: 0;
 			figcaption {
-				padding: 1em 2em;
-				display: inline-block;
-				vertical-align: middle;
-				backface-visibility:hidden;
+				backface-visibility: hidden;
+    		height: 100%;
+    		display: table;
+  		  width: 100%;
 				@include media($mobile) {
 					padding: 1em;
 				}
 				h5 {
 					color:#fff;
-					font-size: 2.1rem;
-					margin: .7em 0;
+					font-size: 2.5rem;
+					padding-bottom: 35px;
+					text-align: center;
+	    		display: table-cell;
+	    		vertical-align: middle;
 					@include media($mobile) {
-						font-size: 1em;
+						font-size: 1.5em;
+					}
+					@include media($tablet) {
+						font-size: 1.5em;
 					}
 				}
 			}
@@ -1478,12 +1469,13 @@ body {
 		text-align: center;
 		display: block;
 		&.copyright {
-			padding-top: 4px;
-			&.no-related {
-				padding-top:12em;
-				@include media($mobile) {
-					padding-top:30px
-				}
+	    position: absolute;
+	    width: 100%;
+	    bottom: 35px;
+	    left: 0;
+	    z-index: 9999;
+			@include media($tablet) {
+				bottom: 42px;
 			}
 		}
 	}
@@ -1491,6 +1483,9 @@ body {
 .cssanimations .related-thumb figure h5 {
 	opacity:0;
 	@include media($mobile) {
+		opacity: 1!important
+	}
+	@include media($tablet) {
 		opacity: 1!important
 	}
 }
@@ -1506,17 +1501,12 @@ body {
 
 .js .related-thumb figure {
 	animation-name:hue-rotation;
-	animation-duration:1s;
+	animation-duration:3s;
 	animation-timing-function:linear;
 	animation-delay:0ms;
 	animation-iteration-count:infinite!important;
 }
 
-@for $i from 1 through 4 {
-	.js .related article:nth-of-type(#{$i}) figure{
-		animation-delay:0.4s*$i;
-	}
-}
 /* FOOTER
 -------------------------------------------------- */
 footer {

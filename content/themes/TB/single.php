@@ -17,30 +17,6 @@ $context['wp_title'] = $post->title();
 $post_id = get_the_ID();
 $terms = wp_get_post_terms($post_id, 'tb_tag' );
 
-if (!empty($terms)) {
-	$terms_slugs = array_map(function($item) {
-										return $item->slug;
-								}, $terms);
-	$related_posts = new WP_Query(array(
-			'post_type' => array('portfolio'),
-			'posts_per_page' => 4,
-			'post_status' => 'publish',
-			'orderby' => 'menu_order',
-			'order'         => 'ASC',
-			'suppress_filters' => false,
-			'post__not_in' => array($post_id),
-			'tax_query' => array(
-					array(
-							'taxonomy' => 'tb_tag',
-							'field' => 'slug',
-							'terms' => $terms_slugs,
-							'operator' => 'IN'
-					)
-			)
-	));
-	$context['related'] = Timber::get_posts($related_posts);
-}
-
 if (post_password_required($post->ID)){
 	Timber::render('single-password.twig', $context);
 } else {

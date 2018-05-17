@@ -7,19 +7,11 @@
 
 				<div class="meta">
 					<h3>{{post.title}}</h3>
-					{% if post.post_type == 'photography' %}
-						<ul>
-							{% for term in post.terms('photo_category') %}
-								<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
-							{% endfor %}
-						</ul>
-					{% elseif post.post_type == 'creative-direction' %}
 						<ul>
 							{% for term in post.terms('project_category') %}
 								<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
 							{% endfor %}
 						</ul>
-					{% endif %}
 				</div>
 
 			</div>
@@ -41,35 +33,33 @@
 				</div>
 			</div>
 
-		{% if related %}
-
-			<div class="row">
-				<div class="related">
-					<div class="row">
-						<h4>More like this.</h4>
-						{% for post in related %}
-								<article class="related-thumb">
-									<figure>
-										<a href="{{post.link}}">
-											<div>
-												<figcaption>
-													<h5>{{ post.title}}</h5>
-												</figcaption>
-											 </div>
-										</a>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-
-				</div>
-			</div><!-- related -->
-
 			<span class="copyright">Copyright - {{"now"|date('Y')}}</span>
-		{% else %}
-			<span class="copyright no-related">Copyright - {{"now"|date('Y')}}</span>
-		{% endif %}
+
 	</div>
+	<div class="related">
+		<article class="related-thumb">
+			<figure>
+				{% if post.next %}
+					<a href="{{post.next.link}}">
+						<div>
+							<figcaption>
+								<h5>Next Project</h5>
+							</figcaption>
+						</div>
+					</a>
+				{% else %}
+					<a href="/">
+						<div>
+							<figcaption>
+								<h5>Thank you</h5>
+							</figcaption>
+						</div>
+					</a>
+				{% endif %}
+			</figure>
+		</article>
+	</div><!-- More -->
+
 </div><!-- single-footer -->
 
 <div id="arrow-up">
