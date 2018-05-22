@@ -14,8 +14,6 @@ $post = new TimberPost();
 $context['post'] = $post;
 $context['wp_title'] = $post->title();
 
-$post_id = get_the_ID();
-$terms = wp_get_post_terms($post_id, 'tb_tag' );
 
 if (post_password_required($post->ID)){
 	Timber::render('single-password.twig', $context);

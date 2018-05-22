@@ -270,21 +270,28 @@ header.white polygon#black{
 header.white path {
 	stroke:#fff;
 	@include media($mobile) {
-			fill: black!important
+			stroke: black!important
 	}
 }
 
 header.white {
 	@include media($mobile) {
-		border-bottom: 1px solid white!important
+		border-bottom: 1px solid black!important
 	}
 }
+
 header.white nav.menu ul li{
 	a.nav{
-		color:white!important
+		color:white!important;
+		@include media($mobile) {
+			color:black!important;
+		}
 	}
 	&:after {
-		background-color: white!important
+		background-color: white!important;
+		@include media($mobile) {
+			background-color:black!important;
+		}
 	}
 }
 
@@ -357,6 +364,36 @@ header.white nav.menu ul li{
 	}
 }
 
+.page-template-page-about {
+	header.white polygon#black{
+		@include media($mobile) {
+				fill: white!important
+		}
+	}
+	header.white path {
+		stroke:#fff;
+		@include media($mobile) {
+			stroke: white!important
+		}
+	}
+	header.white nav.menu ul li{
+		a.nav{
+			@include media($mobile) {
+				color:white!important;
+			}
+		}
+		&:after {
+			@include media($mobile) {
+				background-color: white!important;
+			}
+		}
+	}
+	header.white {
+		@include media($mobile) {
+			border:none!important
+		}
+	}
+}
 
 /* Protected
 -------------------------------------------------- */
@@ -423,6 +460,9 @@ header.white nav.menu ul li{
 					color: grey;
 					&:hover {
 						color:black
+					}
+					@include media($mobile) {
+						transform: translate(-100%);
 					}
 				}
 

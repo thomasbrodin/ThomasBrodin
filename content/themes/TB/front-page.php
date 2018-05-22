@@ -13,8 +13,7 @@
 		echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
 	}
 	$context = Timber::get_context();
-	$post = new TimberPost();
-	$context['post'] = $post;
+	
 	// Query Featured
 	$args = array(
 		'post_type' => array('portfolio'),

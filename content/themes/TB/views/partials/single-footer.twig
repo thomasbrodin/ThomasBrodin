@@ -39,8 +39,8 @@
 	<div class="related">
 		<article class="related-thumb">
 			<figure>
-				{% if post.next %}
-					<a href="{{post.next.link}}">
+				{% if post.prev %}
+					<a href="{{post.prev.link(true)}}">
 						<div>
 							<figcaption>
 								<h5>Next Project</h5>
