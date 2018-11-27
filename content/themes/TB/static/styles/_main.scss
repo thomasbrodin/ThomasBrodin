@@ -1010,7 +1010,7 @@ h2.oops{
 					padding:0 2em;
 						margin: 0 auto 1em;
 						@include media(min-width 768px) {
-							width: 60%;
+							width: 70%;
 							line-height: 1.5;
 							font-size: em(18);
 						}
@@ -1281,7 +1281,8 @@ h2.oops{
 			text-transform: capitalize;
 			@include media(min-width 768px) {
 					 font-size:em(56);
-					 line-height: 1.25
+					 line-height: 1.25;
+					 max-width: 80%
 				}
 		}
 	}
