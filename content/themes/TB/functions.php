@@ -56,7 +56,8 @@ class StarterSite extends TimberSite {
 		);
 	}
 	function load_styles() {
-		wp_enqueue_style( 'custom', THEME_URL . '/app/css/main-min.css', false, null);
+		$rand = rand( 1, 99999999999 );
+		wp_enqueue_style( 'custom', THEME_URL . '/app/css/main-min.css', false, $rand);
 	}
 
 	function removeHeadLinks() {

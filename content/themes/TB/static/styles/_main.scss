@@ -792,15 +792,19 @@ h2.oops{
 	animation-fill-mode:forwards;
 	animation-delay:0.2s;
 }
-.Advertising .article_overlay, .Editorial .article_overlay {
+
+.Photography .article_overlay {
+	color: #fff;
+	background-color:$primary-red;
+}
+.Branding .article_overlay, .Advertising .article_overlay	{
 	color: #fff;
 	background-color:$primary-green;
 }
-.Branding .article_overlay, .Digital .article_overlay	{
+.Product.Design .article_overlay	{
 	color: #fff;
 	background-color:$primary-blue;
 }
-
 
 /* SINGLE
 -------------------------------------------------- */

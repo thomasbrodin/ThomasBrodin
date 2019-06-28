@@ -191,7 +191,7 @@
 					 $('#arrow-up').addClass('up');
 					 $("footer").addClass("white");
 			   } else {
-					 console.log('top');
+					 $("footer").removeClass("white");
 					 $('#arrow-up').removeClass('up');
 				 }
 			});
