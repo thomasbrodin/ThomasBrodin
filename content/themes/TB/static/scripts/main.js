@@ -26,14 +26,7 @@
 
 		// FullPage home
 		if ( $(".home").length ) {
-			var string = document.referrer;
-			if (string.indexOf(location.hostname) > 0){
-					$('.intro').hide();
-					$('.loading').hide().delay(700).fadeIn();
-					$('.subliminal').fadeIn(300).delay(700).fadeOut(500);
-					$('.T-landing').fadeIn(500);
-					$('#wall article').addClass('placed');
-			} else if (string.indexOf(location.hostname) == -1) {
+			if(typeof Cookies.get('visited') === "undefined"){
 				 $('.loading').hide().delay(1500).fadeIn();
 				 $('.subliminal').fadeIn(300).delay(1500).fadeOut(500);
 				 $('.intro').delay(1500).fadeIn();
@@ -60,6 +53,13 @@
 					 $("header").removeClass('white');
 					 $('#wall article').addClass('placed');
 				 }, 6000);
+				 Cookies.set('visited', 'yes', { expires: 1, path: '/' });
+			 } else {
+				 $('.intro').hide();
+				 $('.loading').hide().delay(700).fadeIn();
+				 $('.subliminal').fadeIn(300).delay(700).fadeOut(500);
+				 $('.T-landing').fadeIn(500);
+				 $('#wall article').addClass('placed');
 			 }
 			// Case Studies
 		} else if ($('body').hasClass('page-template-page-case-studies')) {

@@ -6,19 +6,26 @@
 
 		{% if post.get_thumbnail %}
 
-			<figure class="article_inner" onclick="window.location='{{post.link}}'">
+			<figure class="article_inner" onclick="window.location='{% if post.external_link %}{{post.url_link}}{% else %}{{post.link}}{% endif %}'">
 
 				<div class="article_overlay">
 					<div class="overlay-inner">
-						<div>
-							<h6>{{ post.ref_hover }}</h6>
-							<h2>{{ post.title }}</h2>
-						</div>
-							<ul>
-								{% for term in post.get_terms('project_category') %}
-									<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
-								{% endfor %}
-							</ul>
+						{% if post.external_link %}
+							<div>
+								<div class="article-protected">
+								</div>
+							</div>
+						{% else %}
+							<div>
+								<h6>{{ post.ref_hover }}</h6>
+								<h2>{{ post.title }}</h2>
+							</div>
+								<ul>
+									{% for term in post.get_terms('project_category') %}
+										<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
+									{% endfor %}
+								</ul>
+						{% endif %}
 					</div>
 				</div><!-- .article_overlay -->
 

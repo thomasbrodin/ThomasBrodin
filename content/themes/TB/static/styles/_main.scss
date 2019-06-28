@@ -298,16 +298,14 @@ header.white nav.menu ul li{
 /* PAGE
 -------------------------------------------------- */
 .about{
-	background-repeat: no-repeat;
-	background-position:top center;
-	background-size: cover;
+	background-color:#000;
 	z-index:0;
-		color: #fff;
-		height:100%;
-		width: 100%;
-		position: fixed;
-		top:0;
-		left:0;
+	color: #fff;
+	height:100%;
+	width: 100%;
+	position: fixed;
+	top:0;
+	left:0;
 }
 
 .page-content{
@@ -327,30 +325,30 @@ header.white nav.menu ul li{
 				padding-right: 3em;
 				font-size:4em
 			}
-			@include media(min-width 990px) {
-					padding-right: 4.5em;
-			}
-			@include media(min-width 1200px) {
-					padding-right:5.5em
-			}
-			@include media(min-width 1380px) {
-					padding-right:6.7em
-			}
-			@include media(min-width 1540px) {
-					padding-right:9em
-			}
-			@include media(min-width 1680px) {
-					padding-right:10em
-			}
-			@include media(min-width 1800px) {
-					padding-right:11em
-			}
+			// @include media(min-width 990px) {
+			// 		padding-right: 4.5em;
+			// }
+			// @include media(min-width 1200px) {
+			// 		padding-right:5.5em
+			// }
+			// @include media(min-width 1380px) {
+			// 		padding-right:6.7em
+			// }
+			// @include media(min-width 1540px) {
+			// 		padding-right:9em
+			// }
+			// @include media(min-width 1680px) {
+			// 		padding-right:10em
+			// }
+			// @include media(min-width 1800px) {
+			// 		padding-right:11em
+			// }
 			@include media(max-width 400px) {
 					padding-right: 2em;
 			}
-			@include media(min-width 320px max-width 736px orientation landscape) {
-					padding-right:4.2em
-			}
+			// @include media(min-width 320px max-width 736px orientation landscape) {
+			// 		padding-right:4.2em
+			// }
 			a {
 				color:white;
 				&:after {
@@ -397,6 +395,12 @@ header.white nav.menu ul li{
 
 /* Protected
 -------------------------------------------------- */
+.article-protected {
+	display: table-cell;
+  vertical-align: bottom;
+	background: url('../img/lock-white.png') no-repeat center center;
+	background-size: 20%;
+}
 .protected {
 	position: relative;
 	z-index: 0;
@@ -698,7 +702,7 @@ h2.oops{
 		height: 100%;
 		padding:1em 1.5em;
 		display: table;
-		div {
+		div:not(.article-protected) {
 			display: table-row;
 			vertical-align: top;
 			h2 {
@@ -1282,7 +1286,8 @@ h2.oops{
 			@include media(min-width 768px) {
 					 font-size:em(56);
 					 line-height: 1.25;
-					 max-width: 80%
+					 max-width: 80%;
+					 margin: auto;
 				}
 		}
 	}

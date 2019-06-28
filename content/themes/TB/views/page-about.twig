@@ -2,9 +2,9 @@
 {% block head %}
 {% endblock %}
 </head>
-    
+
     <body class="{{body_class}}">
-    
+
     <div class="large-bd to-top"></div>
     <div class="large-bd to-right"></div>
     <div class="large-bd to-bottom"></div>
@@ -12,16 +12,16 @@
     <!-- borders-->
 
     {% include 'partials/header.twig' %}
-    {% include 'partials/loader.twig' %} 
+    {% include 'partials/loader.twig' %}
 
-	<div class="about" style="background-image: url('{{TimberImage(post.get_field('portrait')).src}}')"></div>
+	<div class="about"></div>
 
-	<section class="page-content">	
-		
+	<section class="page-content">
+
 		<div class="article-body">
 			{{post.content}}
 		</div>
-		
+
 	</section>
 
 
