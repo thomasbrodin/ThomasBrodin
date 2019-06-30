@@ -428,6 +428,27 @@ header.white nav.menu ul li{
 			margin-bottom: 16px;
 			margin-top:-56px;
 		}
+		.btn {
+			float: none;
+	    color: #000;
+	    border: 1px solid #000 !important;
+	    outline: #000!important;
+	    display: block;
+	    width: 128px;
+	    margin: 18px auto;
+	    height: 36px;
+			transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+			&:after {
+				content: none
+			}
+			&:hover {
+				background-color:#000!important;
+				color:#fff!important;
+			}
+			h5 {
+				margin:4px
+			}
+		}
   	.password-form {
 			max-width:320px;
 	    margin: 0 auto;
