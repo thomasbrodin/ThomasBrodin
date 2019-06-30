@@ -187,13 +187,14 @@
 			// Footer Single
 			$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-					 console.log('bottom');
 					 $('#arrow-up').addClass('up');
 					 $("footer").addClass("white");
-			   } else {
-					 $("footer").removeClass("white");
-					 $('#arrow-up').removeClass('up');
-				 }
+			    } else if ($('#full-bg').hasClass('active') ){
+						$("footer").addClass("white");
+					}	else {
+						$("footer").removeClass("white");
+						$('#arrow-up').removeClass('up');
+					}
 			});
 			if ($('#arrow-up').length ) {
 				$('#smooth-scroll').click(function () {

@@ -1661,10 +1661,13 @@ footer {
 	}
 }
 
-#cat_title h1.Advertising , #cat_title h1.Editorial {
+#cat_title h1.Photography {
+	color:$primary-red;
+}
+ #cat_title h1.Branding {
 	color:$primary-green;
 }
-#cat_title h1.Digital, #cat_title h1.Branding {
+#cat_title h1.Product.Design {
 	color:$primary-blue;
 }
 
