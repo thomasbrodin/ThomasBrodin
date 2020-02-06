@@ -35,3 +35,4 @@ thomasbrodin_com_2.sql
 wp-config.php
 content/themes/twentynineteen
 /logs
+/app/public/wp-content/languages
