@@ -32,7 +32,7 @@
 				 $('.intro').delay(1500).fadeIn();
 				 $("header").addClass('white');
 				 setTimeout(function(){
-					 var str = "is a Design Director based in New York.",
+					 var str = "is a Creative Director and Design Lead based in New York.",
 								 i = 0,
 								 isTag,
 								 text;
@@ -44,15 +44,15 @@
 							 if( char === '<' ) isTag = true;
 							 if( char === '>' ) isTag = false;
 							 if (isTag) return type();
-							 setTimeout(type, 80);
+							 setTimeout(type, 70);
 					 }());
-				 }, 2600);
+				 }, 2500);
 				 setTimeout(function(){
 					 $('.loading').addClass('close-splash');
 					 $('.T-landing').delay(800).fadeIn(500);
 					 $("header").removeClass('white');
 					 $('#wall article').addClass('placed');
-				 }, 6000);
+				 }, 7000);
 				 Cookies.set('visited', 'yes', { expires: 1, path: '/' });
 			 } else {
 				 $('.intro').hide();
