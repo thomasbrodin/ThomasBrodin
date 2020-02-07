@@ -138,9 +138,6 @@
 					case 'share_twitter':
 						h = 300;
 						break;
-					case 'share_google':
-						w = 500;
-						break;
 				}
 				if (popup) {
 						e.preventDefault();

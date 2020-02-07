@@ -119,7 +119,7 @@ $shareButtonHeightMobile: 33px;
 		background:transparent;
 		border: 1px solid white;
 		&:after {
-			display: none;
+			content: none!important;
 		}
 		&:hover {
 			.icon {
