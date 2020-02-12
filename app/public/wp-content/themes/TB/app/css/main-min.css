@@ -3154,7 +3154,7 @@ h2.oops {
   margin-bottom: 650px; }
   @media screen and (min-width: 768px) {
     #single-content {
-      padding: 0 58px; } }
+      padding: 0 58px 58px; } }
   @media screen and (max-width: 767px) {
     #single-content {
       opacity: 1 !important;
@@ -3173,10 +3173,7 @@ h2.oops {
     display: block;
     max-width: 100%;
     margin: 0 auto;
-    max-height: 480px; }
-    @media screen and (min-width: 1440px) {
-      .section.featured img, .section.single img {
-        max-height: 700px !important; } }
+    max-height: 75vh !important; }
   .section.featured .wrapper-img, .section.single .wrapper-img {
     position: relative;
     display: block;

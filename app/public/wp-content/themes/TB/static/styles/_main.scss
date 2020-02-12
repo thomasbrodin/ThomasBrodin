@@ -838,7 +838,7 @@ h2.oops{
 	z-index:1;
 	margin-bottom: 650px;
 	@include media(min-width 768px) {
-		padding:0 58px;
+		padding:0 58px 58px;
 	}
 	@include media($mobile) {
 		opacity: 1!important;
@@ -860,10 +860,7 @@ h2.oops{
 			display: block;
 			max-width: 100%;
 			margin:0 auto;
-			max-height:480px;
-			@include media($lg-screen) {
-				max-height:700px!important;
-			}
+			max-height:75vh!important
 		}
 		.wrapper-img {
 			position: relative;
