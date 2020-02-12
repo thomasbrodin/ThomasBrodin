@@ -3477,7 +3477,8 @@ h2.oops {
             .section .inner .row .half:last-child {
               margin-right: 0; } }
         .section .inner .row .half img.slides {
-          margin: 0 auto; }
+          margin: 0 auto;
+          max-height: 65vh !important; }
         .section .inner .row .half:first-child {
           padding: 0 4% 0 0; }
           @media screen and (max-width: 767px) {
