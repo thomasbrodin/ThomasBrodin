@@ -33,3 +33,7 @@
 /app/public/wp-content/themes/._index.php
 /app/public/wp-content/themes/index.php
 /app/public/wp-content/themes/twentytwenty
+/app/public/wp-content/db-error.php
+/conf
+/app/public/fw-status-check.php
+/app/public/fw-flush-cache.php
