@@ -30,7 +30,6 @@ body, html {
 	background-color:#f2f2f2;
 	color:#111;
 }
-
 a {
 	color: #000;
 	text-decoration: none;
@@ -218,13 +217,13 @@ nav.menu{
 	z-index: 1000;
 	ul {
 		list-style: none;
-    padding-left: 0;
+    	padding-left: 0;
 		margin:20px 0 0 0;
 		li {
 			display: inline-block;
 			a.nav {
 				font-size: 1.2em;
-    		line-height: 1.2em;
+    			line-height: 1.2em;
 				&:before {
 				    background-color: black;
 				    content: "";
@@ -236,7 +235,7 @@ nav.menu{
 				    width: 0;
 				}
 			}
-			&:first-child:after {
+			&:after {
 				background-color: black;
 				content: "";
 				display: inline-block;
@@ -252,7 +251,10 @@ nav.menu{
 				}
 			}
 			&:last-child {
-				margin-right: .625rem
+				margin-right: .625rem;
+				&:after {
+					content: none;
+				}
 			}
 			&:hover a.nav:before {
 				width: 100%;
@@ -283,6 +285,9 @@ header.white {
 header.white nav.menu ul li{
 	a.nav{
 		color:white!important;
+		&:before {
+			background-color:white!important;
+		}
 		@include media($mobile) {
 			color:black!important;
 		}
@@ -306,6 +311,7 @@ header.white nav.menu ul li{
 	position: fixed;
 	top:0;
 	left:0;
+	background-size: cover;
 }
 
 .page-content{
@@ -325,30 +331,10 @@ header.white nav.menu ul li{
 				padding-right: 3em;
 				font-size:4em
 			}
-			// @include media(min-width 990px) {
-			// 		padding-right: 4.5em;
-			// }
-			// @include media(min-width 1200px) {
-			// 		padding-right:5.5em
-			// }
-			// @include media(min-width 1380px) {
-			// 		padding-right:6.7em
-			// }
-			// @include media(min-width 1540px) {
-			// 		padding-right:9em
-			// }
-			// @include media(min-width 1680px) {
-			// 		padding-right:10em
-			// }
-			// @include media(min-width 1800px) {
-			// 		padding-right:11em
-			// }
+			
 			@include media(max-width 400px) {
 					padding-right: 2em;
 			}
-			// @include media(min-width 320px max-width 736px orientation landscape) {
-			// 		padding-right:4.2em
-			// }
 			a {
 				color:white;
 				&:after {
@@ -827,7 +813,7 @@ h2.oops{
 	background-color:$primary-blue;
 }
 
-/* SINGLE
+/* FULLPAGE
 -------------------------------------------------- */
 #single {
 	background-color: #f2f2f2;
@@ -837,9 +823,6 @@ h2.oops{
 	background-color: #f2f2f2;
 	z-index:1;
 	margin-bottom: 650px;
-	@include media(min-width 768px) {
-		padding:0 58px 58px;
-	}
 	@include media($mobile) {
 		opacity: 1!important;
 		margin-bottom: 0;
@@ -848,118 +831,118 @@ h2.oops{
 .section {
 	@include outer-container();
 	&.featured, &.single {
-		// max-width:960px!important;Only for case studies
-		// @include media($mobile) {
-		// 	margin-left:90px;
-		// }
-		// @include media($tablet) {
-		// 	margin-left:145px;
-		// }
 		img {
 			position: relative;
 			display: block;
 			max-width: 100%;
-			margin:0 auto;
-			max-height:75vh!important
+			max-height: 75vh;
+    		height: auto;
+			@include media($mobile) {
+				height:auto
+			}
+			@include media($tablet) {
+				height:auto
+			}
 		}
 		.wrapper-img {
 			position: relative;
 			display: block;
 			margin:0 auto;
 			max-width:100%;
-		}
-		.featured-title {
-			position: absolute;
-	    top: 50%;
-	    left: 0;
-	    display: block;
-	    white-space: nowrap;
-			transform:translate(-50%, -50%);
-	 		@include media(min-width 1100px) {
-	 		 transform:translate(-30.8%, -50%);
-	 		}
-	 		@include media(min-width 1560px) {
-	 		 transform:translate(-35%, -50%);
-	 		}
-			&.show-title {
-				animation-name:FontShow;
-				animation-duration:1s;
-				animation-timing-function:cubic-bezier(0.2, 0.3, 0.25, 0.9);
-				animation-iteration-count:1;
-				animation-direction:normal;
-				animation-fill-mode:forwards;
+			.block-img {
+				a.img {
+					display: block;
+					position: relative;
+					margin-top: 25px;
+					&:after {
+						content:none;
+					}
+					img {			
+						float: right;
+						@include media(max-width 1024px) {
+							margin-bottom: 25px;
+						}
+
+					}
+				}
+			}
+			.featured-title {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				display: block;
+				white-space: nowrap;
+				transform:translate(0, -50%);
 				@include media($mobile) {
-					margin-left: 0!important;
-					margin-top: 0!important;
-					animation:none!important ;
-				}
-			}
-			@include media($mobile) {
-				transform:translateY(-50%);
-				left: -80px;
-			}
-			@include media($tablet) {
-				transform:translateY(-50%);
-				left: -115px;
-			}
-	    h2{
-				font-size: 12rem;
-				text-transform: capitalize;
-				margin:0;
-				text-align: left;
-				@include media(min-width 768px) {
-					font-size: 8rem;
-				}
-				@include media(min-width 1380px) {
-					font-size: 10rem;
-				}
-				@include media($mobile) {
-					font-size: 2.2rem;
+				 	transform:translate(0, 210%);
 				}
 				@include media($tablet) {
-					font-size: 4rem;
+					transform:translate(0, 210%);
 				}
-			}
-			&.back {
-				z-index: 0;
-			}
-			.infos {
-				span {
-					display: block;
-					float: left;
-					&.dash {
-						width: 55px;
-						border-bottom: 5px solid;
-						margin:20px 25px 0 15px;
-						@include media($mobile) {
-							width: 25px;
-							border-bottom: 3px solid;
-							margin:10px 10px 0 2px;
-						}
-						@include media($tablet) {
-							width: 35px;
-							border-bottom: 3px solid;
-							margin:15px 10px 0 2px;
-						}
+				&.show-title {
+					animation-name:FontShow;
+					animation-duration:1s;
+					animation-timing-function:cubic-bezier(0.2, 0.3, 0.25, 0.9);
+					animation-iteration-count:1;
+					animation-direction:normal;
+					animation-fill-mode:forwards;
+				}
+			h2{
+					font-size: 12rem;
+					text-transform: capitalize;
+					margin:0;
+					text-align: left;
+					@include media(min-width 1380px) {
+						font-size: 12rem;
 					}
-					&.caption {
-						font-size: 2.5rem;
-						line-height: 1.2;
-						border: none;
-						width:auto;
-						text-align: left;
-						@include media($mobile) {
-							font-size: 1rem;
-						}
-						@include media($tablet) {
-							font-size: 1.7rem;
-						}
+					@include media($mobile) {
+						font-size: 2.2rem;
 					}
-					a:after {
-						display: none
+					@include media($tablet) {
+						font-size: 4rem;
 					}
-					a:hover {
-						opacity: 0.7
+				}
+				&.back {
+					z-index: 0;
+				}
+				.infos {
+					span {
+						display: block;
+						float: left;
+						&.dash {
+							width: 55px;
+							border-bottom: 5px solid;
+							margin:20px 25px 0 15px;
+							@include media($mobile) {
+								width: 25px;
+								border-bottom: 3px solid;
+								margin:10px 10px 0 2px;
+							}
+							@include media($tablet) {
+								width: 35px;
+								border-bottom: 3px solid;
+								margin:15px 10px 0 2px;
+							}
+						}
+						&.caption {
+							font-size: 2.5rem;
+							line-height: 1.2;
+							border: none;
+							width:auto;
+							text-align: left;
+							@include media($mobile) {
+								font-size: 1rem;
+							}
+							@include media($tablet) {
+								font-size: 1.7rem;
+							}
+						}
+						a:after {
+							display: none
+						}
+						a:hover {
+							opacity: 0.7
+						}
 					}
 				}
 			}
@@ -1321,7 +1304,7 @@ h2.oops{
 		background-size:cover;
 		background-position: center center;
 		@include media($mobile) {
-			margin: 100px 18px 0;
+			margin: 100px 10px 0;
 		}
 		h1 {
 			font-family: 'Apercu Medium';
@@ -1342,13 +1325,24 @@ h2.oops{
 		}
 	}
 }
+.fullpage-wrapper {
+	padding:0 58px 58px;
+	@include media($mobile) {
+		padding-left:18px;
+		padding-right:18px
+	}
+	@include media($tablet) {
+		padding-left:58px;
+		padding-right:58px
+	}
+}
 body {
 	&.fp-responsive {
 		.section {
 			height:100%!important;
-			padding: 80px 15px 80px;
+			padding: 80px 0 80px;
 			&:first-child {
-				padding-top:100px;
+				padding-top:80px;
 			}
 		}
 	}
@@ -1489,7 +1483,7 @@ body {
 		overflow: hidden;
 		cursor: pointer;
 		background:transparent;
-    background-color: $hue-red!important;
+    	background-color: $hue-red!important;
 		z-index:2;
 		transition:background 0.35s;
 		@include media($mobile) {
@@ -1512,9 +1506,9 @@ body {
 			top: 0;
 			figcaption {
 				backface-visibility: hidden;
-    		height: 100%;
-    		display: table;
-  		  width: 100%;
+    			height: 100%;
+    			display: table;
+  		  		width: 100%;
 				@include media($mobile) {
 					padding: 1em;
 				}
@@ -1559,7 +1553,7 @@ body {
 		opacity: 1!important
 	}
 }
-.related-thumb figure:hover h5{
+.single-footer.show .related-thumb figure h5{
 	animation-name:captionUp;
 	animation-duration:0.35s;
 	animation-timing-function:cubic-bezier(0.2, 0.3, 0.25, 0.9);
@@ -1588,19 +1582,25 @@ footer {
 	padding-right:58px;
 	display:none;
 	@include media(min-width 768px) {
-				display:block
+		display:block
+	}
+	&.off {
+		#name h1 {
+			display: none
 		}
-		&.off {
-			#name h1 {
-				display: none
-			}
+	}
+	&.white {
+		#name h1{
+			transition:transform 0.7s ease-in-out;
+			color:#fff!important
 		}
-		&.white {
-			#name h1{
-				transition:transform 0.7s ease-in-out;
-				color:#fff!important
-			}
+	}
+	&.black {
+		#name h1{
+			transition:transform 0.7s ease-in-out;
+			color:#000!important
 		}
+	}
 }
 #bottom-titles {
 	display: block;
@@ -1620,7 +1620,7 @@ footer {
 		padding:0;
 		font-size: em(14);
 		line-height: em(14);
-		color:#000;
+		color:#000!important;
 		letter-spacing: -0.01em;
 		transition:color 0.7s ease-in-out;
 		@include media(min-width 768px) {

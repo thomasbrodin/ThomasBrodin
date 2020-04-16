@@ -65,12 +65,13 @@
 		} else if ($('body').hasClass('page-template-page-case-studies')) {
 			console.log('case');
 			$('#case-studies').fullpage({
-				verticalCentered: false,
-				scrollingSpeed: 700,
-				keyboardScrolling : true,
-				loopBottom: false,
-				responsiveWidth: 768,
-				responsiveHeight: 0,
+					autoScrolling: false,
+					keyboardScrolling : true,
+					fixedElements: '.single-footer',
+					fitToSection: false,
+					responsiveWidth: 768,
+					responsiveHeight: 0,
+					verticalCentered: false,
 				afterRender: function(){
 					$('#loader').delay(800).fadeOut(300);
 					$('.loading').hide().delay(700).fadeIn();
@@ -168,16 +169,16 @@
 				afterLoad: function (anchorLink, index){
 					$( "section.active .inner" ).addClass('show');
 					if ($('.video-section').hasClass('active') ) {
-		        videojs("vid-"+index).ready(function(){
-							this.play();
-						});
-					}
-					var headerColor = $('#full-bg').data('color');
-					if ($('#full-bg').hasClass('active') ) {
-							$("header, footer, #arrow-up").addClass(headerColor);
-						} else {
-							$("header, footer, #arrow-up").removeClass(headerColor);
+					videojs("vid-"+index).ready(function(){
+								this.play();
+							});
 						}
+						var headerColor = $('#full-bg').data('color');
+						if ($('#full-bg').hasClass('active') ) {
+								$("header, footer, #arrow-up").addClass(headerColor);
+							} else {
+								$("header, footer, #arrow-up").removeClass(headerColor);
+							}
 				}
 			});
 
@@ -186,11 +187,13 @@
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
 					 $('#arrow-up').addClass('up');
 					 $("footer").addClass("white");
+					 $( ".single-footer" ).addClass('show');
 			    } else if ($('#full-bg').hasClass('active') ){
 						$("footer").addClass("white");
 					}	else {
 						$("footer").removeClass("white");
 						$('#arrow-up').removeClass('up');
+						$( ".single-footer" ).removeClass('show');
 					}
 			});
 			if ($('#arrow-up').length ) {

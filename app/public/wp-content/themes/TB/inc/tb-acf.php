@@ -935,10 +935,7 @@ acf_add_local_field_group(array (
 						'class' => '',
 						'id' => '',
 					),
-					'post_type' => array (
-						0 => 'photography',
-						1 => 'creative-direction',
-					),
+					'post_type' => 'portfolio',
 					'taxonomy' => array (
 					),
 					'allow_null' => 0,
