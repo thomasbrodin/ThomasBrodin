@@ -642,7 +642,6 @@ h6 {
   @media screen and (min-width: 768px) {
     .home .tb-words {
       padding: 140px 16em 100px 59px; } }
-
 .words-wrapper {
   display: inline-block;
   position: relative;
@@ -677,7 +676,6 @@ h6 {
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     .sb-search {
       display: none; } }
-
 .sb-search-input {
   position: absolute;
   top: 0;
@@ -1057,7 +1055,6 @@ html.fp-enabled,
     @media screen and (max-width: 767px) {
       .sharing-wrap .sharing-buttons {
         height: 33px; } }
-
 .social-sharing .icon {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -1097,7 +1094,6 @@ html.fp-enabled,
     .social-sharing a {
       height: 33px;
       line-height: 33px; } }
-
 .social-sharing span {
   display: inline-block;
   vertical-align: top;
@@ -1108,7 +1104,6 @@ html.fp-enabled,
     .social-sharing span {
       height: 33px;
       line-height: 33px; } }
-
 .social-sharing .icon {
   padding: 0 9px 0 8px;
   color: white; }
@@ -1117,7 +1112,6 @@ html.fp-enabled,
     @media screen and (max-width: 767px) {
       .social-sharing .icon:before {
         line-height: 33px; } }
-
 .share-facebook:hover {
   background-color: #3b5998; }
 
@@ -2475,7 +2469,6 @@ a:focus {
   @media screen and (min-width: 768px) {
     .wrap {
       padding: 135px 58px 68px; } }
-
 #wall {
   position: relative;
   z-index: 0; }
@@ -2557,13 +2550,12 @@ a:focus {
   @media screen and (min-width: 321px) and (orientation: landscape) {
     #main-nav {
       border: none; } }
-
 /* logo */
 #logo {
   float: left;
   position: relative;
   min-height: 1px;
-  width: 33%;
+  width: 20%;
   margin-right: 2%;
   padding: 5px 0px 6px 2px; }
   @media screen and (min-width: 768px) {
@@ -2586,13 +2578,12 @@ a:focus {
 #nav-icons {
   float: left;
   display: block;
-  width: 63%;
+  width: 76%;
   margin-left: 2%;
   padding: 13px 18px 0; }
   @media screen and (min-width: 768px) {
     #nav-icons {
       padding: 32px 47px 0; } }
-
 /* NAV */
 nav.menu {
   position: relative;
@@ -2622,10 +2613,14 @@ nav.menu {
         display: inline-block;
         position: relative;
         height: 1px;
-        margin: 0 .625rem;
+        margin: 0.625rem;
         vertical-align: middle;
         width: 2.5rem;
         transition: width 0.4s cubic-bezier(0.39, 0.575, 0.565, 1); }
+        @media screen and (max-width: 767px) {
+          nav.menu ul li:after {
+            margin: 0.25rem;
+            width: 1rem; } }
         nav.menu ul li:after:hover {
           content: none;
           bottom: 0; }
@@ -2641,13 +2636,11 @@ header.white polygon#black {
   @media screen and (max-width: 767px) {
     header.white polygon#black {
       fill: black !important; } }
-
 header.white path {
   stroke: #fff; }
   @media screen and (max-width: 767px) {
     header.white path {
       stroke: black !important; } }
-
 @media screen and (max-width: 767px) {
   header.white {
     border-bottom: 1px solid black !important; } }
@@ -2659,13 +2652,11 @@ header.white nav.menu ul li a.nav {
   @media screen and (max-width: 767px) {
     header.white nav.menu ul li a.nav {
       color: black !important; } }
-
 header.white nav.menu ul li:after {
   background-color: white !important; }
   @media screen and (max-width: 767px) {
     header.white nav.menu ul li:after {
       background-color: black !important; } }
-
 /* PAGE
 -------------------------------------------------- */
 .about {
@@ -2714,7 +2705,6 @@ header.white nav.menu ul li:after {
   @media screen and (max-width: 767px) {
     .page-template-page-about header.white path {
       stroke: white !important; } }
-
 @media screen and (max-width: 767px) {
   .page-template-page-about header.white nav.menu ul li a.nav {
     color: white !important; } }
@@ -2960,7 +2950,6 @@ h2.oops {
           #wall article figure img {
             width: 100% !important;
             max-width: none !important; } }
-
 .cssanimations #wall article {
   opacity: 0; }
 
@@ -3161,7 +3150,6 @@ h2.oops {
     #single-content {
       opacity: 1 !important;
       margin-bottom: 0; } }
-
 .section {
   max-width: 81rem;
   margin-left: auto;
@@ -3586,7 +3574,6 @@ h2.oops {
       @media screen and (max-width: 767px) {
         .section#full-bg h3 {
           font-size: 1em; } }
-
 .fullpage-wrapper {
   padding: 0 58px 58px; }
   @media screen and (max-width: 767px) {
@@ -3597,7 +3584,6 @@ h2.oops {
     .fullpage-wrapper {
       padding-left: 58px;
       padding-right: 58px; } }
-
 body.fp-responsive .section {
   height: 100% !important;
   padding: 80px 0 80px; }
@@ -3799,7 +3785,6 @@ body.home section:nth-last-child(2) {
       @media screen and (min-width: 768px) and (max-width: 1024px) {
         .single-footer span.copyright {
           bottom: 42px; } }
-
 .cssanimations .related-thumb figure h5 {
   opacity: 0; }
   @media screen and (max-width: 767px) {
@@ -3808,7 +3793,6 @@ body.home section:nth-last-child(2) {
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     .cssanimations .related-thumb figure h5 {
       opacity: 1 !important; } }
-
 .single-footer.show .related-thumb figure h5 {
   animation-name: captionUp;
   animation-duration: 0.35s;
@@ -3895,7 +3879,6 @@ footer {
       #cat_title h1 {
         font-size: 1.5em;
         line-height: 1.5em; } }
-
 #cat_title h1.Photography {
   color: #FA0000; }
 

@@ -173,7 +173,7 @@ a:focus {
 	float: left;
 	position: relative;
 	min-height: 1px;
-	width: 33%;
+	width: 20%;
 	margin-right:2%;
 	padding:5px 0px 6px 2px;
 	@include media(min-width 768px) {
@@ -202,7 +202,7 @@ a:focus {
 #nav-icons {
 	float: left;
 	display: block;
-	width: 63%;
+	width: 76%;
 	margin-left:2%;
 	padding:13px 18px 0;
 	@include media(min-width 768px) {
@@ -241,10 +241,14 @@ nav.menu{
 				display: inline-block;
 				position: relative;
 				height: 1px;
-				margin: 0 .625rem;
+				margin: 0.625rem;
 				vertical-align: middle;
 				width: 2.5rem;
 				transition: width .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+				@include media($mobile) {
+					margin: 0.25rem;
+					width: 1rem;
+				}
 				&:hover {
 					content: none;
 					bottom: 0
