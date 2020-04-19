@@ -38,7 +38,7 @@ function tb_cpt() {
         'show_in_menu' => true,
         'show_in_nav_menus' => true,
         'show_in_admin_bar' => true,
-        'menu_position' => 0,
+        'menu_position' => 4,
         'has_archive' => true,
         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions',),
         'rewrite' => array( 'slug' => 'work'),
