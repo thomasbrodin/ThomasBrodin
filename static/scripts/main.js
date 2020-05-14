@@ -2,6 +2,17 @@
 
 	jQuery(document).ready(function($) {
 
+		setInterval(updateClip,100)
+
+		function updateClip() {
+			var title = $('.fp-section.active .back');
+			var img = $('.fp-section.active .img img');
+			if (title && img) {
+				var diff = img.offset().left - title.offset().left;
+				title.css('clip-path', 'inset(0 0 0 ' + diff.toFixed() +'px)');				
+			}
+		}
+
 		// Loading
 		$( "#T_shaped" ).bind('mouseenter',function() {
 			TweenLite.to($("polygon#red"), 1, { x:-4, y:-4, scale:1.1, opacity:0.8, ease: Power4.easeOut });

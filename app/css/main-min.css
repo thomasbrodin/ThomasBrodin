@@ -3221,7 +3221,9 @@ h2.oops {
           .section.featured .wrapper-img .featured-title h2, .section.single .wrapper-img .featured-title h2 {
             font-size: 4rem; } }
       .section.featured .wrapper-img .featured-title.back, .section.single .wrapper-img .featured-title.back {
-        z-index: 0; }
+        z-index: 1;
+        clip-path: inset(0 50% 0 0);
+        transition: 350ms ease-out all; }
       .section.featured .wrapper-img .featured-title .infos span, .section.single .wrapper-img .featured-title .infos span {
         display: block;
         float: left; }
