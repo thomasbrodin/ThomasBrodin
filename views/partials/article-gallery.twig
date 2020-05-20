@@ -1,0 +1,67 @@
+
+{% set th_padding = post.thumb_pad|join(' ') %}
+{% set proj_cat = "" %} 
+{% for term in post.get_terms('category') %}
+	{% set proj_cat = term.slug %}
+{% endfor %}
+
+<article class="{{ proj_cat }}{% if th_padding %} {{ th_padding }}{% endif %}" id="gallery-{{post.ID}}">
+
+	{% block content %}
+
+		{% if post.get_thumbnail %}
+
+			<figure class="article_inner" onclick="window.location='{% if post.external_link %}{{post.url_link}}{% else %}{{post.link}}{% endif %}'">
+
+				<div class="article_overlay">
+					<div class="overlay-inner">
+						{% if post.external_link %}
+							<div>
+								<div class="article-protected">
+								</div>
+							</div>
+						{% else %}
+							<div>
+								<h6>{{ post.ref_hover }}</h6>
+								<h2>{{ post.title }}</h2>
+							</div>
+								<ul>
+									{% for term in post.get_terms('category') %}
+										<li><a href="{{term.link}}">{% if not loop.first%} - {% endif %}{{term.name}}</a></li>
+									{% endfor %}
+								</ul>
+						{% endif %}
+					</div>
+				</div><!-- .article_overlay -->
+
+				{% if post.thumbnail_size == 'ThWidth' %}
+					<img class="wth-100" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'XSWidth' %}
+					<img class="wth-150" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'SWidth' %}
+					<img class="wth-200" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'SMWidth' %}
+					<img class="wth-250" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'MWidth' %}
+					<img class="wth-350" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'LMWidth' %}
+					<img class="wth-400" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'LWidth' %}
+					<img class="wth-450" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'XLWidth' %}
+					<img class="wth-520" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'XXLWidth' %}
+					<img class="wth-600" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% elseif post.thumbnail_size == 'XXXLWidth' %}
+					<img class="wth-740" src="{{post.thumbnail.src}}" alt="{{post.ref_hover}} - {{site.name}}"/>
+				{% else %}
+					<img src="{{post.thumbnail.src}}" />
+				{% endif %}
+
+			</figure><!-- figure -->
+
+
+		{% endif %}
+
+	{% endblock %}
+</article><!-- article -->

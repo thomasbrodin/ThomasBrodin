@@ -23,13 +23,42 @@
             </div>
           </section>
 
-          <div class="wrap">
+          <div id="case-studies" class="wrap">
 
-            <section id="wall" role="main" class="T-landing featured clearfix">
-          		{% for post in posts %}
-          			{% include 'partials/article-portfolio.twig' %}
-          		{% endfor %}
-          	</section><!-- #wall -->
+            {% for tb in post.get_field('home') %}
+              <section class="section featured">
+          			<div class="inner">
+          				<div class="middle">
+                    <div class="wrapper-img">
+                        <span class="featured-title back" style="color:{{tb.txt_col_back}}">
+                          <a style="color:{{tb.txt_col_back}}" href="{{tb.home_link}}"><h2>{{tb.home_title }}</h2></a>
+                          <div class="infos">
+                            <span class="dash" style="border-color:{{tb.txt_col_back}}"></span>
+                            <span class="caption">
+                              <a style="color:{{tb.txt_col_back}}" href="{{tb.home_link}}">{{ tb.home_capt }}</a>
+                            </span>
+                          </div>
+                        </span>
+                        <div class="block-img">
+                          <a class="img" href="{{tb.home_link}}">
+                            <img src="{{TimberImage(tb.home_img).src}}" alt="{{site.name}} - {{post.title}}" />
+                          </a>
+                         <span class="featured-title front" style="color:{{tb.txt_col_front}}">
+                           <a style="color:{{tb.txt_col_front}}" href="{{tb.home_link}}"><h2>{{tb.home_title }}</h2></a>
+                           <div class="infos">
+                               <span class="dash" style="border-color:{{tb.txt_col_front}}"></span>
+                               <span class="caption">
+                                 <a style="color:{{tb.txt_col_front}}!important" href="{{tb.home_link}}">{{ tb.home_capt }}</a>
+                               </span>
+                           </div>
+                         </span>
+                      </div>
+                    </div>
+          	    	</div>
+          	    </div>
+          		</section><!-- section -->
+            {% endfor %}
+
           </div><!-- #wrap -->
 
           {% include 'partials/footer.twig' %}

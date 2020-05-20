@@ -2,8 +2,6 @@
 
 	jQuery(document).ready(function($) {
 
-		setInterval(updateClip,100)
-
 		function updateClip() {
 			var title = $('.fp-section.active .back');
 			var img = $('.fp-section.active .img img');
@@ -71,10 +69,28 @@
 				 $('.subliminal').fadeIn(300).delay(700).fadeOut(500);
 				 $('.T-landing').fadeIn(500);
 				 $('#wall article').addClass('placed');
+				 setInterval(updateClip,100);
 			 }
-			// Case Studies
-		} else if ($('body').hasClass('page-template-page-case-studies')) {
-			console.log('case');
+			 $('#case-studies').fullpage({
+				autoScrolling: false,
+				keyboardScrolling : true,
+				fixedElements: '.single-footer',
+				fitToSection: false,
+				responsiveWidth: 768,
+				responsiveHeight: 0,
+				verticalCentered: false,
+				afterRender: function(){
+					$('#loader').delay(800).fadeOut(300);
+					$('.loading').hide().delay(700).fadeIn();
+					$('.T-landing').fadeIn(500);
+				},
+				afterLoad: function (anchorLink, index){
+					$( "section.active .inner" ).addClass('show');
+					$( "section.active .featured-title" ).addClass('show-title');
+				}
+			});
+		// Case Studies
+		} else if ($('body').hasClass('blo')) {
 			$('#case-studies').fullpage({
 					autoScrolling: false,
 					keyboardScrolling : true,

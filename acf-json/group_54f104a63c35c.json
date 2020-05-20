@@ -1,0 +1,54 @@
+{
+    "key": "group_54f104a63c35c",
+    "title": "Page",
+    "location": [
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "86"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields",
+        "discussion",
+        "comments",
+        "author",
+        "format",
+        "tags",
+        "send-trackbacks"
+    ],
+    "fields": [
+        {
+            "key": "field_54f104a787ef4",
+            "label": "Portrait",
+            "name": "portrait",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "large",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        }
+    ],
+    "modified": false
+}

@@ -1,0 +1,62 @@
+{
+    "key": "group_54f627e78477f",
+    "title": "Portfolio Side",
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "portfolio"
+            }
+        ]
+    ],
+    "menu_order": 2,
+    "position": "side",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "fields": [
+        {
+            "key": "field_557593c164403",
+            "label": "Thumbnail Padding",
+            "name": "thumb_pad",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "pdt-3": "Top Padding 3em",
+                "pdt-4": "Top Padding 4em",
+                "pdt-5": "Top Padding 5em",
+                "pdt-6": "Top Padding 6em",
+                "pdr-3": "Right Padding 3em",
+                "pdr-4": "Right Padding 4em",
+                "pdr-5": "Right Padding 5em",
+                "pdr-6": "Right Padding 6em",
+                "pdb-3": "Bottom Padding 3em",
+                "pdb-4": "Bottom Padding 4em",
+                "pdb-5": "Bottom Padding 5em",
+                "pdb-6": "Bottom Padding 6em",
+                "pdl-3": "Left Padding 3em",
+                "pdl-4": "Left Padding 4em",
+                "pdl-5": "Left Padding 5em",
+                "pdl-6": "Left Padding 6em"
+            },
+            "default_value": {
+                "": ""
+            },
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "return_format": "value"
+        }
+    ],
+    "modified": false
+}

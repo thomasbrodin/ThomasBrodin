@@ -1,6 +1,6 @@
 <?php
 	include_once('inc/tb-cpt.php');
-	include_once('inc/tb-acf.php');
+	// include_once('inc/tb-acf.php');
 
 
 if ( ! class_exists( 'Timber' ) ) {
