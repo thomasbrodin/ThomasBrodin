@@ -68,7 +68,6 @@
 				 $('.loading').hide().delay(700).fadeIn();
 				 $('.subliminal').fadeIn(300).delay(700).fadeOut(500);
 				 $('.T-landing').fadeIn(500);
-				 $('#wall article').addClass('placed');
 				 setInterval(updateClip,100);
 			 }
 			 $('#case-studies').fullpage({
@@ -89,27 +88,6 @@
 					$( "section.active .featured-title" ).addClass('show-title');
 				}
 			});
-		// Case Studies
-		} else if ($('body').hasClass('blo')) {
-			$('#case-studies').fullpage({
-					autoScrolling: false,
-					keyboardScrolling : true,
-					fixedElements: '.single-footer',
-					fitToSection: false,
-					responsiveWidth: 768,
-					responsiveHeight: 0,
-					verticalCentered: false,
-				afterRender: function(){
-					$('#loader').delay(800).fadeOut(300);
-					$('.loading').hide().delay(700).fadeIn();
-					$('.T-landing').fadeIn(500);
-				},
-				afterLoad: function (anchorLink, index){
-					$( "section.active .inner" ).addClass('show');
-					$( "section.active .featured-title" ).addClass('show-title');
-				}
-			});
-
 		// About
 	 	} else if ($('body').hasClass('page-template-page-about')) {
 			TweenLite.set("#top, #bottom", {visibility:"visible"});
