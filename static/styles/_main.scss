@@ -37,6 +37,9 @@ a {
 	overflow: hidden;
 	transition:all .25s cubic-bezier(.39,.575,.565,1);
 }
+a[rel="home"]:after{
+	display:none!important
+}
 a:not(.nav):after {
 	content: "";
 		display: block;
