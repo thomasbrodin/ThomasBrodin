@@ -34,46 +34,15 @@
 
 
 		// FullPage home
-		if ( $(".home").length ) {
-			if(typeof Cookies.get('visited') === "undefined"){
-				 $('.loading').hide().delay(1500).fadeIn();
-				 $('.subliminal').fadeIn(300).delay(1500).fadeOut(500);
-				 $('.intro').delay(1500).fadeIn();
-				 $("header").addClass('white');
-				 setTimeout(function(){
-					 var str = "is a Creative Director and Design Lead based in New York.",
-								 i = 0,
-								 isTag,
-								 text;
-					 (function type() {
-							 text = str.slice(0, ++i);
-							 if (text === str) return;
-							 document.getElementById('typewriter').innerHTML = text;
-							 var char = text.slice(-1);
-							 if( char === '<' ) isTag = true;
-							 if( char === '>' ) isTag = false;
-							 if (isTag) return type();
-							 setTimeout(type, 70);
-					 }());
-				 }, 2500);
-				 setTimeout(function(){
-					 $('.loading').addClass('close-splash');
-					 $('.T-landing').delay(800).fadeIn(500);
-					 $("header").removeClass('white');
-					 $('#wall article').addClass('placed');
-				 }, 7000);
-				 Cookies.set('visited', 'yes', { expires: 1, path: '/' });
-			 } else {
-				 $('.intro').hide();
-				 $('.loading').hide().delay(700).fadeIn();
-				 $('.subliminal').fadeIn(300).delay(700).fadeOut(500);
-				 $('.T-landing').fadeIn(500);
-				 $('#wall article').addClass('placed');
-				 setInterval(updateClip,100);
-			 }
+		if ( $(".photography").length ) {	
+			$('.intro').hide();
+			$('.loading').hide().delay(700).fadeIn();
+			$('.subliminal').fadeIn(300).delay(700).fadeOut(500);
+			$('.T-landing').fadeIn(500);
+			$('#wall article').addClass('placed');
+			setInterval(updateClip,100);
 		// Case Studies
 		} else if ($('body').hasClass('page-template-page-case-studies')) {
-		console.log('case');
 			$('#case-studies').fullpage({
 					autoScrolling: false,
 					keyboardScrolling : true,
@@ -93,7 +62,7 @@
 				}
 			});
 		// About
-	 	} else if ($('body').hasClass('page-template-page-about')) {
+	 	} else if ($('body').hasClass('page-template-page-about-me')) {
 			TweenLite.set("#top, #bottom", {visibility:"visible"});
 			var tl = new TimelineMax();
 			tl.timeScale(2);
@@ -108,7 +77,7 @@
 				ease: Power1.easeOut
 			});
 			$(window).load(function() {
-				$('#loader').delay(1100).fadeOut(300);
+				$('#loader').delay(700).fadeOut(300);
 				$("header").addClass('white');
 				$('footer').addClass('off');
 			});
@@ -224,6 +193,18 @@
 			$(this).children('.article_overlay').animate({'opacity':'0.8'},'fast');
 		}).bind('mouseleave',function() {
 			$(this).children('.article_overlay').animate({'opacity':'0'},'slow');
+		});
+		
+		// Nav Single
+		$( "#trigger-overlay").click(function() {
+			var headerColor = $('#full-bg').data('color');
+			if (!$('#main-nav-content').hasClass('open')){
+				$("header, footer").addClass(headerColor);
+				$('#arrow-up').removeClass('off');
+			} else {
+				$("header, footer").removeClass(headerColor);
+				$('#arrow-up').addClass('off');
+			}
 		});
 	});
 })( jQuery );

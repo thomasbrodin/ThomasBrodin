@@ -1,0 +1,31 @@
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+
+    <body class="{{body_class}}">
+
+    <div class="large-bd to-top"></div>
+    <div class="large-bd to-right"></div>
+    <div class="large-bd to-bottom"></div>
+    <div class="large-bd to-left"></div>
+    <!-- borders-->
+
+    {% include 'partials/loader.twig' %}
+    {% include 'partials/header.twig' %}
+
+	<div class="about" {% if post.get_field('portrait') %}style="background-image: url('{{TimberImage(post.get_field('portrait')).src}}'){% endif %}"></div>
+
+	<section class="page-content">
+
+		<div class="article-body">
+			{{post.content}}
+		</div>
+
+	</section>
+
+
+	 {% include 'partials/footer.twig' %}
+
+	</body>
+</html>

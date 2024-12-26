@@ -10,6 +10,7 @@
 @import "grid-settings";
 @import "neat-1.9/neat";
 @import "fonts";
+@import "overlay";
 @import "T-Landing";
 @import "search";
 @import "fullPage";
@@ -70,7 +71,7 @@ a:focus {
 .wrap {
 	padding:105px 21px;
 	@include media(min-width 768px) {
-			 padding:135px 58px 68px;
+		padding:135px 58px 68px;
 	}
 }
 #wall {
@@ -176,21 +177,22 @@ a:focus {
 	float: left;
 	position: relative;
 	min-height: 1px;
-	width: 20%;
-	margin-right:2%;
+	width: 18%;
+	margin-right:1%;
 	padding:5px 0px 6px 2px;
 	@include media(min-width 768px) {
-			padding:22px 0 0 28px;
+		width: 20%;
+		margin-right: 2%;
+		padding:24px 0 0 36px;
 	}
-
 	a {
-			height:70px;
-			width:70px;
-			display: block;
-			 &:after {
+		height:70px;
+		width:70px;
+		display: block;
+		&:after {
 			display: none
-			 }
-			h1 {
+		}
+		h1 {
 			display: none;
 		}
 		&:hover {
@@ -205,15 +207,73 @@ a:focus {
 #nav-icons {
 	float: left;
 	display: block;
-	width: 76%;
-	margin-left:2%;
-	padding:13px 18px 0;
+	width: 80%;
+	margin-left:1%;
+	padding:5px 10px 0;
 	@include media(min-width 768px) {
-		padding:32px 47px 0;
+		width: 76%;
+		margin-left:2%;
+		padding:12px 36px 0;
 	}
 }
 
+#trigger-overlay {
+	position: absolute;
+	top: 15px;
+	right:25px;
+	@include media(min-width 768px) {
+		display: none;
+	}
+	i {
+		display:block;
+		width: 30px;
+		height: 3px;
+		margin: 20px 0;
+		background: #232323;
+		transition:all 0.3s ease-out;
+		&:before, 
+		&:after {
+			content: '';
+			display: block;
+			width: 30px;
+			height: 3px;
+			background: #232323;
+			position: absolute;
+			z-index: -1;
+			transition:all 0.3s ease-out;
+		}
+		&:before {
+			top: 10px;
+		}
+		&:after {
+			top: 30px;
+		}
+	}
+}
+
+#trigger-overlay.clicked i {
+	background: none !important;
+}
+#trigger-overlay.clicked i:before{
+	top: 18px!important;
+	transform:rotate(-45deg);
+}
+#trigger-overlay.clicked i:after{
+	top: 18px !important;
+	transform:rotate(45deg);
+}
+header.white #trigger-overlay i,
+header.white #trigger-overlay i:before,
+header.white #trigger-overlay i:after {
+	background:#fff
+}
+
 /* NAV */
+#menu {
+	@include media($mobile) {
+		display:none
+	}
+}
 nav.menu{
 	position:relative;
 	float:right;
@@ -224,6 +284,25 @@ nav.menu{
 		margin:20px 0 0 0;
 		li {
 			display: inline-block;
+			&.button {
+				border: 1px black solid;
+				padding: 10px 20px;
+				@include media($mobile) {
+					padding: 8px 15px;
+				}
+				a.nav {
+					&:before {
+						content: none;
+					}
+				}
+				&:hover {
+					transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+					background-color:black;
+					a.nav {
+						color: white !important;
+					}
+				}
+			}
 			a.nav {
 				font-size: 1.2em;
     			line-height: 1.2em;
@@ -249,8 +328,8 @@ nav.menu{
 				width: 2.5rem;
 				transition: width .4s cubic-bezier(0.39, 0.575, 0.565, 1);
 				@include media($mobile) {
-					margin: 0.25rem;
-					width: 1rem;
+					margin: 0.15rem;
+					width: 0.5rem;
 				}
 				&:hover {
 					content: none;
@@ -258,7 +337,15 @@ nav.menu{
 				}
 			}
 			&:last-child {
-				margin-right: .625rem;
+				&:after {
+					content: none;
+				}
+			}
+			&:nth-last-child(2) {
+				margin-right: 2rem;
+				@include media($mobile) {
+					margin-right: 0.625rem;
+				}
 				&:after {
 					content: none;
 				}
@@ -290,6 +377,16 @@ header.white {
 }
 
 header.white nav.menu ul li{
+	&.button {
+		border: 1px white solid;
+		&:hover {
+			transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+			background-color:white;
+			a.nav {
+				color:black!important;
+			}
+		}
+	}
 	a.nav{
 		color:white!important;
 		&:before {
@@ -355,7 +452,7 @@ header.white nav.menu ul li{
 	}
 }
 
-.page-template-page-about {
+.page-template-page-about-me {
 	header.white polygon#black{
 		@include media($mobile) {
 				fill: white!important
@@ -412,7 +509,7 @@ header.white nav.menu ul li{
 			background: url('../img/lock.png') no-repeat center center;
 			background-size: contain;
 			z-index: 90;
-		  speak: none;
+		  	speak: none;
 			height: 40px;
 			width: 30px;
 			position: relative;
@@ -423,13 +520,13 @@ header.white nav.menu ul li{
 		}
 		.btn {
 			float: none;
-	    color: #000;
-	    border: 1px solid #000 !important;
-	    outline: #000!important;
-	    display: block;
-	    width: 128px;
-	    margin: 18px auto;
-	    height: 36px;
+	    	color: #000;
+	    	border: 1px solid #000 !important;
+	    	outline: #000!important;
+	    	display: block;
+	    	width: 128px;
+	    	margin: 18px auto;
+	    	height: 36px;
 			transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 			&:after {
 				content: none
@@ -487,7 +584,7 @@ header.white nav.menu ul li{
 			}
   	}
 		input:-webkit-autofill {
-				-webkit-box-shadow: 0 0 0px 1000px transparent inset;
+				-webkit-box-dow: 0 0 0px 1000px transparent inset;
 		}
 		input::-webkit-input-placeholder {
 			color:grey;
@@ -808,8 +905,8 @@ h2.oops{
 }
 
 .photo .article_overlay, .creative-direction .article_overlay {
-	color: #fff;
-	background-color:$primary-green;
+	color: black;
+	background-color:$hue-red
 }
 .branding .article_overlay {
 	color: #fff;
@@ -1660,7 +1757,7 @@ footer {
 		padding:0;
 		font-size: em(14);
 		line-height: em(14);
-		color:#999;
+		color:$hue-red;
 		letter-spacing: -0.01em;
 		@include media(min-width 768px) {
 					 font-size: em(24);
@@ -1670,7 +1767,7 @@ footer {
 }
 
 #cat_title h1.Photography {
-	color:$primary-red;
+	color:$hue-red
 }
  #cat_title h1.Branding {
 	color:$primary-green;

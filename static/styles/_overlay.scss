@@ -1,8 +1,5 @@
 /* OVERLAY NAV */
-.nav > li.active > a {
-	color:$hue-red;
-	border: none
-}
+
 body.post-type-archive-creative-direction .nav > li.active > h1 a{
 	color:$primary-green;
 }
@@ -16,11 +13,18 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: rgba(255,255,255,0.9);
+	background: $primary-blue;
 	z-index: 2;
 	opacity:0;
 	visibility: hidden;
 	transition:opacity 0.5s,  visibility 0s 0.5s;
+}
+
+.photography .overlay {
+	background:$hue-red
+}
+.portfolio-template-default .overlay{
+		background:$hue-red
 }
 
 /* Menu style */
@@ -29,7 +33,7 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 	position: relative;
 	z-index: 9999;
 	top: 50%;
-	height: 66%;
+	height: 35%;
 	transform:translateY(-50%);
 }
 
@@ -50,7 +54,7 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 
 .overlay ul li a {
 	display: inline-block;
-	color: #000;
+	color: white;
 	padding: 0 2px 8px;
 	margin: 0;
 	font-family: $font-stack;
@@ -62,6 +66,7 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 .overlay nav h1 {
 	text-transform:none;
 	margin-top:0;
+    margin-bottom: 0.635rem;
 	@include media(min-width 768px) {
        font-size:em(76);
   	}
@@ -69,12 +74,22 @@ body.post-type-archive-photography .nav > li.active > h1 a{
 .overlay nav h6 {
 	font-size:em(16);
 	letter-spacing: -0.01em;
-	margin: 0 0 0.2em 0;
-	@include media($mobile) {
-		font-size:em(12);
-	}
+	margin: 0 0 0.35rem 0;
+	color:white
 }
 
+.photography .overlay,
+.portfolio-template-default .overlay
+ {
+	h1 {
+		a {
+			color:black!important
+		}
+	}
+	h6 {
+		color:black!important
+	}
+}
 .overlay ul li a:hover,
 .overlay ul li a:focus {
 	transition:all, 0.2s, ease-out;

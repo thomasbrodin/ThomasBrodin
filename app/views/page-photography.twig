@@ -1,0 +1,33 @@
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+    <body class="photography {{body_class}}" data-source="base.twig">
+
+        <div class="large-bd to-top"></div>
+        <div class="large-bd to-right"></div>
+        <div class="large-bd to-bottom"></div>
+        <div class="large-bd to-left"></div>
+        <!-- borders-->
+
+        <div class="loading show-splash">
+
+          {% include 'partials/header.twig' %}
+
+	         <div class="wrap">
+
+            <section id="wall" role="main" class="T-landing featured clearfix">
+          		{% for post in posts %}
+          			{% include 'partials/article-portfolio.twig' %}
+          		{% endfor %}
+          	</section><!-- #wall -->
+
+          </div><!-- #wrap -->
+
+	        {% include 'partials/footer.twig' %}
+    	  </div>
+
+        <div class="subliminal"></div>
+
+    </body>
+</html>

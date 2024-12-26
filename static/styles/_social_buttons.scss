@@ -77,6 +77,9 @@ $shareButtonHeightMobile: 33px;
 	@include media($mobile) {
 		margin-top: 0
 	}
+	a:hover:after {
+		content: none!important
+	}
 	.sharing-buttons {
 		display: none;
 		height:$shareButtonHeight;

@@ -2,7 +2,7 @@
 {% block head %}
 {% endblock %}
 </head>
-    <body class="{{body_class}}" data-source="base.twig">
+    <body class="photography {{body_class}}" data-source="base.twig">
 
         <div class="large-bd to-top"></div>
         <div class="large-bd to-right"></div>
@@ -14,16 +14,7 @@
 
           {% include 'partials/header.twig' %}
 
-          <section class="intro">
-            <div class="bg-intro"></div>
-            <div class="tb-words type">
-              <div class="words-wrapper waiting">
-                <p>Thomas brodin <span id="typewriter"></span></p>
-              </div>
-            </div>
-          </section>
-
-          <div class="wrap">
+	         <div class="wrap">
 
             <section id="wall" role="main" class="T-landing featured clearfix">
           		{% for post in posts %}
@@ -33,11 +24,10 @@
 
           </div><!-- #wrap -->
 
-          {% include 'partials/footer.twig' %}
+	        {% include 'partials/footer.twig' %}
+    	  </div>
 
-        </div>
-
-      <div class="subliminal"></div>
+        <div class="subliminal"></div>
 
     </body>
 </html>
